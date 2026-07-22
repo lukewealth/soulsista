@@ -1,12 +1,22 @@
 import React, { useState } from 'react';
-import { Menu, X, Calendar } from 'lucide-react';
+import { Menu, X, Calendar, Mic, Heart, BookOpen, Shield } from 'lucide-react';
+import { LanguageSwitcher } from './LanguageSwitcher';
 
 interface NavbarProps {
   onOpenBooking: () => void;
   onOpenContact: () => void;
+  onOpenAdmin: () => void;
+  currentPage: 'home' | 'speaking';
+  onNavigate: (page: 'home' | 'speaking') => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onOpenContact }) => {
+export const Navbar: React.FC<NavbarProps> = ({ 
+  onOpenBooking, 
+  onOpenContact, 
+  onOpenAdmin,
+  currentPage,
+  onNavigate 
+}) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -22,7 +32,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onOpenContact }) 
           
           {/* Logo */}
           <button
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            onClick={() => onNavigate('home')}
             className="text-left group cursor-pointer"
           >
             <span className="font-serif text-2xl md:text-3xl tracking-tight text-forest font-bold block group-hover:text-gold transition-colors">
@@ -34,12 +44,19 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onOpenContact }) 
           </button>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8 text-xs font-semibold uppercase tracking-widest text-forest/70">
+          <nav className="hidden lg:flex items-center space-x-6 text-xs font-semibold uppercase tracking-widest text-forest/70">
             <button
-              onClick={onOpenBooking}
-              className="hover:text-gold transition-colors"
+              onClick={() => onNavigate('home')}
+              className={`hover:text-gold transition-colors ${currentPage === 'home' ? 'text-gold' : ''}`}
             >
-              Book Session
+              Home
+            </button>
+            <button
+              onClick={() => onNavigate('speaking')}
+              className={`hover:text-gold transition-colors flex items-center gap-1 ${currentPage === 'speaking' ? 'text-gold' : ''}`}
+            >
+              <Mic className="w-3 h-3" />
+              Speaking
             </button>
             <button
               onClick={onOpenContact}
@@ -47,16 +64,26 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onOpenContact }) 
             >
               Contact
             </button>
+            <LanguageSwitcher />
           </nav>
 
           {/* Desktop CTA */}
-          <button
-            onClick={onOpenBooking}
-            className="hidden lg:flex items-center gap-2 px-5 py-2.5 bg-forest hover:bg-forest/90 text-ivory text-xs font-semibold uppercase tracking-widest rounded-full transition-all shadow-sm"
-          >
-            <Calendar className="w-3.5 h-3.5 text-gold" />
-            <span>Book Now</span>
-          </button>
+          <div className="hidden lg:flex items-center gap-3">
+            <button
+              onClick={onOpenAdmin}
+              className="p-2 text-forest/60 hover:text-gold transition-colors"
+              title="Admin Dashboard"
+            >
+              <Shield className="w-4 h-4" />
+            </button>
+            <button
+              onClick={onOpenBooking}
+              className="flex items-center gap-2 px-5 py-2.5 bg-forest hover:bg-forest/90 text-ivory text-xs font-semibold uppercase tracking-widest rounded-full transition-all shadow-sm"
+            >
+              <Calendar className="w-3.5 h-3.5 text-gold" />
+              <span>Book Now</span>
+            </button>
+          </div>
 
           {/* Mobile Menu Toggle */}
           <button
@@ -90,12 +117,26 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onOpenContact }) 
               <div className="py-6 space-y-4">
                 <button
                   onClick={() => {
-                    onOpenBooking();
+                    onNavigate('home');
                     setMobileMenuOpen(false);
                   }}
-                  className="block w-full text-left py-3 text-sm font-semibold uppercase tracking-widest text-forest hover:text-gold transition-colors"
+                  className={`block w-full text-left py-3 text-sm font-semibold uppercase tracking-widest transition-colors ${
+                    currentPage === 'home' ? 'text-gold' : 'text-forest hover:text-gold'
+                  }`}
                 >
-                  Book Session
+                  Home
+                </button>
+                <button
+                  onClick={() => {
+                    onNavigate('speaking');
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`block w-full text-left py-3 text-sm font-semibold uppercase tracking-widest transition-colors flex items-center gap-2 ${
+                    currentPage === 'speaking' ? 'text-gold' : 'text-forest hover:text-gold'
+                  }`}
+                >
+                  <Mic className="w-4 h-4" />
+                  Speaking & Events
                 </button>
                 <button
                   onClick={() => {
@@ -106,10 +147,24 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking, onOpenContact }) 
                 >
                   Contact
                 </button>
+
+                <div className="pt-4 border-t border-forest/10">
+                  <LanguageSwitcher />
+                </div>
               </div>
             </div>
 
-            <div className="pt-6 border-t border-forest/10">
+            <div className="pt-6 border-t border-forest/10 space-y-3">
+              <button
+                onClick={() => {
+                  onOpenAdmin();
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full py-3 bg-forest/10 text-forest text-sm font-semibold uppercase tracking-widest rounded-full flex items-center justify-center gap-2"
+              >
+                <Shield className="w-4 h-4" />
+                Admin Dashboard
+              </button>
               <button
                 onClick={() => {
                   onOpenBooking();

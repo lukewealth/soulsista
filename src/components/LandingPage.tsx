@@ -3,6 +3,9 @@ import { motion } from 'motion/react';
 import { Calendar, MessageCircle, ArrowRight, Sparkles, Heart, BookOpen, Users } from 'lucide-react';
 import { SERVICES, FEATURED_BOOK } from '../data/mockData';
 import { CONTACT } from '../shared/constants';
+import { DonationSection } from './DonationSection';
+import { TestimonialsCarousel } from './TestimonialsCarousel';
+import { BlogSection } from './BlogSection';
 
 interface LandingPageProps {
   onOpenBooking: (serviceId?: string) => void;
@@ -347,6 +350,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onOpenBooking }) => {
           </div>
         </div>
       </section>
+
+      {/* Donation Section */}
+      <DonationSection onOpenBooking={onOpenBooking} />
+
+      {/* Testimonials Section */}
+      <TestimonialsCarousel />
+
+      {/* Blog Section */}
+      <BlogSection />
 
       {/* Final CTA */}
       <section className="py-20 px-6 bg-forest text-white">

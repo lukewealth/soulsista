@@ -1,316 +1,427 @@
 import React, { useState } from 'react';
-import { BookingRecord, OrderRecord, AllyDonation, ContactEnquiry } from '../types';
-import { ShieldCheck, Users, Calendar, ShoppingBag, Heart, MessageSquare, X, Check, Search, Share2, Sparkles, Filter } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { 
+  X, Lock, Mail, Eye, EyeOff, 
+  LayoutDashboard, FileText, Users, Settings, 
+  Plus, Edit, Trash2, Save, LogOut,
+  TrendingUp, Calendar, MessageCircle, BookOpen
+} from 'lucide-react';
 
 interface AdminDashboardProps {
-  bookings: BookingRecord[];
-  orders: OrderRecord[];
-  donations: AllyDonation[];
-  enquiries: ContactEnquiry[];
+  isOpen: boolean;
   onClose: () => void;
-  onUpdateBookingStatus: (id: string, status: 'confirmed' | 'completed' | 'cancelled') => void;
 }
 
-export const AdminDashboard: React.FC<AdminDashboardProps> = ({
-  bookings,
-  orders,
-  donations,
-  enquiries,
-  onClose,
-  onUpdateBookingStatus,
-}) => {
-  const [activeTab, setActiveTab] = useState<'overview' | 'bookings' | 'orders' | 'donations' | 'enquiries'>('overview');
-  const [filterStatus, setFilterStatus] = useState<string>('all');
-  const [searchQuery, setSearchQuery] = useState('');
+interface BlogPost {
+  id: string;
+  title: string;
+  category: string;
+  status: 'published' | 'draft';
+  date: string;
+  views: number;
+}
 
-  // Analytics
-  const totalRevenue = bookings.reduce((sum, b) => sum + b.totalPriceUSD, 0) +
-                       orders.reduce((sum, o) => sum + o.totalUSD, 0) +
-                       donations.reduce((sum, d) => sum + d.amountUSD, 0);
+export const AdminDashboard: React.FC<AdminDashboardProps> = ({ isOpen, onClose }) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [activeTab, setActiveTab] = useState<'dashboard' | 'posts' | 'users' | 'settings'>('dashboard');
+  const [loginError, setLoginError] = useState('');
 
-  const filteredBookings = bookings.filter((b) => {
-    const matchesStatus = filterStatus === 'all' || b.status === filterStatus;
-    const matchesSearch = b.guestName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          b.guestEmail.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          b.id.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesStatus && matchesSearch;
-  });
+  // Mock blog posts data
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([
+    {
+      id: '1',
+      title: 'The Neuroscience of Somatic Healing',
+      category: 'Therapy',
+      status: 'published',
+      date: '2024-01-15',
+      views: 1247,
+    },
+    {
+      id: '2',
+      title: 'Breaking Generational Patterns',
+      category: 'Wellness',
+      status: 'published',
+      date: '2024-01-10',
+      views: 892,
+    },
+    {
+      id: '3',
+      title: 'Youth Circle Success Stories',
+      category: 'Youth',
+      status: 'draft',
+      date: '2024-01-05',
+      views: 0,
+    },
+  ]);
 
-  return (
-    <div className="fixed inset-0 z-50 bg-[#2D3A2F]/85 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-      <div className="bg-[#FDFCFB] text-[#1A1A1A] w-full max-w-5xl rounded-3xl shadow-2xl border border-[#EAE2D8] overflow-hidden my-8 flex flex-col max-h-[90vh]">
-        
-        {/* Header Bar */}
-        <div className="bg-[#2D3A2F] text-white p-6 flex items-center justify-between border-b border-[#3D4C3F]">
-          <div className="flex items-center gap-3">
-            <div className="p-2.5 bg-[#D4A39E] text-[#2D3A2F] rounded-2xl shadow-xs">
-              <ShieldCheck className="w-6 h-6" />
-            </div>
-            <div>
-              <span className="text-[10px] font-label uppercase tracking-[0.25em] text-[#D4A39E] font-bold block">
-                SOULSYSTA INTERNAL CRM PORTAL
-              </span>
-              <h2 className="font-serif text-2xl font-bold">Sanctuary Operations Console</h2>
-            </div>
-          </div>
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoginError('');
 
+    // Demo credentials
+    if (email === 'admin@soulsysta.com' && password === 'admin123') {
+      setIsLoggedIn(true);
+    } else {
+      setLoginError('Invalid credentials. Use admin@soulsysta.com / admin123');
+    }
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setEmail('');
+    setPassword('');
+    setActiveTab('dashboard');
+  };
+
+  const handleCreatePost = () => {
+    const newPost: BlogPost = {
+      id: Date.now().toString(),
+      title: 'New Blog Post',
+      category: 'Wellness',
+      status: 'draft',
+      date: new Date().toISOString().split('T')[0],
+      views: 0,
+    };
+    setBlogPosts([newPost, ...blogPosts]);
+  };
+
+  const handleDeletePost = (id: string) => {
+    setBlogPosts(blogPosts.filter(post => post.id !== id));
+  };
+
+  const handleToggleStatus = (id: string) => {
+    setBlogPosts(blogPosts.map(post => 
+      post.id === id 
+        ? { ...post, status: post.status === 'published' ? 'draft' : 'published' }
+        : post
+    ));
+  };
+
+  if (!isOpen) return null;
+
+  // Login Screen
+  if (!isLoggedIn) {
+    return (
+      <div className="fixed inset-0 z-50 bg-forest/90 backdrop-blur-md flex items-center justify-center p-4">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="bg-white rounded-2xl p-8 max-w-md w-full shadow-2xl"
+        >
           <button
             onClick={onClose}
-            className="p-2.5 bg-white/10 hover:bg-white/20 text-white rounded-full transition-colors cursor-pointer"
+            className="absolute top-4 right-4 p-2 text-forest/60 hover:text-forest rounded-full hover:bg-forest/10"
           >
             <X className="w-5 h-5" />
           </button>
+
+          <div className="text-center mb-8">
+            <div className="w-16 h-16 bg-forest rounded-full flex items-center justify-center mx-auto mb-4">
+              <Lock className="w-8 h-8 text-gold" />
+            </div>
+            <h2 className="font-serif text-2xl font-bold text-forest">Admin Login</h2>
+            <p className="text-forest/60 text-sm mt-2">Access the Soulsysta CRM Dashboard</p>
+          </div>
+
+          <form onSubmit={handleLogin} className="space-y-4">
+            <div>
+              <label className="block text-xs font-semibold text-forest mb-2 uppercase tracking-wide">
+                Email Address
+              </label>
+              <div className="relative">
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-forest/40" />
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="admin@soulsysta.com"
+                  className="w-full pl-10 pr-4 py-3 border border-forest/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold/50"
+                  required
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-forest mb-2 uppercase tracking-wide">
+                Password
+              </label>
+              <div className="relative">
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-forest/40" />
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                  className="w-full pl-10 pr-12 py-3 border border-forest/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold/50"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-forest/40 hover:text-forest"
+                >
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
+              </div>
+            </div>
+
+            {loginError && (
+              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
+                {loginError}
+              </div>
+            )}
+
+            <button
+              type="submit"
+              className="w-full py-3 bg-forest text-ivory font-semibold rounded-lg hover:bg-forest/90 transition-all"
+            >
+              Sign In
+            </button>
+
+            <div className="text-center text-xs text-forest/60 mt-4">
+              <p>Demo: admin@soulsysta.com / admin123</p>
+            </div>
+          </form>
+        </motion.div>
+      </div>
+    );
+  }
+
+  // Dashboard
+  return (
+    <div className="fixed inset-0 z-50 bg-ivory flex">
+      {/* Sidebar */}
+      <div className="w-64 bg-forest text-ivory flex flex-col">
+        <div className="p-6 border-b border-ivory/10">
+          <h1 className="font-serif text-xl font-bold">Soulsysta</h1>
+          <p className="text-xs text-ivory/60 mt-1">Admin Dashboard</p>
         </div>
 
-        {/* Navigation Tabs */}
-        <div className="bg-[#FAF7F2] px-6 py-2 border-b border-[#EAE2D8] flex items-center gap-2 overflow-x-auto text-xs font-label uppercase">
+        <nav className="flex-1 p-4">
           <button
-            onClick={() => setActiveTab('overview')}
-            className={`px-4 py-2.5 rounded-xl font-bold transition-all cursor-pointer ${
-              activeTab === 'overview' ? 'bg-[#2D3A2F] text-[#D4A39E]' : 'text-[#555555] hover:bg-[#EAE2D8]'
+            onClick={() => setActiveTab('dashboard')}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg mb-2 transition-all ${
+              activeTab === 'dashboard' ? 'bg-gold text-forest' : 'hover:bg-ivory/10'
             }`}
           >
-            Analytics Overview
+            <LayoutDashboard className="w-5 h-5" />
+            <span className="font-semibold">Dashboard</span>
           </button>
 
           <button
-            onClick={() => setActiveTab('bookings')}
-            className={`px-4 py-2.5 rounded-xl font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
-              activeTab === 'bookings' ? 'bg-[#2D3A2F] text-[#D4A39E]' : 'text-[#555555] hover:bg-[#EAE2D8]'
+            onClick={() => setActiveTab('posts')}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg mb-2 transition-all ${
+              activeTab === 'posts' ? 'bg-gold text-forest' : 'hover:bg-ivory/10'
             }`}
           >
-            <Calendar className="w-3.5 h-3.5" />
-            <span>Bookings ({bookings.length})</span>
+            <FileText className="w-5 h-5" />
+            <span className="font-semibold">Blog Posts</span>
           </button>
 
           <button
-            onClick={() => setActiveTab('orders')}
-            className={`px-4 py-2.5 rounded-xl font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
-              activeTab === 'orders' ? 'bg-[#2D3A2F] text-[#D4A39E]' : 'text-[#555555] hover:bg-[#EAE2D8]'
+            onClick={() => setActiveTab('users')}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg mb-2 transition-all ${
+              activeTab === 'users' ? 'bg-gold text-forest' : 'hover:bg-ivory/10'
             }`}
           >
-            <ShoppingBag className="w-3.5 h-3.5" />
-            <span>Book Orders ({orders.length})</span>
+            <Users className="w-5 h-5" />
+            <span className="font-semibold">Users</span>
           </button>
 
           <button
-            onClick={() => setActiveTab('donations')}
-            className={`px-4 py-2.5 rounded-xl font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
-              activeTab === 'donations' ? 'bg-[#2D3A2F] text-[#D4A39E]' : 'text-[#555555] hover:bg-[#EAE2D8]'
+            onClick={() => setActiveTab('settings')}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg mb-2 transition-all ${
+              activeTab === 'settings' ? 'bg-gold text-forest' : 'hover:bg-ivory/10'
             }`}
           >
-            <Heart className="w-3.5 h-3.5" />
-            <span>Ally Fund ({donations.length})</span>
+            <Settings className="w-5 h-5" />
+            <span className="font-semibold">Settings</span>
           </button>
+        </nav>
 
+        <div className="p-4 border-t border-ivory/10">
           <button
-            onClick={() => setActiveTab('enquiries')}
-            className={`px-4 py-2.5 rounded-xl font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
-              activeTab === 'enquiries' ? 'bg-[#2D3A2F] text-[#D4A39E]' : 'text-[#555555] hover:bg-[#EAE2D8]'
-            }`}
+            onClick={handleLogout}
+            className="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-ivory/10 transition-all"
           >
-            <MessageSquare className="w-3.5 h-3.5" />
-            <span>Enquiries ({enquiries.length})</span>
+            <LogOut className="w-5 h-5" />
+            <span className="font-semibold">Logout</span>
           </button>
         </div>
+      </div>
 
-        {/* Console Body */}
-        <div className="p-6 overflow-y-auto flex-1 space-y-6">
-          
-          {/* TAB 1: OVERVIEW ANALYTICS */}
-          {activeTab === 'overview' && (
-            <div className="space-y-6">
-              
-              {/* Top Stats Grid */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="p-5 bg-white rounded-2xl border border-[#EAE2D8] shadow-xs">
-                  <span className="block text-[10px] font-label uppercase text-[#888888]">Total Revenue</span>
-                  <span className="text-2xl font-extrabold text-[#2D3A2F] mt-1 block">${totalRevenue.toLocaleString()} USD</span>
-                  <span className="text-[10px] text-emerald-700 font-bold mt-1 block">↑ 24% vs last month</span>
+      {/* Main Content */}
+      <div className="flex-1 overflow-auto">
+        <div className="p-8">
+          {/* Dashboard Tab */}
+          {activeTab === 'dashboard' && (
+            <div>
+              <h2 className="font-serif text-3xl font-bold text-forest mb-8">Dashboard Overview</h2>
+
+              {/* Stats Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div className="bg-white rounded-xl p-6 shadow-lg">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-12 h-12 bg-gold/20 rounded-lg flex items-center justify-center">
+                      <FileText className="w-6 h-6 text-gold" />
+                    </div>
+                    <TrendingUp className="w-5 h-5 text-green-500" />
+                  </div>
+                  <h3 className="text-3xl font-bold text-forest">{blogPosts.length}</h3>
+                  <p className="text-sm text-forest/60 mt-1">Total Posts</p>
                 </div>
 
-                <div className="p-5 bg-white rounded-2xl border border-[#EAE2D8] shadow-xs">
-                  <span className="block text-[10px] font-label uppercase text-[#888888]">Guest Reservations</span>
-                  <span className="text-2xl font-extrabold text-[#2D3A2F] mt-1 block">{bookings.length} Confirmed</span>
-                  <span className="text-[10px] text-[#B88A85] font-bold mt-1 block">98.2% Completion</span>
+                <div className="bg-white rounded-xl p-6 shadow-lg">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-12 h-12 bg-gold/20 rounded-lg flex items-center justify-center">
+                      <Eye className="w-6 h-6 text-gold" />
+                    </div>
+                    <TrendingUp className="w-5 h-5 text-green-500" />
+                  </div>
+                  <h3 className="text-3xl font-bold text-forest">
+                    {blogPosts.reduce((sum, post) => sum + post.views, 0).toLocaleString()}
+                  </h3>
+                  <p className="text-sm text-forest/60 mt-1">Total Views</p>
                 </div>
 
-                <div className="p-5 bg-white rounded-2xl border border-[#EAE2D8] shadow-xs">
-                  <span className="block text-[10px] font-label uppercase text-[#888888]">Book Sales</span>
-                  <span className="text-2xl font-extrabold text-[#2D3A2F] mt-1 block">{orders.length} Units</span>
-                  <span className="text-[10px] text-[#B88A85] font-bold mt-1 block">Hardcover & Digital</span>
+                <div className="bg-white rounded-xl p-6 shadow-lg">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-12 h-12 bg-gold/20 rounded-lg flex items-center justify-center">
+                      <Calendar className="w-6 h-6 text-gold" />
+                    </div>
+                  </div>
+                  <h3 className="text-3xl font-bold text-forest">
+                    {blogPosts.filter(p => p.status === 'published').length}
+                  </h3>
+                  <p className="text-sm text-forest/60 mt-1">Published</p>
                 </div>
 
-                <div className="p-5 bg-white rounded-2xl border border-[#EAE2D8] shadow-xs">
-                  <span className="block text-[10px] font-label uppercase text-[#888888]">Ally Fund Raised</span>
-                  <span className="text-2xl font-extrabold text-[#2D3A2F] mt-1 block">
-                    ${donations.reduce((sum, d) => sum + d.amountUSD, 0).toLocaleString()} USD
-                  </span>
-                  <span className="text-[10px] text-emerald-700 font-bold mt-1 block">Direct Youth Grants</span>
+                <div className="bg-white rounded-xl p-6 shadow-lg">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-12 h-12 bg-gold/20 rounded-lg flex items-center justify-center">
+                      <MessageCircle className="w-6 h-6 text-gold" />
+                    </div>
+                  </div>
+                  <h3 className="text-3xl font-bold text-forest">24</h3>
+                  <p className="text-sm text-forest/60 mt-1">Comments</p>
                 </div>
               </div>
 
-              {/* Recent Activity Table Preview */}
-              <div className="p-6 bg-white rounded-2xl border border-[#EAE2D8] space-y-4">
-                <h3 className="font-serif font-bold text-lg text-[#2D3A2F]">Recent Guest Activity</h3>
-                <div className="space-y-3">
-                  {bookings.slice(0, 3).map((b) => (
-                    <div key={b.id} className="p-4 bg-[#FAF7F2] border border-[#EAE2D8] rounded-xl flex items-center justify-between text-xs">
+              {/* Recent Posts */}
+              <div className="bg-white rounded-xl p-6 shadow-lg">
+                <h3 className="font-serif text-xl font-bold text-forest mb-4">Recent Posts</h3>
+                <div className="space-y-4">
+                  {blogPosts.slice(0, 5).map((post) => (
+                    <div key={post.id} className="flex items-center justify-between p-4 bg-ivory rounded-lg">
                       <div>
-                        <span className="font-bold text-[#2D3A2F]">{b.guestName}</span> — {b.serviceTitle}
-                        <span className="block text-[10px] text-[#888888]">{b.date} at {b.timeSlot} with {b.practitionerName}</span>
+                        <h4 className="font-semibold text-forest">{post.title}</h4>
+                        <p className="text-sm text-forest/60">{post.category} • {post.date}</p>
                       </div>
-                      <span className="px-3 py-1 bg-[#2D3A2F] text-[#D4A39E] rounded-full text-[10px] font-label font-bold uppercase">
-                        {b.status}
+                      <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                        post.status === 'published' 
+                          ? 'bg-green-100 text-green-700' 
+                          : 'bg-yellow-100 text-yellow-700'
+                      }`}>
+                        {post.status}
                       </span>
                     </div>
                   ))}
                 </div>
               </div>
-
             </div>
           )}
 
-          {/* TAB 2: BOOKINGS CRM */}
-          {activeTab === 'bookings' && (
-            <div className="space-y-4">
-              
-              {/* Search & Filter Bar */}
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-3 bg-white p-4 rounded-2xl border border-[#EAE2D8]">
-                <div className="relative w-full sm:w-72">
-                  <Search className="w-4 h-4 text-[#B88A85] absolute left-3 top-3" />
-                  <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search by name, email, ID..."
-                    className="w-full pl-9 p-2 bg-[#FAF7F2] border border-[#EAE2D8] rounded-xl text-xs font-semibold focus:outline-none text-[#1A1A1A]"
-                  />
-                </div>
-
-                <div className="flex items-center gap-2">
-                  <Filter className="w-4 h-4 text-[#888888]" />
-                  <select
-                    value={filterStatus}
-                    onChange={(e) => setFilterStatus(e.target.value)}
-                    className="p-2 bg-[#FAF7F2] border border-[#EAE2D8] rounded-xl text-xs font-bold text-[#2D3A2F]"
-                  >
-                    <option value="all">All Statuses</option>
-                    <option value="confirmed">Confirmed</option>
-                    <option value="completed">Completed</option>
-                    <option value="cancelled">Cancelled</option>
-                  </select>
-                </div>
+          {/* Posts Tab */}
+          {activeTab === 'posts' && (
+            <div>
+              <div className="flex items-center justify-between mb-8">
+                <h2 className="font-serif text-3xl font-bold text-forest">Blog Posts</h2>
+                <button
+                  onClick={handleCreatePost}
+                  className="px-6 py-3 bg-forest text-ivory font-semibold rounded-lg hover:bg-forest/90 transition-all flex items-center gap-2"
+                >
+                  <Plus className="w-5 h-5" />
+                  Create Post
+                </button>
               </div>
 
-              {/* Bookings Table */}
-              <div className="space-y-3">
-                {filteredBookings.map((b) => (
-                  <div key={b.id} className="p-5 bg-white rounded-2xl border border-[#EAE2D8] space-y-3">
-                    <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#FAF7F2] pb-3">
-                      <div>
-                        <span className="font-mono text-xs font-bold text-[#B88A85]">{b.id}</span>
-                        <h4 className="font-serif font-bold text-base text-[#2D3A2F]">{b.guestName} ({b.guestEmail})</h4>
-                      </div>
-
-                      <div className="flex items-center gap-2">
-                        <select
-                          value={b.status}
-                          onChange={(e) => onUpdateBookingStatus(b.id, e.target.value as any)}
-                          className="px-3 py-1 bg-[#2D3A2F] text-[#D4A39E] rounded-full text-xs font-label uppercase font-bold"
-                        >
-                          <option value="confirmed">Confirmed</option>
-                          <option value="completed">Completed</option>
-                          <option value="cancelled">Cancelled</option>
-                        </select>
-
-                        <a
-                          href={b.whatsappShareUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="p-2 bg-[#25D366] text-white rounded-full"
-                          title="Resend WhatsApp Confirmation"
-                        >
-                          <Share2 className="w-3.5 h-3.5" />
-                        </a>
-                      </div>
-                    </div>
-
-                    <div className="grid sm:grid-cols-3 gap-2 text-xs text-[#555555]">
-                      <div>Ritual: <strong className="text-[#2D3A2F]">{b.serviceTitle}</strong></div>
-                      <div>Guide: <strong className="text-[#2D3A2F]">{b.practitionerName}</strong></div>
-                      <div>Date: <strong className="text-[#2D3A2F]">{b.date} at {b.timeSlot}</strong></div>
-                    </div>
-
-                    {/* Pre-Booking Questionnaire Insight */}
-                    <div className="p-3 bg-[#FAF7F2] border border-[#EAE2D8] rounded-xl text-xs space-y-1">
-                      <span className="font-label uppercase font-bold text-[10px] text-[#B88A85]">Pre-Booking Questionnaire Notes:</span>
-                      <p className="text-[#555555] italic font-light">
-                        "{b.questionnaire.intentReason || 'No special notes provided'}" — Emotional State Index: {b.questionnaire.emotionalStateScore}/10
-                      </p>
-                    </div>
-                  </div>
-                ))}
+              <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                <table className="w-full">
+                  <thead className="bg-forest text-ivory">
+                    <tr>
+                      <th className="text-left px-6 py-4 font-semibold">Title</th>
+                      <th className="text-left px-6 py-4 font-semibold">Category</th>
+                      <th className="text-left px-6 py-4 font-semibold">Status</th>
+                      <th className="text-left px-6 py-4 font-semibold">Views</th>
+                      <th className="text-left px-6 py-4 font-semibold">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {blogPosts.map((post) => (
+                      <tr key={post.id} className="border-b border-forest/10 hover:bg-ivory">
+                        <td className="px-6 py-4 font-semibold text-forest">{post.title}</td>
+                        <td className="px-6 py-4 text-forest/70">{post.category}</td>
+                        <td className="px-6 py-4">
+                          <button
+                            onClick={() => handleToggleStatus(post.id)}
+                            className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                              post.status === 'published' 
+                                ? 'bg-green-100 text-green-700 hover:bg-green-200' 
+                                : 'bg-yellow-100 text-yellow-700 hover:bg-yellow-200'
+                            }`}
+                          >
+                            {post.status}
+                          </button>
+                        </td>
+                        <td className="px-6 py-4 text-forest/70">{post.views.toLocaleString()}</td>
+                        <td className="px-6 py-4">
+                          <div className="flex gap-2">
+                            <button className="p-2 text-forest/60 hover:text-gold rounded-lg hover:bg-forest/10">
+                              <Edit className="w-4 h-4" />
+                            </button>
+                            <button
+                              onClick={() => handleDeletePost(post.id)}
+                              className="p-2 text-forest/60 hover:text-red-600 rounded-lg hover:bg-red-50"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
-
             </div>
           )}
 
-          {/* TAB 3: BOOK ORDERS */}
-          {activeTab === 'orders' && (
-            <div className="space-y-3">
-              {orders.map((o) => (
-                <div key={o.id} className="p-4 bg-white rounded-2xl border border-[#EAE2D8] flex items-center justify-between text-xs">
-                  <div>
-                    <span className="font-mono font-bold text-[#B88A85]">{o.id}</span>
-                    <h4 className="font-bold text-[#2D3A2F]">{o.guestName} ({o.guestEmail})</h4>
-                    <span className="text-[10px] text-[#888888] font-label uppercase">{o.format} edition • Qty: {o.quantity}</span>
-                  </div>
-                  <div className="text-right">
-                    <span className="font-extrabold text-sm text-[#2D3A2F] block">${o.totalUSD} USD</span>
-                    <span className="px-2.5 py-0.5 bg-emerald-100 text-emerald-800 rounded-full text-[10px] font-bold uppercase">{o.status}</span>
-                  </div>
-                </div>
-              ))}
+          {/* Users Tab */}
+          {activeTab === 'users' && (
+            <div>
+              <h2 className="font-serif text-3xl font-bold text-forest mb-8">User Management</h2>
+              <div className="bg-white rounded-xl p-8 shadow-lg text-center">
+                <Users className="w-16 h-16 text-forest/20 mx-auto mb-4" />
+                <h3 className="font-serif text-xl font-bold text-forest mb-2">Coming Soon</h3>
+                <p className="text-forest/60">User management features will be available in the next update.</p>
+              </div>
             </div>
           )}
 
-          {/* TAB 4: DONATIONS */}
-          {activeTab === 'donations' && (
-            <div className="space-y-3">
-              {donations.map((d) => (
-                <div key={d.id} className="p-4 bg-white rounded-2xl border border-[#EAE2D8] flex items-center justify-between text-xs">
-                  <div>
-                    <span className="font-mono font-bold text-[#B88A85]">{d.id}</span>
-                    <h4 className="font-bold text-[#2D3A2F]">{d.donorName} ({d.donorEmail})</h4>
-                    <span className="text-[10px] text-[#888888] font-label uppercase">Tier: {d.tierName} ({d.frequency})</span>
-                  </div>
-                  <div className="text-right">
-                    <span className="font-extrabold text-sm text-[#2D3A2F] block">${d.amountUSD} USD</span>
-                    <span className="text-[10px] text-[#B88A85] font-bold uppercase">{new Date(d.createdAt).toLocaleDateString()}</span>
-                  </div>
-                </div>
-              ))}
+          {/* Settings Tab */}
+          {activeTab === 'settings' && (
+            <div>
+              <h2 className="font-serif text-3xl font-bold text-forest mb-8">Settings</h2>
+              <div className="bg-white rounded-xl p-8 shadow-lg text-center">
+                <Settings className="w-16 h-16 text-forest/20 mx-auto mb-4" />
+                <h3 className="font-serif text-xl font-bold text-forest mb-2">Coming Soon</h3>
+                <p className="text-forest/60">Settings configuration will be available in the next update.</p>
+              </div>
             </div>
           )}
-
-          {/* TAB 5: ENQUIRIES */}
-          {activeTab === 'enquiries' && (
-            <div className="space-y-3">
-              {enquiries.map((e) => (
-                <div key={e.id} className="p-5 bg-white rounded-2xl border border-[#EAE2D8] space-y-2 text-xs">
-                  <div className="flex justify-between items-center">
-                    <span className="font-bold text-[#2D3A2F]">{e.name} ({e.email})</span>
-                    <span className="px-2.5 py-1 bg-[#2D3A2F] text-[#D4A39E] rounded-full text-[10px] uppercase font-label">{e.type}</span>
-                  </div>
-                  <p className="text-[#555555] p-3 bg-[#FAF7F2] border border-[#EAE2D8] rounded-xl font-light">{e.message}</p>
-                </div>
-              ))}
-            </div>
-          )}
-
         </div>
-
       </div>
     </div>
   );

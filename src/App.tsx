@@ -1,21 +1,26 @@
 import React, { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { LandingPage } from './components/LandingPage';
+import { SpeakingPage } from './components/SpeakingPage';
 import { BookingWizard } from './features/booking/components/BookingWizard';
 import { ContactModal } from './components/ContactModal';
+import { AdminDashboard } from './components/AdminDashboard';
 import { Footer } from './components/Footer';
 import { ToastContainer } from './components/ToastContainer';
 import { LoadingScreen } from './components/LoadingScreen';
+import { LanguageProvider } from './shared/i18n/LanguageContext';
 
 import { BookingRecord, ContactEnquiry, ToastMessage } from './types';
 
 export function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState<'home' | 'speaking'>('home');
   
   // Modals
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [bookingServiceId, setBookingServiceId] = useState<string | undefined>(undefined);
   const [isContactOpen, setIsContactOpen] = useState(false);
+  const [isAdminOpen, setIsAdminOpen] = useState(false);
 
   // Simple state management
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
@@ -42,8 +47,13 @@ export function App() {
     addToast('success', 'Message Received', 'Our team will contact you shortly.');
   };
 
+  const handleNavigate = (page: 'home' | 'speaking') => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <>
+    <LanguageProvider>
       {isLoading ? (
         <LoadingScreen onComplete={() => setIsLoading(false)} />
       ) : (
@@ -53,11 +63,19 @@ export function App() {
           <Navbar
             onOpenBooking={handleOpenBooking}
             onOpenContact={() => setIsContactOpen(true)}
+            onOpenAdmin={() => setIsAdminOpen(true)}
+            currentPage={currentPage}
+            onNavigate={handleNavigate}
           />
 
-          {/* Main Landing Page */}
+          {/* Main Content */}
           <main>
-            <LandingPage onOpenBooking={handleOpenBooking} />
+            {currentPage === 'home' && (
+              <LandingPage onOpenBooking={handleOpenBooking} />
+            )}
+            {currentPage === 'speaking' && (
+              <SpeakingPage onOpenBooking={handleOpenBooking} />
+            )}
           </main>
 
           {/* Footer */}
@@ -100,12 +118,19 @@ export function App() {
             />
           )}
 
+          {isAdminOpen && (
+            <AdminDashboard
+              isOpen={isAdminOpen}
+              onClose={() => setIsAdminOpen(false)}
+            />
+          )}
+
           {/* Toast Notifications */}
           <ToastContainer toasts={toasts} onDismiss={(id) => setToasts((prev) => prev.filter((t) => t.id !== id))} />
 
         </div>
       )}
-    </>
+    </LanguageProvider>
   );
 }
 
