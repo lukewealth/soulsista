@@ -1,246 +1,210 @@
-import { Service } from '../types';
+export interface ServiceBenefit {
+  icon: string;
+  text: string;
+}
 
-export const SERVICES: Service[] = [
-  // THERAPY SERVICES
-  {
-    id: 'somatic-psychotherapy',
-    category: 'Therapy',
-    title: 'Somatic Psychotherapy',
-    subtitle: 'Body-based trauma healing',
-    description: 'Deep psychological healing through somatic inquiry, integrating body awareness with traditional talk therapy to release stored trauma and promote nervous system regulation.',
-    duration: '75 min',
-    price: 240,
-    image: '/images/services/therapy-session.png',
-    benefits: [
-      'Release stored trauma from the nervous system',
-      'Develop greater body awareness and intuition',
-      'Learn self-regulation techniques',
-      'Integrate mind-body connection',
-    ],
-  },
-  {
-    id: 'executive-burnout-recovery',
-    category: 'Therapy',
-    title: 'Executive Burnout Recovery',
-    subtitle: 'Reclaim your vitality',
-    description: 'Specialized program for high-performing professionals experiencing burnout. Combines somatic therapy, stress management, and lifestyle restructuring to restore energy and prevent recurrence.',
-    duration: '90 min',
-    price: 280,
-    image: '/images/brand/brand-02.jpg',
-    benefits: [
-      'Identify and address root causes of burnout',
-      'Develop sustainable energy management strategies',
-      'Create boundaries that protect your well-being',
-      'Restore passion and purpose in your work',
-    ],
-  },
-  {
-    id: 'anxiety-trauma-integration',
-    category: 'Therapy',
-    title: 'Anxiety & Trauma Integration',
-    subtitle: 'Heal the past, transform the present',
-    description: 'Evidence-based approach combining EMDR, somatic experiencing, and cognitive techniques to process trauma and reduce anxiety symptoms at their source.',
-    duration: '60 min',
-    price: 200,
-    image: '/images/brand/brand-01.jpg',
-    benefits: [
-      'Process traumatic memories safely',
-      'Reduce anxiety and panic symptoms',
-      'Develop emotional resilience',
-      'Create new neural pathways for calm',
-    ],
-  },
+export interface ServiceExpectation {
+  title: string;
+  description: string;
+}
 
-  // WELLNESS SERVICES
+export interface Service {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  image: string;
+  duration: string;
+  price: number;
+  category: string;
+  benefits: ServiceBenefit[];
+  whatToExpect: ServiceExpectation[];
+  perfectFor: string[];
+  cta: string;
+}
+
+export const services: Service[] = [
   {
-    id: 'holistic-wellness-coaching',
-    category: 'Wellness',
-    title: 'Holistic Wellness Coaching',
-    subtitle: 'Transform your lifestyle',
-    description: 'Comprehensive wellness program addressing nutrition, movement, sleep, and stress management. Create a personalized roadmap to optimal health and vitality.',
-    duration: '60 min',
-    price: 180,
-    image: '/images/founder/merit-portrait.png',
-    benefits: [
-      'Personalized wellness assessment',
-      'Custom nutrition and movement plans',
-      'Sleep optimization strategies',
-      'Ongoing accountability and support',
-    ],
-  },
-  {
-    id: 'mindfulness-meditation',
-    category: 'Wellness',
-    title: 'Mindfulness & Meditation',
-    subtitle: 'Cultivate inner peace',
-    description: 'Learn ancient and modern meditation techniques to cultivate presence, reduce stress, and develop a consistent mindfulness practice that transforms your daily life.',
-    duration: '45 min',
+    id: 'aromatherapy-nervous-system-rest',
+    title: 'Aromatherapy & Nervous System Rest',
+    subtitle: 'Find Calm. Restore Balance. Feel Like Yourself Again.',
+    description: 'Slow down and give your body the deep rest it deserves. Our Aromatherapy & Nervous System Rest sessions combine carefully selected essential oils with gentle relaxation techniques to help calm the mind, reduce stress, and restore emotional balance.',
+    image: '/images/services/aromatherapy-nervous-system-rest.jpg',
+    duration: '60-90 Minutes',
     price: 120,
-    image: '/images/brand/brand-03.jpg',
-    benefits: [
-      'Master various meditation techniques',
-      'Reduce stress and improve focus',
-      'Develop emotional regulation skills',
-      'Create a sustainable daily practice',
-    ],
-  },
-  {
-    id: 'breathwork-healing',
     category: 'Wellness',
-    title: 'Breathwork Healing',
-    subtitle: 'Transform through breath',
-    description: 'Powerful breathwork sessions that access deep states of consciousness, release emotional blockages, and promote profound healing at the cellular level.',
-    duration: '60 min',
-    price: 150,
-    image: '/images/brand/brand-04.jpg',
     benefits: [
-      'Release stored emotional tension',
-      'Increase energy and vitality',
-      'Access higher states of consciousness',
-      'Accelerate healing processes',
+      { icon: '🌿', text: 'Reduces stress and anxiety' },
+      { icon: '💆', text: 'Promotes deep relaxation' },
+      { icon: '😴', text: 'Improves sleep quality' },
+      { icon: '💖', text: 'Supports emotional wellbeing' },
+      { icon: '🧠', text: 'Helps restore mental clarity' },
+      { icon: '✨', text: 'Encourages overall wellness' }
     ],
-  },
-
-  // SPA SERVICES
-  {
-    id: 'signature-somatic-spa',
-    category: 'Spa',
-    title: 'Signature Somatic Spa',
-    subtitle: 'The complete restoration experience',
-    description: 'Our signature 3-hour experience combining massage therapy, somatic bodywork, aromatherapy, and energy healing for complete mind-body-spirit restoration.',
-    duration: '180 min',
-    price: 450,
-    image: '/images/services/massage-session.png',
-    benefits: [
-      'Deep tissue release and relaxation',
-      'Somatic bodywork integration',
-      'Custom aromatherapy blend',
-      'Energy balancing and alignment',
+    whatToExpect: [
+      {
+        title: 'Consultation',
+        description: 'Your session begins with a brief consultation to understand your needs.'
+      },
+      {
+        title: 'Personalized Blend',
+        description: 'A personalized blend of therapeutic essential oils is carefully selected for you.'
+      },
+      {
+        title: 'Calming Experience',
+        description: 'Enjoy a calming relaxation experience throughout your session.'
+      },
+      {
+        title: 'Renewal',
+        description: 'Leave feeling refreshed, grounded, and renewed.'
+      }
     ],
-  },
-  {
-    id: 'therapeutic-massage',
-    category: 'Spa',
-    title: 'Therapeutic Massage',
-    subtitle: 'Healing touch therapy',
-    description: 'Customized massage therapy combining Swedish, deep tissue, and myofascial techniques to address specific areas of tension and promote overall well-being.',
-    duration: '90 min',
-    price: 220,
-    image: '/images/services/massage-bed.jpg',
-    benefits: [
-      'Release muscle tension and pain',
-      'Improve circulation and flexibility',
-      'Reduce stress and anxiety',
-      'Promote deep relaxation',
+    perfectFor: [
+      'Professionals experiencing burnout',
+      'Parents and caregivers',
+      'Students under pressure',
+      'Anyone seeking emotional balance',
+      'Those needing restorative self-care'
     ],
+    cta: 'Take the first step toward restoring your peace of mind.'
   },
   {
-    id: 'aromatherapy-facial',
-    category: 'Spa',
-    title: 'Aromatherapy Facial',
-    subtitle: 'Radiant skin, peaceful mind',
-    description: 'Luxurious facial treatment using organic, plant-based products customized to your skin type. Includes lymphatic drainage massage and aromatherapy.',
-    duration: '75 min',
-    price: 180,
-    image: '/images/brand/brand-05.jpg',
-    benefits: [
-      'Deep cleansing and hydration',
-      'Improved skin tone and texture',
-      'Lymphatic drainage and detoxification',
-      'Profound relaxation',
-    ],
-  },
-
-  // YOUTH SERVICES
-  {
-    id: 'youth-circle-mentorship',
-    category: 'Youth',
-    title: 'Youth Circle Mentorship',
-    subtitle: 'Empowering the next generation',
-    description: 'Group mentorship program for young women ages 14-22, focusing on self-discovery, confidence building, emotional intelligence, and leadership development.',
-    duration: '120 min',
+    id: 'youth-circle-purpose-leadership',
+    title: 'Youth Circle: Purpose & Leadership Lab',
+    subtitle: 'Empowering Young People to Lead with Purpose',
+    description: 'The Youth Circle is a transformational leadership and personal development experience created to help young people discover purpose, build confidence, and develop practical leadership skills for life.',
+    image: '/images/services/youth-circle-purpose-leadership.jpg',
+    duration: 'Ongoing Program',
     price: 80,
-    image: '/images/brand/brand-04.jpg',
-    benefits: [
-      'Build unshakeable self-confidence',
-      'Develop emotional intelligence',
-      'Learn healthy relationship skills',
-      'Discover personal purpose and passion',
-    ],
-  },
-  {
-    id: 'teen-anxiety-support',
     category: 'Youth',
-    title: 'Teen Anxiety Support',
-    subtitle: 'Navigate adolescence with confidence',
-    description: 'Specialized support for teenagers experiencing anxiety, social pressure, and identity challenges. Combines individual therapy with group support.',
-    duration: '60 min',
+    benefits: [
+      { icon: '🎯', text: 'Leadership development' },
+      { icon: '🔍', text: 'Purpose discovery' },
+      { icon: '💪', text: 'Self-confidence building' },
+      { icon: '🗣️', text: 'Communication skills' },
+      { icon: '🎯', text: 'Goal setting and personal growth' },
+      { icon: '🤝', text: 'Community building and networking' }
+    ],
+    whatToExpect: [
+      {
+        title: 'Interactive Workshops',
+        description: 'Engage in dynamic, hands-on learning experiences.'
+      },
+      {
+        title: 'Mentorship Sessions',
+        description: 'Receive guidance from experienced leaders and mentors.'
+      },
+      {
+        title: 'Group Discussions',
+        description: 'Share insights and learn from peer perspectives.'
+      },
+      {
+        title: 'Practical Activities',
+        description: 'Apply leadership skills in real-world scenarios.'
+      }
+    ],
+    perfectFor: [
+      'Young adults seeking direction',
+      'Students and graduates',
+      'Emerging entrepreneurs',
+      'Anyone passionate about personal growth',
+      'Future community leaders'
+    ],
+    cta: 'Build the Leader Within. Join the Next Youth Circle.'
+  },
+  {
+    id: 'postpartum-recovery-womb-rest',
+    title: 'Postpartum Recovery & Womb Rest',
+    subtitle: 'Gentle Healing for Mothers After Birth',
+    description: 'Motherhood begins with recovery. Our Postpartum Recovery & Womb Rest service provides compassionate support for mothers during the weeks and months following childbirth. Every session is thoughtfully designed to encourage physical recovery, emotional wellbeing, and deep rest.',
+    image: '/images/services/postpartum-recovery-womb-rest.jpg',
+    duration: '90 Minutes',
     price: 150,
-    image: '/images/brand/brand-06.jpg',
+    category: 'Wellness',
     benefits: [
-      'Learn anxiety management techniques',
-      'Build healthy coping strategies',
-      'Develop authentic self-expression',
-      'Create supportive peer connections',
+      { icon: '🌸', text: 'Supports postpartum healing' },
+      { icon: '😌', text: 'Encourages deep relaxation' },
+      { icon: '💆', text: 'Relieves physical tension' },
+      { icon: '💖', text: 'Promotes emotional wellbeing' },
+      { icon: '🌺', text: 'Supports gentle womb recovery' },
+      { icon: '⏰', text: 'Provides dedicated time for self-care' }
     ],
-  },
-
-  // SPEAKING & EVENTS
-  {
-    id: 'keynote-speaking',
-    category: 'Speaking',
-    title: 'Keynote Speaking',
-    subtitle: 'Inspire transformation at scale',
-    description: 'Engaging keynote presentations on topics including somatic healing, women\'s empowerment, trauma recovery, and holistic wellness. Available for conferences, corporate events, and retreats.',
-    duration: '60-90 min',
-    price: 5000,
-    image: '/images/events/public-speaking.png',
-    benefits: [
-      'Customized content for your audience',
-      'Interactive and engaging delivery',
-      'Practical tools and insights',
-      'Lasting impact and inspiration',
+    whatToExpect: [
+      {
+        title: 'Relaxation Therapies',
+        description: 'Gentle techniques designed for postpartum bodies.'
+      },
+      {
+        title: 'Comfort-Focused Care',
+        description: 'Every aspect prioritizes your comfort and healing.'
+      },
+      {
+        title: 'Aromatherapy Support',
+        description: 'Carefully selected oils to support recovery.'
+      },
+      {
+        title: 'Guided Breathing',
+        description: 'Mindfulness and breathing techniques for restoration.'
+      }
     ],
-  },
-  {
-    id: 'corporate-wellness',
-    category: 'Speaking',
-    title: 'Corporate Wellness Programs',
-    subtitle: 'Transform workplace culture',
-    description: 'Comprehensive wellness programs for organizations, including workshops, retreats, and ongoing support to reduce burnout and increase employee well-being.',
-    duration: 'Custom',
-    price: 10000,
-    image: '/images/brand/brand-02.jpg',
-    benefits: [
-      'Reduce employee burnout and turnover',
-      'Increase productivity and engagement',
-      'Create healthier workplace culture',
-      'Measurable ROI on wellness investment',
+    perfectFor: [
+      'New mothers in first weeks postpartum',
+      'Mothers seeking holistic recovery',
+      'Those needing intentional rest',
+      'Mothers experiencing postpartum challenges',
+      'Anyone in the postpartum journey'
     ],
+    cta: 'Give Yourself the Care You Deserve. Schedule Your Recovery Session Today.'
   },
   {
-    id: 'retreat-facilitation',
-    category: 'Speaking',
-    title: 'Retreat Facilitation',
-    subtitle: 'Curated transformational experiences',
-    description: 'Expert facilitation of wellness retreats combining therapy, somatic practices, meditation, and community building for profound group transformation.',
-    duration: '2-5 days',
-    price: 15000,
-    image: '/images/brand/brand-03.jpg',
+    id: 'she-too-can-book',
+    title: 'She Too Can',
+    subtitle: 'A Guide to Breaking Limits & Reclaiming Power',
+    description: 'An empowering guide for women ready to break through limitations, reclaim their authentic power, and step into their fullest potential. This transformative book combines personal stories, practical exercises, and spiritual wisdom.',
+    image: '/images/services/she-too-can-book.jpg',
+    duration: 'Self-Paced',
+    price: 25,
+    category: 'Books',
     benefits: [
-      'Professionally curated experience',
-      'Expert facilitation and guidance',
-      'Deep group transformation',
-      'Lasting community connections',
+      { icon: '📖', text: 'Transformative insights' },
+      { icon: '💡', text: 'Practical exercises' },
+      { icon: '🌟', text: 'Personal stories' },
+      { icon: '🔑', text: 'Breaking limitations' },
+      { icon: '💪', text: 'Reclaiming power' },
+      { icon: '✨', text: 'Spiritual wisdom' }
     ],
-  },
+    whatToExpect: [
+      {
+        title: 'Personal Stories',
+        description: 'Real experiences from women who have transformed their lives.'
+      },
+      {
+        title: 'Practical Exercises',
+        description: 'Actionable steps to implement in your daily life.'
+      },
+      {
+        title: 'Spiritual Wisdom',
+        description: 'Deep insights to guide your journey.'
+      },
+      {
+        title: 'Community Support',
+        description: 'Connect with other women on similar paths.'
+      }
+    ],
+    perfectFor: [
+      'Women seeking transformation',
+      'Those feeling stuck or limited',
+      'Anyone ready to reclaim their power',
+      'Women in transition',
+      'Seekers of spiritual growth'
+    ],
+    cta: 'Begin Your Transformation Journey Today.'
+  }
 ];
 
-export const SERVICE_CATEGORIES = [
-  { id: 'all', label: 'All Services' },
-  { id: 'Therapy', label: 'Therapy' },
-  { id: 'Wellness', label: 'Wellness' },
-  { id: 'Spa', label: 'Spa' },
-  { id: 'Youth', label: 'Youth' },
-  { id: 'Speaking', label: 'Speaking & Events' },
+export const serviceCategories = [
+  { id: 'all', label: 'All Services', icon: '✨' },
+  { id: 'Wellness', label: 'Wellness', icon: '🌿' },
+  { id: 'Youth', label: 'Youth', icon: '🌟' },
+  { id: 'Books', label: 'Books', icon: '📚' }
 ];

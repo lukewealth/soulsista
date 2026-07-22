@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Calendar, MessageCircle, ArrowRight, Sparkles, Heart, BookOpen, Users } from 'lucide-react';
-import { SERVICES, FEATURED_BOOK } from '../data/mockData';
+import { FEATURED_BOOK } from '../data/mockData';
+import { services, serviceCategories } from '../data/services';
 import { CONTACT } from '../shared/constants';
 import { DonationSection } from './DonationSection';
 import { TestimonialsCarousel } from './TestimonialsCarousel';
 import { BlogSection } from './BlogSection';
+import { ServiceCard } from './ServiceCard';
 
 interface LandingPageProps {
   onOpenBooking: (serviceId?: string) => void;
@@ -13,6 +15,11 @@ interface LandingPageProps {
 
 export const LandingPage: React.FC<LandingPageProps> = ({ onOpenBooking }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState('all');
+
+  const filteredServices = selectedCategory === 'all' 
+    ? services 
+    : services.filter(service => service.category === selectedCategory);
 
   const heroSlides = [
     {
@@ -108,42 +115,45 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onOpenBooking }) => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
             <span className="text-gold text-sm font-semibold uppercase tracking-widest">
-              The Rituals
+              Our Services
             </span>
-            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-forest mt-4">
-              An Ecosystem of Alignment
+            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-forest mt-4 mb-6">
+              Transformative Wellness Experiences
             </h2>
+            <p className="text-forest/70 max-w-2xl mx-auto">
+              Discover our carefully curated services designed to nurture your mind, body, and spirit
+            </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {SERVICES.slice(0, 4).map((service, idx) => (
-              <motion.div
-                key={service.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.1, duration: 0.6 }}
-                viewport={{ once: true }}
-                className="group relative aspect-[3/4] overflow-hidden rounded-2xl cursor-pointer"
-                onClick={() => onOpenBooking(service.id)}
+          {/* Category Filter */}
+          <div className="flex flex-wrap justify-center gap-3 mb-12">
+            {serviceCategories.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => setSelectedCategory(category.id)}
+                className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 flex items-center gap-2 ${
+                  selectedCategory === category.id
+                    ? 'bg-forest text-ivory shadow-lg scale-105'
+                    : 'bg-white text-forest hover:bg-forest/10 shadow'
+                }`}
               >
-                <img
-                  src={service.imageUrl}
-                  alt={service.title}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-forest/90 via-forest/40 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <h3 className="font-serif text-2xl font-bold mb-2">{service.title}</h3>
-                  <p className="text-sm text-white/80 mb-4">{service.shortDescription}</p>
-                  <span className="inline-flex items-center gap-2 text-gold text-sm font-semibold">
-                    Learn More
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </div>
-              </motion.div>
+                <span>{category.icon}</span>
+                <span>{category.label}</span>
+              </button>
+            ))}
+          </div>
+
+          {/* Services Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {filteredServices.map((service) => (
+              <ServiceCard
+                key={service.id}
+                service={service}
+                onBook={onOpenBooking}
+              />
             ))}
           </div>
         </div>
