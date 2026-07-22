@@ -210,7 +210,7 @@ export const FEATURED_BOOK: BookItem = {
   priceHardcover: 29.99,
   priceDigital: 14.99,
   priceBundle: 45.00,
-  coverImage: '/images/brand/brand-05.jpg',
+  coverImage: '/images/services/she-too-can-book.jpg',
   synopsis: 'A groundbreaking literary masterwork and guided manifesto for women navigating the invisible constraints of modern life. Merit Nene Chuks draws from clinical psychology, ancestral wisdom, and personal triumph to offer a roadmap from survival mode into unshakeable wholeness.',
   specifications: {
     pages: 342,

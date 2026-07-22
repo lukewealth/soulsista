@@ -172,7 +172,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onOpenBooking }) => {
               <img
                 src="/images/founder/merit-portrait.png"
                 alt="Merit Nene Chuks"
-                className="w-full rounded-2xl shadow-2xl"
+                className="w-full rounded-2xl shadow-2xl object-cover object-top"
+                loading="lazy"
               />
             </motion.div>
 
@@ -205,7 +206,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onOpenBooking }) => {
               </div>
               <button
                 onClick={() => handleWhatsApp('session with Merit')}
-                className="px-8 py-4 bg-gold text-forest font-semibold rounded-full hover:bg-gold/90 transition-all shadow-xl flex items-center gap-2"
+                className="px-8 py-4 bg-gold text-forest font-semibold rounded-full hover:bg-gold/90 transition-all shadow-xl flex items-center gap-2 hover:scale-105"
               >
                 <MessageCircle className="w-5 h-5" />
                 Connect on WhatsApp
@@ -227,11 +228,12 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onOpenBooking }) => {
               className="flex justify-center"
             >
               <div className="relative group cursor-pointer">
-                <div className="w-64 h-96 bg-forest rounded-r-lg shadow-2xl transition-transform duration-500 group-hover:-rotate-2 group-hover:scale-105 relative overflow-hidden">
+                <div className="w-64 h-96 bg-forest rounded-r-lg shadow-2xl transition-all duration-500 group-hover:-rotate-2 group-hover:scale-105 relative overflow-hidden">
                   <img
                     src={FEATURED_BOOK.coverImage}
                     alt={FEATURED_BOOK.title}
-                    className="w-full h-full object-cover mix-blend-multiply opacity-90"
+                    className="w-full h-full object-cover object-top mix-blend-multiply opacity-90"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 p-8 flex flex-col justify-between text-white">
                     <div>
@@ -274,7 +276,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onOpenBooking }) => {
               </div>
               <button
                 onClick={() => handleWhatsApp('purchasing the book')}
-                className="px-8 py-4 bg-forest text-white font-semibold rounded-full hover:bg-forest/90 transition-all shadow-xl flex items-center gap-2"
+                className="px-8 py-4 bg-forest text-white font-semibold rounded-full hover:bg-forest/90 transition-all shadow-xl flex items-center gap-2 hover:scale-105"
               >
                 <BookOpen className="w-5 h-5" />
                 Order via WhatsApp
@@ -311,11 +313,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onOpenBooking }) => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.6 }}
               viewport={{ once: true }}
-              className="text-center p-8 bg-white rounded-2xl shadow-lg"
+              className="text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl hover:bg-forest hover:text-white transition-all duration-300 group"
             >
-              <Users className="w-12 h-12 text-gold mx-auto mb-4" />
-              <h3 className="font-serif text-2xl font-bold text-forest mb-2">Youth Circle</h3>
-              <p className="text-forest/70">
+              <Users className="w-12 h-12 text-gold mx-auto mb-4 group-hover:text-white transition-colors" />
+              <h3 className="font-serif text-2xl font-bold text-forest mb-2 group-hover:text-white transition-colors">Youth Circle</h3>
+              <p className="text-forest/70 group-hover:text-white/90 transition-colors">
                 Mentorship programs empowering young women ages 14-22.
               </p>
             </motion.div>
@@ -325,11 +327,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onOpenBooking }) => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
               viewport={{ once: true }}
-              className="text-center p-8 bg-white rounded-2xl shadow-lg"
+              className="text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl hover:bg-forest hover:text-white transition-all duration-300 group"
             >
-              <Heart className="w-12 h-12 text-gold mx-auto mb-4" />
-              <h3 className="font-serif text-2xl font-bold text-forest mb-2">Community Support</h3>
-              <p className="text-forest/70">
+              <Heart className="w-12 h-12 text-gold mx-auto mb-4 group-hover:text-white transition-colors" />
+              <h3 className="font-serif text-2xl font-bold text-forest mb-2 group-hover:text-white transition-colors">Community Support</h3>
+              <p className="text-forest/70 group-hover:text-white/90 transition-colors">
                 Providing resources and support to underserved communities.
               </p>
             </motion.div>
@@ -339,11 +341,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onOpenBooking }) => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
               viewport={{ once: true }}
-              className="text-center p-8 bg-white rounded-2xl shadow-lg"
+              className="text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl hover:bg-forest hover:text-white transition-all duration-300 group"
             >
-              <BookOpen className="w-12 h-12 text-gold mx-auto mb-4" />
-              <h3 className="font-serif text-2xl font-bold text-forest mb-2">Education</h3>
-              <p className="text-forest/70">
+              <BookOpen className="w-12 h-12 text-gold mx-auto mb-4 group-hover:text-white transition-colors" />
+              <h3 className="font-serif text-2xl font-bold text-forest mb-2 group-hover:text-white transition-colors">Education</h3>
+              <p className="text-forest/70 group-hover:text-white/90 transition-colors">
                 Books and educational materials donated to schools.
               </p>
             </motion.div>
@@ -352,7 +354,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onOpenBooking }) => {
           <div className="text-center mt-12">
             <button
               onClick={() => handleWhatsApp('supporting the Initiative')}
-              className="px-8 py-4 bg-gold text-forest font-semibold rounded-full hover:bg-gold/90 transition-all shadow-xl flex items-center gap-2 mx-auto"
+              className="px-8 py-4 bg-gold text-forest font-semibold rounded-full hover:bg-gold/90 transition-all shadow-xl flex items-center gap-2 mx-auto hover:scale-105"
             >
               <Heart className="w-5 h-5" />
               Support the Initiative

@@ -135,7 +135,8 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onOpenBooking }) => 
               <img
                 src="/images/services/aromatherapy-nervous-system-rest.jpg"
                 alt="Apothecary ingredients"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-top"
+                loading="lazy"
               />
             </div>
             <div className="absolute -bottom-10 -left-10 bg-white p-8 rounded-2xl shadow-2xl max-w-[280px] hidden md:block">
@@ -157,7 +158,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onOpenBooking }) => 
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className={`grid md:grid-cols-12 gap-8 items-center ${
+              className={`grid md:grid-cols-12 gap-8 items-center group ${
                 idx % 2 === 0 ? '' : 'md:grid-flow-dense'
               }`}
             >
@@ -166,12 +167,13 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onOpenBooking }) => 
                   <img
                     src={service.image}
                     alt={service.title}
-                    className="w-full aspect-video object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="w-full aspect-video object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-forest/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                     <button
                       onClick={() => handleWhatsApp(service.title)}
-                      className="px-6 py-3 bg-forest text-ivory rounded-full font-semibold"
+                      className="px-6 py-3 bg-forest text-white rounded-full font-semibold hover:bg-forest/90 transition-all"
                     >
                       BOOK SESSION
                     </button>
@@ -183,7 +185,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onOpenBooking }) => 
                 <span className="text-5xl font-bold text-forest/10 mb-2 block">
                   {service.number}
                 </span>
-                <h3 className="font-serif text-4xl font-bold text-forest mb-4 italic">
+                <h3 className="font-serif text-4xl font-bold text-forest mb-4 italic group-hover:text-gold transition-colors">
                   {service.title}
                 </h3>
                 <p className="text-forest/70 mb-6 leading-relaxed">
@@ -191,7 +193,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onOpenBooking }) => 
                 </p>
                 <ul className="space-y-3 mb-8">
                   {service.offerings.map((offering, i) => (
-                    <li key={i} className="flex items-center gap-3 text-forest/70">
+                    <li key={i} className="flex items-center gap-3 text-forest/70 hover:text-forest transition-colors">
                       <Check className="w-4 h-4 text-gold flex-shrink-0" />
                       <span>{offering}</span>
                     </li>
@@ -199,7 +201,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onOpenBooking }) => 
                 </ul>
                 <button
                   onClick={onOpenBooking}
-                  className="px-8 py-3 bg-forest text-ivory font-semibold rounded-full hover:bg-forest/90 transition-all shadow-lg inline-flex items-center gap-2"
+                  className="px-8 py-3 bg-forest text-white font-semibold rounded-full hover:bg-forest/90 transition-all shadow-lg inline-flex items-center gap-2 hover:scale-105"
                 >
                   BEGIN JOURNEY
                   <ArrowRight className="w-4 h-4" />
@@ -246,7 +248,8 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onOpenBooking }) => 
                   <img
                     src={practitioner.image}
                     alt={practitioner.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-top"
+                    loading="lazy"
                   />
                 </div>
                 <span className="text-sm font-semibold uppercase tracking-widest">

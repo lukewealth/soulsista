@@ -134,7 +134,7 @@ export const DonationSection: React.FC<DonationSectionProps> = ({ onOpenBooking 
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.1, duration: 0.6 }}
                 viewport={{ once: true }}
-                className={`relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 ${
+                className={`relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 group ${
                   tier.highlighted ? 'ring-2 ring-gold/30' : ''
                 }`}
               >
@@ -145,8 +145,8 @@ export const DonationSection: React.FC<DonationSectionProps> = ({ onOpenBooking 
                 )}
 
                 <div className="text-center">
-                  <Icon className="w-12 h-12 text-gold mx-auto mb-6" />
-                  <h3 className="font-serif text-2xl font-bold text-forest mb-2">
+                  <Icon className="w-12 h-12 text-gold mx-auto mb-6 group-hover:scale-110 transition-transform" />
+                  <h3 className="font-serif text-2xl font-bold text-forest mb-2 group-hover:text-gold transition-colors">
                     {tier.name}
                   </h3>
                   <p className="text-forest/70 text-sm mb-8 h-12">
@@ -158,7 +158,7 @@ export const DonationSection: React.FC<DonationSectionProps> = ({ onOpenBooking 
 
                   <ul className="text-left space-y-3 mb-8 border-t border-forest/10 pt-6">
                     {tier.benefits.map((benefit, i) => (
-                      <li key={i} className="flex items-start gap-3 text-sm text-forest/70">
+                      <li key={i} className="flex items-start gap-3 text-sm text-forest/70 group-hover:text-forest transition-colors">
                         <Check className="w-4 h-4 text-gold mt-0.5 flex-shrink-0" />
                         <span>{benefit}</span>
                       </li>
@@ -167,7 +167,7 @@ export const DonationSection: React.FC<DonationSectionProps> = ({ onOpenBooking 
 
                   <button
                     onClick={() => handleDonate(tier.id)}
-                    className="w-full py-3 bg-forest text-ivory font-semibold rounded-full hover:bg-forest/90 transition-all flex items-center justify-center gap-2"
+                    className="w-full py-3 bg-forest text-white font-semibold rounded-full hover:bg-forest/90 transition-all flex items-center justify-center gap-2 hover:scale-105"
                   >
                     <Heart className="w-4 h-4" />
                     Choose Impact
@@ -225,7 +225,8 @@ export const DonationSection: React.FC<DonationSectionProps> = ({ onOpenBooking 
               <img
                 src="/images/brand/brand-03.jpg"
                 alt="Community impact"
-                className="w-full rounded-xl shadow-lg"
+                className="w-full rounded-xl shadow-lg object-cover object-top"
+                loading="lazy"
               />
               <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-lg max-w-[200px]">
                 <p className="text-3xl font-bold text-forest mb-1">12k+</p>
@@ -250,7 +251,7 @@ export const DonationSection: React.FC<DonationSectionProps> = ({ onOpenBooking 
           </p>
           <button
             onClick={() => handleDonate('custom')}
-            className="px-8 py-4 bg-gold text-forest font-semibold rounded-full hover:bg-gold/90 transition-all shadow-xl inline-flex items-center gap-2"
+            className="px-8 py-4 bg-gold text-forest font-semibold rounded-full hover:bg-gold/90 transition-all shadow-xl inline-flex items-center gap-2 hover:scale-105"
           >
             <Heart className="w-5 h-5" />
             Support via WhatsApp
