@@ -3,14 +3,18 @@ import { ContactEnquiry } from '../types';
 import { X, Send, CheckCircle2, MessageSquare, Sparkles } from 'lucide-react';
 
 interface ContactModalProps {
+  isOpen: boolean;
   onClose: () => void;
   onSubmitEnquiry: (enquiry: ContactEnquiry) => void;
 }
 
 export const ContactModal: React.FC<ContactModalProps> = ({
+  isOpen,
   onClose,
   onSubmitEnquiry,
 }) => {
+  if (!isOpen) return null;
+
   const [type, setType] = useState<'general' | 'speaking' | 'volunteer' | 'partnership' | 'therapy'>('speaking');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');

@@ -1,115 +1,23 @@
 import React, { useState } from 'react';
 import { Navbar } from './components/Navbar';
-import { HeroSlider } from './components/HeroSlider';
-import { ServicesSection } from './components/ServicesSection';
-import { ServiceDetailModal } from './components/ServiceDetailModal';
-import { FounderSection } from './components/FounderSection';
-import { BookStoreSection } from './components/BookStoreSection';
-import { BookingWizard } from './components/BookingWizard';
-import { InitiativeSection } from './components/InitiativeSection';
-import { BlogSection } from './components/BlogSection';
-import { ResonanceQuiz } from './components/ResonanceQuiz';
-import { SearchModal } from './components/SearchModal';
-import { AdminDashboard } from './components/AdminDashboard';
+import { LandingPage } from './components/LandingPage';
+import { BookingWizard } from './features/booking/components/BookingWizard';
 import { ContactModal } from './components/ContactModal';
-import { BreatheModal } from './components/BreatheModal';
-import { CartModal } from './components/CartModal';
 import { Footer } from './components/Footer';
 import { ToastContainer } from './components/ToastContainer';
 import { LoadingScreen } from './components/LoadingScreen';
 
-import { SERVICES, PRACTITIONERS, FEATURED_BOOK, ARTICLES } from './data/mockData';
-import { Service, BookingRecord, OrderRecord, AllyDonation, ContactEnquiry, ToastMessage, Article } from './types';
-import { Calendar, Heart, BookOpen, ShieldCheck, Sparkles, Wind, ArrowRight } from 'lucide-react';
+import { BookingRecord, ContactEnquiry, ToastMessage } from './types';
 
 export function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<string>('home');
   
-  // Modals & Drawers
+  // Modals
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [bookingServiceId, setBookingServiceId] = useState<string | undefined>(undefined);
-  const [selectedDetailService, setSelectedDetailService] = useState<Service | null>(null);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [isBreatheOpen, setIsBreatheOpen] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
-  const [isAdminOpen, setIsAdminOpen] = useState(false);
-  const [isCartOpen, setIsCartOpen] = useState(false);
 
-  // Cart & Orders
-  const [cartItems, setCartItems] = useState<
-    { id: string; format: 'hardcover' | 'digital' | 'bundle'; price: number; title: string; quantity: number }[]
-  >([
-    { id: 'she-too-can', format: 'hardcover', price: 29.99, title: 'SHE TOO CAN. (HARDCOVER)', quantity: 1 }
-  ]);
-
-  // Initial records in memory for CRM
-  const [bookings, setBookings] = useState<BookingRecord[]>([
-    {
-      id: 'SSL-849201',
-      serviceId: 'somatic-psychotherapy',
-      serviceTitle: 'Somatic Psychotherapy & Wholeness',
-      practitionerId: 'merit-nene-chuks',
-      practitionerName: 'Merit Nene Chuks',
-      date: '2025-08-12',
-      timeSlot: '10:30 AM',
-      guestName: 'Dr. Amina Mansoor',
-      guestEmail: 'amina@globalimpact.org',
-      guestPhone: '+44 7911 123456',
-      questionnaire: {
-        intentReason: 'Navigating executive burnout and grief.',
-        emotionalStateScore: 3,
-        sessionMode: 'online',
-        goals: ['Identity Integration', 'Burnout Recovery']
-      },
-      totalPriceUSD: 240,
-      status: 'confirmed',
-      createdAt: new Date().toISOString(),
-      googleCalendarUrl: '#',
-      whatsappShareUrl: 'https://wa.me/2348068679674',
-      zoomLink: 'https://soulsysta.app/sanctuary/SSL-849201'
-    }
-  ]);
-
-  const [orders, setOrders] = useState<OrderRecord[]>([
-    {
-      id: 'ORD-910248',
-      bookId: 'she-too-can',
-      format: 'hardcover',
-      quantity: 1,
-      totalUSD: 29.99,
-      guestName: 'Chidimma Nwosu',
-      guestEmail: 'chidimma@example.com',
-      guestAddress: '42 Sanctuary Way, London, UK',
-      status: 'shipped',
-      createdAt: new Date().toISOString()
-    }
-  ]);
-
-  const [donations, setDonations] = useState<AllyDonation[]>([
-    {
-      id: 'ALY-391024',
-      tierName: 'Cultivate Change',
-      amountUSD: 45,
-      frequency: 'monthly',
-      donorName: 'Elena Solis',
-      donorEmail: 'elena@soulsysta.com',
-      createdAt: new Date().toISOString()
-    }
-  ]);
-
-  const [enquiries, setEnquiries] = useState<ContactEnquiry[]>([
-    {
-      id: 'ENQ-772910',
-      type: 'speaking',
-      name: 'Sarah Jenkins',
-      email: 's.jenkins@oxford.ac.uk',
-      organization: 'Oxford Women in Leadership',
-      message: 'Requesting Merit Nene Chuks for keynote at annual symposium.',
-      createdAt: new Date().toISOString()
-    }
-  ]);
-
+  // Simple state management
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
 
   const addToast = (type: 'success' | 'info' | 'error', title: string, message: string) => {
@@ -127,44 +35,11 @@ export function App() {
   };
 
   const handleBookingComplete = (newBooking: BookingRecord) => {
-    setBookings((prev) => [newBooking, ...prev]);
     addToast('success', 'Reservation Confirmed', `Booking ${newBooking.id} created successfully.`);
   };
 
-  const handleAddToCart = (item: { id: string; format: 'hardcover' | 'digital' | 'bundle'; price: number; title: string }) => {
-    setCartItems((prev) => {
-      const existing = prev.find((i) => i.id === item.id && i.format === item.format);
-      if (existing) {
-        return prev.map((i) =>
-          i.id === item.id && i.format === item.format ? { ...i, quantity: i.quantity + 1 } : i
-        );
-      }
-      return [...prev, { ...item, quantity: 1 }];
-    });
-    addToast('info', 'Added to Shopping Bag', `${item.title} has been added.`);
-  };
-
-  const handleCompleteOrder = (order: OrderRecord) => {
-    setOrders((prev) => [order, ...prev]);
-    setCartItems([]);
-    addToast('success', 'Order Processed', `Thank you! Order ${order.id} received.`);
-  };
-
-  const handleDonationComplete = (donation: AllyDonation) => {
-    setDonations((prev) => [donation, ...prev]);
-    addToast('success', 'Ally Gift Received', `Thank you for supporting Youth Circle.`);
-  };
-
   const handleSubmitEnquiry = (enquiry: ContactEnquiry) => {
-    setEnquiries((prev) => [enquiry, ...prev]);
-    addToast('success', 'Message Received', 'Our executive team will contact you shortly.');
-  };
-
-  const handleUpdateBookingStatus = (id: string, status: 'confirmed' | 'completed' | 'cancelled') => {
-    setBookings((prev) =>
-      prev.map((b) => (b.id === id ? { ...b, status } : b))
-    );
-    addToast('info', 'Booking Updated', `Status changed to ${status}.`);
+    addToast('success', 'Message Received', 'Our team will contact you shortly.');
   };
 
   return (
@@ -177,182 +52,51 @@ export function App() {
           {/* Top Navigation */}
           <Navbar
             onOpenBooking={handleOpenBooking}
-            onOpenSearch={() => setIsSearchOpen(true)}
-            onOpenBreathe={() => setIsBreatheOpen(true)}
             onOpenContact={() => setIsContactOpen(true)}
-            onOpenAdmin={() => setIsAdminOpen(true)}
-            activeTab={activeTab}
-            setActiveTab={setActiveTab}
-            cartCount={cartItems.reduce((acc, i) => acc + i.quantity, 0)}
-            onOpenCart={() => setIsCartOpen(true)}
           />
 
-          {/* Main Page Rendering Based on Active Tab */}
+          {/* Main Landing Page */}
           <main>
-            {activeTab === 'home' && (
-              <>
-                <HeroSlider
-                  onOpenBooking={handleOpenBooking}
-                  onSelectCategory={(cat) => {
-                    setActiveTab(cat);
-                    const elem = document.getElementById('services-section');
-                    if (elem) elem.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  onOpenBookStore={() => {
-                    setActiveTab('book');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
-                />
-
-                <ServicesSection
-                  onOpenDetailModal={(s) => setSelectedDetailService(s)}
-                  onOpenBooking={handleOpenBooking}
-                />
-
-                <BookStoreSection
-                  onAddToCart={handleAddToCart}
-                  onInstantBuy={(item) => {
-                    handleAddToCart(item);
-                    setIsCartOpen(true);
-                  }}
-                />
-
-                <FounderSection
-                  onOpenContact={() => setIsContactOpen(true)}
-                  onOpenBooking={() => handleOpenBooking()}
-                />
-
-                <ResonanceQuiz
-                  onOpenBooking={handleOpenBooking}
-                  onOpenDetailModal={(s) => setSelectedDetailService(s)}
-                />
-
-                <InitiativeSection onDonationComplete={handleDonationComplete} />
-
-                <BlogSection />
-              </>
-            )}
-
-            {/* Category Specific Tab Views */}
-            {(activeTab === 'therapy' || activeTab === 'wellness' || activeTab === 'spa' || activeTab === 'youth' || activeTab === 'speaking') && (
-              <div className="py-12">
-                <ServicesSection
-                  selectedCategoryFilter={activeTab}
-                  onOpenDetailModal={(s) => setSelectedDetailService(s)}
-                  onOpenBooking={handleOpenBooking}
-                />
-              </div>
-            )}
-
-            {activeTab === 'book' && (
-              <div className="py-12">
-                <BookStoreSection
-                  onAddToCart={handleAddToCart}
-                  onInstantBuy={(item) => {
-                    handleAddToCart(item);
-                    setIsCartOpen(true);
-                  }}
-                />
-              </div>
-            )}
-
-            {activeTab === 'founder' && (
-              <div className="py-12">
-                <FounderSection
-                  onOpenContact={() => setIsContactOpen(true)}
-                  onOpenBooking={() => handleOpenBooking()}
-                />
-              </div>
-            )}
-
-            {activeTab === 'initiative' && (
-              <div className="py-12">
-                <InitiativeSection onDonationComplete={handleDonationComplete} />
-              </div>
-            )}
-
-            {activeTab === 'journal' && (
-              <div className="py-12">
-                <BlogSection />
-              </div>
-            )}
+            <LandingPage onOpenBooking={handleOpenBooking} />
           </main>
 
           {/* Footer */}
           <Footer
-            setActiveTab={setActiveTab}
-            onOpenBooking={() => handleOpenBooking()}
-            onOpenAdmin={() => setIsAdminOpen(true)}
+            onOpenBooking={handleOpenBooking}
             onOpenContact={() => setIsContactOpen(true)}
-            onOpenBreathe={() => setIsBreatheOpen(true)}
           />
 
-          {/* Floating Action Trigger on Mobile */}
-          <div className="sm:hidden fixed bottom-4 right-4 z-30">
-            <button
-              onClick={() => handleOpenBooking()}
-              className="p-4 bg-forest text-gold rounded-full shadow-2xl border border-gold/30 flex items-center justify-center font-bold"
-              aria-label="Book Ritual"
+          {/* Floating WhatsApp Button */}
+          <div className="fixed bottom-6 right-6 z-40">
+            <a
+              href={`https://wa.me/${'+2348068679674'.replace(/\D/g, '')}?text=${encodeURIComponent('Hello Soulsysta! I would like to learn more.')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-6 py-3 bg-green-500 text-white rounded-full shadow-2xl hover:bg-green-600 transition-all hover:scale-105"
+              aria-label="Chat on WhatsApp"
             >
-              <Calendar className="w-6 h-6" />
-            </button>
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+              </svg>
+              <span className="font-semibold hidden sm:inline">Chat with us</span>
+            </a>
           </div>
 
           {/* MODALS */}
-          {selectedDetailService && (
-            <ServiceDetailModal
-              service={selectedDetailService}
-              practitioners={PRACTITIONERS}
-              onClose={() => setSelectedDetailService(null)}
-              onBookService={handleOpenBooking}
-            />
-          )}
-
           {isBookingOpen && (
             <BookingWizard
+              isOpen={isBookingOpen}
               initialServiceId={bookingServiceId}
               onClose={() => setIsBookingOpen(false)}
               onBookingComplete={handleBookingComplete}
             />
           )}
 
-          <SearchModal
-            isOpen={isSearchOpen}
-            onClose={() => setIsSearchOpen(false)}
-            onSelectService={(s) => setSelectedDetailService(s)}
-            onSelectArticle={() => setActiveTab('journal')}
-            onOpenBookStore={() => setActiveTab('book')}
-            onOpenBooking={handleOpenBooking}
-          />
-
-          {isBreatheOpen && <BreatheModal onClose={() => setIsBreatheOpen(false)} />}
-
           {isContactOpen && (
             <ContactModal
+              isOpen={isContactOpen}
               onClose={() => setIsContactOpen(false)}
               onSubmitEnquiry={handleSubmitEnquiry}
-            />
-          )}
-
-          {isAdminOpen && (
-            <AdminDashboard
-              bookings={bookings}
-              orders={orders}
-              donations={donations}
-              enquiries={enquiries}
-              onClose={() => setIsAdminOpen(false)}
-              onUpdateBookingStatus={handleUpdateBookingStatus}
-            />
-          )}
-
-          {isCartOpen && (
-            <CartModal
-              items={cartItems}
-              onClose={() => setIsCartOpen(false)}
-              onRemoveItem={(index) =>
-                setCartItems((prev) => prev.filter((_, i) => i !== index))
-              }
-              onCompleteOrder={handleCompleteOrder}
             />
           )}
 
@@ -364,4 +108,5 @@ export function App() {
     </>
   );
 }
+
 export default App;
