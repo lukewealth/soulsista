@@ -240,7 +240,7 @@ describe('BookingWizard Integration', () => {
     await user.type(screen.getByLabelText(/full name/i), 'John Doe');
 
     // Close wizard
-    await user.click(screen.getByRole('button', { name: /close/i }));
+    await user.click(screen.getByRole('button', { name: /close booking modal/i }));
 
     expect(mockOnClose).toHaveBeenCalled();
   });
