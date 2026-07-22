@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SOULSYSTA | Schedule Your Sanctuary</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Hanken+Grotesk:wght@700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Playfair+Display:wght@100..900&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-container": "#745c00",
+                    "tertiary-container": "#372d26",
+                    "surface-container-high": "#e9e8e5",
+                    "primary-container": "#123524",
+                    "on-secondary": "#ffffff",
+                    "surface-container": "#efeeeb",
+                    "surface": "#faf9f6",
+                    "error": "#ba1a1a",
+                    "on-tertiary": "#ffffff",
+                    "surface-tint": "#436652",
+                    "secondary": "#735c00",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-container": "#a2948b",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed": "#221a14",
+                    "on-primary-fixed": "#002112",
+                    "tertiary-fixed": "#f0dfd5",
+                    "inverse-primary": "#a9cfb7",
+                    "on-primary-fixed-variant": "#2b4e3b",
+                    "secondary-container": "#fed65b",
+                    "primary-fixed-dim": "#a9cfb7",
+                    "background": "#faf9f6",
+                    "on-primary-container": "#7a9f88",
+                    "secondary-fixed": "#ffe088",
+                    "on-error-container": "#93000a",
+                    "surface-container-highest": "#e3e2e0",
+                    "on-background": "#1a1c1a",
+                    "surface-dim": "#dbdad7",
+                    "on-surface": "#1a1c1a",
+                    "on-secondary-fixed": "#241a00",
+                    "on-tertiary-fixed-variant": "#50453d",
+                    "surface-variant": "#e3e2e0",
+                    "tertiary-fixed-dim": "#d4c3ba",
+                    "on-surface-variant": "#414843",
+                    "primary-fixed": "#c5ecd2",
+                    "on-error": "#ffffff",
+                    "outline-variant": "#c1c8c1",
+                    "inverse-surface": "#2f312f",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#001f11",
+                    "on-secondary-fixed-variant": "#574500",
+                    "outline": "#727973",
+                    "inverse-on-surface": "#f2f1ee",
+                    "secondary-fixed-dim": "#e9c349",
+                    "surface-container-low": "#f4f3f1",
+                    "surface-bright": "#faf9f6",
+                    "tertiary": "#211913"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "section-gap": "160px",
+                    "container-max": "1440px",
+                    "margin-desktop": "80px",
+                    "margin-mobile": "24px",
+                    "gutter": "32px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "stats-number": ["Hanken Grotesk"],
+                    "display-lg": ["Playfair Display"],
+                    "label-caps": ["Inter"],
+                    "display-lg-mobile": ["Playfair Display"],
+                    "headline-md": ["Playfair Display"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "stats-number": ["24px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "display-lg": ["80px", {"lineHeight": "90px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "display-lg-mobile": ["48px", {"lineHeight": "54px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "32px", "fontWeight": "400"}],
+                    "headline-lg": ["48px", {"lineHeight": "56px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-fixed-dim selection:text-primary">
+<!-- Top Navigation -->
+<nav class="fixed top-0 w-full z-50 bg-white/70 dark:bg-black/70 backdrop-blur-xl border-b border-white/20 shadow-[0px_20px_40px_rgba(18,53,36,0.05)]">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer transition-transform active:scale-95" data-icon="arrow_back">arrow_back</span>
+<span class="font-headline-md text-headline-md tracking-tighter text-primary">SOULSYSTA</span>
+</div>
+<div class="hidden md:flex gap-8 items-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary cursor-pointer transition-colors">Breathe</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary cursor-pointer transition-colors">Discover</span>
+<span class="font-label-caps text-label-caps text-primary cursor-pointer transition-colors after:content-[''] after:block after:w-1 after:h-1 after:bg-secondary after:rounded-full after:mx-auto">Book</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary cursor-pointer transition-colors">Journal</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden border border-primary/10">
+<img class="w-full h-full object-cover" data-alt="Close-up portrait of a serene woman with a soft smile, natural lighting against a minimalist ivory background. The photography is high-end, editorial, and cinematic, focusing on a calm and authentic emotional state that aligns with the SOULSYSTA luxury wellness brand aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvHhEIv27QTTn7g3OVVjpU6pVG_WQPqRTxsURBuqlDL0hQUSZTrEXoaEBXQroqmYfSr7K3ce8taHtBgqEBgtXgLuGufuPJR7WhKFg-xZXv_7KR2uTIxYruNtej-gJ1J0ab9elJQz3ctS_Ml2-dpQzTEbcfNeZB7o0AF7EmHgIuaUUdArFiuc2B0k2Uru694yMRHE-TosY9s-wvnD2tq92WFZuwZ6XfSF7Bg-hEVYs33an2edsbWwIv"/>
+</div>
+</div>
+</nav>
+<!-- Content Canvas -->
+<main class="pt-32 pb-40 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto overflow-hidden">
+<!-- Header Section -->
+<header class="mb-16 max-w-3xl">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-4 tracking-widest">STEP 03 // AVAILABILITY</p>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-6 italic">Secure your space.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Choose a moment that aligns with your rhythm. Our practitioners hold space for your transformation with intentionality.</p>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- Left Column: Calendar & Selection -->
+<div class="lg:col-span-8 space-y-12">
+<!-- Calendar Card -->
+<section class="glass-card rounded-xl p-8 shadow-sm">
+<div class="flex justify-between items-center mb-8">
+<h3 class="font-headline-md text-headline-md text-primary">October 2024</h3>
+<div class="flex gap-2">
+<button class="w-10 h-10 rounded-full flex items-center justify-center border border-outline-variant text-on-surface-variant hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center border border-outline-variant text-on-surface-variant hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="calendar-grid mb-4">
+<div class="text-center font-label-caps text-label-caps text-outline py-2">Mon</div>
+<div class="text-center font-label-caps text-label-caps text-outline py-2">Tue</div>
+<div class="text-center font-label-caps text-label-caps text-outline py-2">Wed</div>
+<div class="text-center font-label-caps text-label-caps text-outline py-2">Thu</div>
+<div class="text-center font-label-caps text-label-caps text-outline py-2">Fri</div>
+<div class="text-center font-label-caps text-label-caps text-outline py-2">Sat</div>
+<div class="text-center font-label-caps text-label-caps text-outline py-2">Sun</div>
+</div>
+<div class="calendar-grid gap-y-2">
+<!-- Placeholder days -->
+<div class="p-4 text-center text-outline-variant font-body-md opacity-30">27</div>
+<div class="p-4 text-center text-outline-variant font-body-md opacity-30">28</div>
+<div class="p-4 text-center text-outline-variant font-body-md opacity-30">29</div>
+<div class="p-4 text-center text-outline-variant font-body-md opacity-30">30</div>
+<button class="p-4 text-center font-body-md hover:bg-surface-container rounded-lg transition-colors">1</button>
+<button class="p-4 text-center font-body-md hover:bg-surface-container rounded-lg transition-colors">2</button>
+<button class="p-4 text-center font-body-md hover:bg-surface-container rounded-lg transition-colors">3</button>
+<button class="p-4 text-center font-body-md hover:bg-surface-container rounded-lg transition-colors">4</button>
+<button class="p-4 text-center font-body-md hover:bg-surface-container rounded-lg transition-colors">5</button>
+<button class="p-4 text-center font-body-md hover:bg-surface-container rounded-lg transition-colors">6</button>
+<button class="p-4 text-center font-body-md hover:bg-surface-container rounded-lg transition-colors">7</button>
+<button class="p-4 text-center font-body-md hover:bg-surface-container rounded-lg transition-colors">8</button>
+<button class="p-4 text-center font-body-md hover:bg-surface-container rounded-lg transition-colors">9</button>
+<button class="p-4 text-center font-body-md bg-primary text-white rounded-full transition-colors relative shadow-lg">10</button>
+<button class="p-4 text-center font-body-md hover:bg-surface-container rounded-lg transition-colors">11</button>
+<button class="p-4 text-center font-body-md hover:bg-surface-container rounded-lg transition-colors">12</button>
+<button class="p-4 text-center font-body-md hover:bg-surface-container rounded-lg transition-colors">13</button>
+<button class="p-4 text-center font-body-md hover:bg-surface-container rounded-lg transition-colors">14</button>
+<button class="p-4 text-center font-body-md hover:bg-surface-container rounded-lg transition-colors">15</button>
+<button class="p-4 text-center font-body-md hover:bg-surface-container rounded-lg transition-colors">16</button>
+<button class="p-4 text-center font-body-md hover:bg-surface-container rounded-lg transition-colors">17</button>
+<button class="p-4 text-center font-body-md hover:bg-surface-container rounded-lg transition-colors">18</button>
+<button class="p-4 text-center font-body-md hover:bg-surface-container rounded-lg transition-colors">19</button>
+<button class="p-4 text-center font-body-md hover:bg-surface-container rounded-lg transition-colors">20</button>
+<button class="p-4 text-center font-body-md hover:bg-surface-container rounded-lg transition-colors">21</button>
+<button class="p-4 text-center font-body-md hover:bg-surface-container rounded-lg transition-colors">22</button>
+<button class="p-4 text-center font-body-md hover:bg-surface-container rounded-lg transition-colors">23</button>
+<button class="p-4 text-center font-body-md hover:bg-surface-container rounded-lg transition-colors">24</button>
+<button class="p-4 text-center font-body-md hover:bg-surface-container rounded-lg transition-colors">25</button>
+<button class="p-4 text-center font-body-md hover:bg-surface-container rounded-lg transition-colors">26</button>
+<button class="p-4 text-center font-body-md hover:bg-surface-container rounded-lg transition-colors">27</button>
+<button class="p-4 text-center font-body-md hover:bg-surface-container rounded-lg transition-colors">28</button>
+<button class="p-4 text-center font-body-md hover:bg-surface-container rounded-lg transition-colors">29</button>
+<button class="p-4 text-center font-body-md hover:bg-surface-container rounded-lg transition-colors">30</button>
+<button class="p-4 text-center font-body-md hover:bg-surface-container rounded-lg transition-colors">31</button>
+</div>
+</section>
+<!-- Time Selection Section -->
+<section>
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-6 uppercase tracking-widest">Available Time Slots</h4>
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+<button class="glass-card py-4 px-6 rounded-full text-center border border-outline-variant hover:border-primary hover:text-primary transition-all active:scale-95 group">
+<span class="font-stats-number text-stats-number block group-hover:scale-105 transition-transform">09:00</span>
+<span class="text-[10px] text-outline uppercase tracking-widest">Morning</span>
+</button>
+<button class="glass-card py-4 px-6 rounded-full text-center border border-outline-variant hover:border-primary hover:text-primary transition-all active:scale-95 group">
+<span class="font-stats-number text-stats-number block group-hover:scale-105 transition-transform">10:30</span>
+<span class="text-[10px] text-outline uppercase tracking-widest">Morning</span>
+</button>
+<button class="bg-primary text-white py-4 px-6 rounded-full text-center border border-primary transition-all active:scale-95 shadow-md">
+<span class="font-stats-number text-stats-number block">14:00</span>
+<span class="text-[10px] text-primary-fixed-dim uppercase tracking-widest">Afternoon</span>
+</button>
+<button class="glass-card py-4 px-6 rounded-full text-center border border-outline-variant hover:border-primary hover:text-primary transition-all active:scale-95 group">
+<span class="font-stats-number text-stats-number block group-hover:scale-105 transition-transform">15:30</span>
+<span class="text-[10px] text-outline uppercase tracking-widest">Afternoon</span>
+</button>
+<button class="glass-card py-4 px-6 rounded-full text-center border border-outline-variant hover:border-primary hover:text-primary transition-all active:scale-95 group">
+<span class="font-stats-number text-stats-number block group-hover:scale-105 transition-transform">17:00</span>
+<span class="text-[10px] text-outline uppercase tracking-widest">Evening</span>
+</button>
+<button class="glass-card py-4 px-6 rounded-full text-center border border-outline-variant hover:border-primary hover:text-primary transition-all active:scale-95 group">
+<span class="font-stats-number text-stats-number block group-hover:scale-105 transition-transform">18:30</span>
+<span class="text-[10px] text-outline uppercase tracking-widest">Evening</span>
+</button>
+</div>
+</section>
+</div>
+<!-- Right Column: Booking Summary Sidebar -->
+<aside class="lg:col-span-4 sticky top-32 space-y-6">
+<div class="glass-card rounded-xl p-8 border-l-4 border-l-primary overflow-hidden relative">
+<!-- Subtle Decorative Background -->
+<div class="absolute -right-10 -top-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl"></div>
+<h3 class="font-headline-md text-headline-md text-primary mb-8">Summary</h3>
+<div class="space-y-8 relative z-10">
+<!-- Practitioner -->
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary/10 shrink-0">
+<img class="w-full h-full object-cover" data-alt="A portrait of Merit Nene Chuks, a wellness practitioner with a presence that is both professional and deeply calming. She is framed against a soft-focus interior filled with lush green plants and natural wood textures, under soft morning light. The image has an editorial, high-end quality with a neutral ivory and forest green color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDt3Y1MeqGSmVhO2Hil93EU9NiUv40h18TRVym2ogcX28Z7pAf20srAWdOyI0ZIH6A43ynMUPTLtyy4sqJJoFL39XjJaW2-WhA6tvVYbz4fQa_0Q9gwmgY36Xw3kdl5ZxZB8Q1OJrFtmb-n0meyYvHrt0lBkQ7i2qliMhHq5KnFVjLxk3F12VpV9Mv18o9qvP-oE0SEpOMYdxsHLqMamGo1JFVmggAzdS8ozIwNxvVgWBKLRKdh2X_8"/>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase">Practitioner</p>
+<p class="font-body-lg text-body-lg text-primary font-semibold">Merit Nene Chuks</p>
+</div>
+</div>
+<!-- Service -->
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase">Service</p>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-1" data-icon="spa">spa</span>
+<div>
+<p class="font-body-lg text-body-lg text-primary font-semibold">Online Sanctuary</p>
+<p class="text-on-surface-variant text-sm">60 Minute Virtual Session</p>
+</div>
+</div>
+</div>
+<!-- Date & Time -->
+<div class="pt-6 border-t border-outline-variant/30">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-4 uppercase">Selected Window</p>
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-3 text-primary">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="font-body-md text-body-md">Thursday, Oct 10th 2024</span>
+</div>
+<div class="flex items-center gap-3 text-primary">
+<span class="material-symbols-outlined" data-icon="schedule">schedule</span>
+<span class="font-body-md text-body-md">02:00 PM (GMT+1)</span>
+</div>
+</div>
+</div>
+<!-- Price -->
+<div class="flex justify-between items-center pt-6 border-t border-outline-variant/30">
+<span class="font-body-lg text-body-lg text-on-surface-variant">Investment</span>
+<span class="font-stats-number text-stats-number text-primary">$120.00</span>
+</div>
+</div>
+</div>
+<button class="w-full bg-primary-container text-white py-6 rounded-full font-label-caps text-label-caps uppercase tracking-[0.2em] hover:bg-primary transition-all transform hover:-translate-y-1 shadow-lg active:scale-95 flex items-center justify-center gap-4 group">
+                    Confirm Booking
+                    <span class="material-symbols-outlined group-hover:translate-x-2 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<p class="text-center text-on-surface-variant text-xs italic px-4">By confirming, you agree to our 24-hour cancellation policy and ethical standards of care.</p>
+</aside>
+</div>
+</main>
+<!-- Visual Divider -->
+<div class="w-full h-px bg-gradient-to-r from-transparent via-outline-variant/20 to-transparent my-section-gap"></div>
+<!-- Footer -->
+<footer class="bg-surface-container-low w-full">
+<div class="flex flex-col md:flex-row justify-between items-start px-margin-mobile md:px-margin-desktop py-20 max-w-container-max mx-auto gap-12">
+<div class="max-w-sm">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-6">SOULSYSTA</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">A sanctuary for high-performance minds. Blending technical precision with luxury apothecary for intentional living.</p>
+<div class="flex gap-6">
+<span class="material-symbols-outlined cursor-pointer text-primary hover:text-secondary transition-colors" data-icon="public">public</span>
+<span class="material-symbols-outlined cursor-pointer text-primary hover:text-secondary transition-colors" data-icon="nest_eco_leaf">nest_eco_leaf</span>
+<span class="material-symbols-outlined cursor-pointer text-primary hover:text-secondary transition-colors" data-icon="diversity_3">diversity_3</span>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-2 gap-x-16 gap-y-8">
+<div class="space-y-4">
+<h4 class="font-label-caps text-label-caps text-primary border-b border-primary/10 pb-2">THE COLLECTIVE</h4>
+<ul class="space-y-3 font-body-md text-body-md">
+<li><a class="text-on-surface-variant hover:text-secondary transition-all underline-offset-8 hover:underline" href="#">The Ethos</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-all underline-offset-8 hover:underline" href="#">Private Suites</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-all underline-offset-8 hover:underline" href="#">Journal</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-all underline-offset-8 hover:underline" href="#">Contact</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-label-caps text-label-caps text-primary border-b border-primary/10 pb-2">SANCTUARY</h4>
+<ul class="space-y-3 font-body-md text-body-md">
+<li><a class="text-on-surface-variant hover:text-secondary transition-all underline-offset-8 hover:underline" href="#">Legal</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-all underline-offset-8 hover:underline" href="#">Privacy</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-all underline-offset-8 hover:underline" href="#">Cookies</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary transition-all underline-offset-8 hover:underline" href="#">Support</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="px-margin-mobile md:px-margin-desktop py-8 border-t border-white/20">
+<p class="font-label-caps text-[10px] text-on-surface-variant/60 text-center">© 2024 SOULSYSTA COLLECTIVE. ALL RIGHTS RESERVED.</p>
+</div>
+</footer>
+<!-- Mobile Navigation Bar -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface/70 backdrop-blur-xl border-t border-white/10 shadow-[0px_-10px_30px_rgba(18,53,36,0.03)] z-50 rounded-t-full flex justify-around items-center px-margin-mobile py-4">
+<div class="flex flex-col items-center justify-center text-on-surface-variant transition-opacity hover:opacity-80">
+<span class="material-symbols-outlined" data-icon="self_care">self_care</span>
+<span class="font-label-caps text-[10px]">Breathe</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant transition-opacity hover:opacity-80">
+<span class="material-symbols-outlined" data-icon="spa">spa</span>
+<span class="font-label-caps text-[10px]">Discover</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary font-bold scale-110">
+<span class="material-symbols-outlined" data-icon="calendar_month" style="font-variation-settings: 'FILL' 1;">calendar_month</span>
+<span class="font-label-caps text-[10px]">Book</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant transition-opacity hover:opacity-80">
+<span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
+<span class="font-label-caps text-[10px]">Journal</span>
+</div>
+</nav>
+<script>
+        // Micro-interactions for calendar selection
+        const calendarButtons = document.querySelectorAll('.calendar-grid button:not(.bg-primary)');
+        calendarButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const currentActive = document.querySelector('.calendar-grid button.bg-primary');
+                if (currentActive) {
+                    currentActive.classList.remove('bg-primary', 'text-white', 'rounded-full', 'shadow-lg');
+                    currentActive.classList.add('hover:bg-surface-container', 'rounded-lg');
+                }
+                this.classList.remove('hover:bg-surface-container', 'rounded-lg');
+                this.classList.add('bg-primary', 'text-white', 'rounded-full', 'shadow-lg');
+            });
+        });
+
+        // Time slot selection logic
+        const timeSlots = document.querySelectorAll('section:last-of-type button');
+        timeSlots.forEach(slot => {
+            slot.addEventListener('click', function() {
+                timeSlots.forEach(s => {
+                    s.classList.remove('bg-primary', 'text-white', 'shadow-md');
+                    s.classList.add('glass-card', 'border-outline-variant');
+                    s.querySelector('span:first-child').classList.add('group-hover:scale-105');
+                });
+                this.classList.remove('glass-card', 'border-outline-variant');
+                this.classList.add('bg-primary', 'text-white', 'shadow-md');
+                this.querySelector('span:first-child').classList.remove('group-hover:scale-105');
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Initiatives | SOULSYSTA COLLECTIVE</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;family=Inter:wght@400;600&amp;family=Hanken+Grotesk:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#faf9f6",
+                    "on-secondary-container": "#745c00",
+                    "on-tertiary": "#ffffff",
+                    "on-background": "#1a1c1a",
+                    "surface-container-highest": "#e3e2e0",
+                    "error": "#ba1a1a",
+                    "secondary-fixed": "#ffe088",
+                    "on-primary-fixed": "#002112",
+                    "on-tertiary-fixed-variant": "#50453d",
+                    "on-surface-variant": "#414843",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed": "#221a14",
+                    "surface-dim": "#dbdad7",
+                    "on-primary-container": "#7a9f88",
+                    "background": "#faf9f6",
+                    "primary-fixed-dim": "#a9cfb7",
+                    "primary-fixed": "#c5ecd2",
+                    "on-error-container": "#93000a",
+                    "surface-bright": "#faf9f6",
+                    "on-secondary": "#ffffff",
+                    "surface-container-low": "#f4f3f1",
+                    "surface-container-high": "#e9e8e5",
+                    "outline": "#727973",
+                    "on-secondary-fixed": "#241a00",
+                    "error-container": "#ffdad6",
+                    "tertiary-container": "#372d26",
+                    "surface-container": "#efeeeb",
+                    "secondary": "#735c00",
+                    "tertiary-fixed-dim": "#d4c3ba",
+                    "outline-variant": "#c1c8c1",
+                    "on-surface": "#1a1c1a",
+                    "inverse-primary": "#a9cfb7",
+                    "on-secondary-fixed-variant": "#574500",
+                    "on-primary-fixed-variant": "#2b4e3b",
+                    "tertiary": "#211913",
+                    "surface-tint": "#436652",
+                    "primary": "#123524",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed": "#f0dfd5",
+                    "primary-container": "#123524",
+                    "surface-variant": "#e3e2e0",
+                    "inverse-surface": "#2f312f",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#fed65b",
+                    "inverse-on-surface": "#f2f1ee",
+                    "on-tertiary-container": "#a2948b",
+                    "secondary-fixed-dim": "#e9c349"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "margin-desktop": "80px",
+                    "gutter": "32px",
+                    "margin-mobile": "24px",
+                    "container-max": "1440px",
+                    "section-gap": "160px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Playfair Display"],
+                    "stats-number": ["Hanken Grotesk"],
+                    "label-caps": ["Inter"],
+                    "display-lg": ["Playfair Display"],
+                    "body-md": ["Inter"],
+                    "display-lg-mobile": ["Playfair Display"],
+                    "headline-md": ["Playfair Display"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["48px", {"lineHeight": "56px", "fontWeight": "500"}],
+                    "stats-number": ["24px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "display-lg": ["80px", {"lineHeight": "90px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "display-lg-mobile": ["48px", {"lineHeight": "54px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "32px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .editorial-image-bleed {
+            clip-path: inset(0 0 0 0);
+            transition: clip-path 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out;
+        }
+        .reveal-on-scroll.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-primary-fixed selection:text-primary overflow-x-hidden">
+<!-- Top Navigation Anchor -->
+<nav class="fixed top-0 w-full z-50 bg-white/70 dark:bg-black/70 backdrop-blur-xl border-b border-white/20 shadow-[0px_20px_40px_rgba(18,53,36,0.05)] transition-all duration-500">
+<div class="flex justify-between items-center px-4 md:px-margin-desktop py-4 w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-4 cursor-pointer transition-transform active:scale-95">
+<span class="material-symbols-outlined text-primary">menu</span>
+</div>
+<h1 class="font-headline-md text-headline-md tracking-tighter text-primary">SOULSYSTA</h1>
+<div class="hidden md:flex items-center gap-10">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary transition-colors" href="#">THE ETHOS</a>
+<a class="font-label-caps text-label-caps text-primary relative after:content-[''] after:block after:w-1 after:h-1 after:bg-secondary-fixed after:rounded-full after:mx-auto" href="#">INITIATIVES</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary transition-colors" href="#">JOURNAL</a>
+<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center cursor-pointer overflow-hidden border border-primary/20">
+<img class="w-full h-full object-cover" data-alt="A serene close-up portrait of a diverse woman with radiant skin, looking thoughtfully into the distance. The lighting is soft, cinematic, and warm, emphasizing a sense of inner peace and wisdom. The background is a blurred, ethereal ivory environment that aligns with the premium Soulsysta aesthetic of luxury and stillness." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmzIkcKNbyvqlm60DpTBRmLT1HfdAd4Fq9zmU_bTS_-nEJk2OIKKZpVBrsXbvJ5xpOWk1kzBUKhyv1rvvHDUCxX36FGp0ZnKSJL0r1RojTnVO0ljIdgKc-YFY2y9J2yBei__3fCYv1NBZKyKOAGYu88g9T8pA10YP6CjjYb7tFAqTrAkF01WRXs9liUamQncvLUOpFBdGHpAgljnrgKXjQro4J-srUYfXK4LBNkWAFS_MOrTrX3eAM"/>
+</div>
+</div>
+<div class="md:hidden">
+<span class="material-symbols-outlined text-primary">search</span>
+</div>
+</div>
+</nav>
+<main>
+<!-- Cinematic Hero -->
+<section class="relative h-screen flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center scale-105 animate-[pulse_10s_infinite_alternate]" data-alt="A cinematic, wide-angle shot of a group of women standing together in a lush, misty forest at dawn. The lighting is ethereal and soft, with sunbeams filtering through the dense canopy of ancient trees. The overall mood is one of profound silence, collective healing, and natural elegance, utilizing a palette of deep forest greens, soft ivory mists, and golden light." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCw_NaBeILvwpUp9cSIViIvlPfpu-HAlfx-dGQwttlLXWp-Y-WiOdDIohDQ2XXOS3Eh_rXmXwW0iJz7eXvG_TvF1Fa5Rd9RX43c-GTCVH_sD-9d8IlCYBUsA7GT5PTxB5sGP02T9L-y-dERtnuFfdRNscRQ7I9CZLe6LULLXuKCPWa72mAVvfFjUIPYhBNkzrCWx1QWZ-EnJ_dn1t-njspVT_q2XbtX6C_6rr2riebaOAle3cHhyyCl')"></div>
+<div class="absolute inset-0 bg-primary/30 backdrop-brightness-75"></div>
+</div>
+<div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+<span class="font-label-caps text-label-caps text-primary-fixed mb-6 block tracking-[0.4em] uppercase">The Soulsysta Initiative</span>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-surface mb-8 leading-tight">Healing as a<br/><span class="italic">Collective Act</span></h1>
+<p class="font-body-lg text-body-lg text-surface/90 max-w-2xl mx-auto mb-12">Empowering generations through mindful action, community stewardship, and the radical reclamation of wellness for every soul.</p>
+<div class="flex flex-col sm:flex-row gap-6 justify-center">
+<button class="px-10 py-5 bg-primary text-surface font-label-caps text-label-caps tracking-widest hover:bg-secondary transition-all active:scale-95">JOIN THE MOVEMENT</button>
+<button class="px-10 py-5 border border-surface/30 backdrop-blur-md text-surface font-label-caps text-label-caps tracking-widest hover:bg-surface/10 transition-all active:scale-95">VIEW IMPACT REPORT</button>
+</div>
+</div>
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+<span class="material-symbols-outlined text-surface text-3xl">expand_more</span>
+</div>
+</section>
+<!-- Our Impact Stats -->
+<section class="py-section-gap px-6 md:px-margin-desktop max-w-container-max mx-auto reveal-on-scroll">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter text-center border-y border-outline-variant/30 py-20">
+<div class="group">
+<div class="font-stats-number text-stats-number text-primary mb-2 md:text-6xl lg:text-7xl">1,200+</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant tracking-[0.2em] group-hover:text-primary transition-colors">LIVES IMPACTED</div>
+</div>
+<div class="group border-y md:border-y-0 md:border-x border-outline-variant/30 py-10 md:py-0">
+<div class="font-stats-number text-stats-number text-primary mb-2 md:text-6xl lg:text-7xl">500+</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant tracking-[0.2em] group-hover:text-primary transition-colors">BOOKS DONATED</div>
+</div>
+<div class="group">
+<div class="font-stats-number text-stats-number text-primary mb-2 md:text-6xl lg:text-7xl">50+</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant tracking-[0.2em] group-hover:text-primary transition-colors">COMMUNITIES REACHED</div>
+</div>
+</div>
+</section>
+<!-- Current Projects - Bento Grid -->
+<section class="pb-section-gap px-6 md:px-margin-desktop max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+<div class="max-w-2xl">
+<span class="font-label-caps text-label-caps text-primary tracking-[0.3em] mb-4 block">ACTIVE MISSIONS</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">The Work We Do Together</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs border-l-2 border-primary-fixed-dim pl-6">Every initiative is designed to be sustainable, community-led, and deeply rooted in ancestral wisdom.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 h-auto">
+<!-- Project 1 -->
+<div class="md:col-span-7 group relative overflow-hidden h-[600px]">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-1000 group-hover:scale-110" data-alt="A soft-focus, cinematic image of an older woman guiding a group of younger women in a circle under a large baobab tree. The warm, late afternoon sun casts long, gentle shadows. The scene is one of mentorship, legacy, and community connection, styled with a high-end editorial feel and a palette of warm earth tones and forest greens." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBJg6tfDKqf2Jj1kWIK-G8mtz9gx7mqfO3dBuiE3BsNtYxsf4tA-wkcjjNhd-kxfBeWvrAzTH4hh2GyGqZ5UxgkRIZMQWH9tLP0sF9tvd7CrCek358zmuRfXG6F02R9ZR4FTAGmggj2laR5IEph4ASOsl2IOp6GHjHbThTbnIoRAfsVXs0tT690VpkkLNZsRbyPbMlAAa9tifnGXwLoMvWJkNoIeY1jigHmrvLFPMmlWXjBn1_jIk_W')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-12 w-full">
+<div class="glass-card p-8 rounded-lg max-w-md">
+<span class="font-label-caps text-label-caps text-primary mb-2 block">MENTORSHIP</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-4">The Youth Circle</h3>
+<p class="font-body-md text-on-surface-variant mb-6">Guiding the next generation through holistic wellness practices and leadership development programs.</p>
+<a class="inline-flex items-center gap-2 font-label-caps text-label-caps text-primary hover:gap-4 transition-all" href="#">LEARN MORE <span class="material-symbols-outlined">trending_flat</span></a>
+</div>
+</div>
+</div>
+<!-- Project 2 -->
+<div class="md:col-span-5 group relative overflow-hidden h-[600px]">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-1000 group-hover:scale-110" data-alt="A peaceful and minimalist scene of a mobile wellness clinic set up in a rural village. Soft ivory canvas tents are arranged neatly against a backdrop of rolling green hills. The lighting is bright and airy, conveying a sense of hope and professional care. The style is sophisticated and clean, using soft sage and ivory colors to emphasize a luxury apothecary feel in a community setting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCkqEz3ox8jXPgOX_2JtRtPU6NwD2pYfkAEAzsUWgXSCaLyVPK8oNyHCHHnBw9245zozn9dDrfLK7SNtSycZT9Esa2f2BGAwdjImCiJGoP0AszDCkcGXZA9_M5A-mvG5H2P0P6tuEe3m1d2bGdPJSgAghVhg-2O1jTesgpN9thKkyb9XXKFPbfghj-Z-Q2NZY8mNMBZLqWSc4do10CpTinxXjz3mhBG5Hd3fzZb3akjiXnn3KuoA6_J')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-12 w-full">
+<div class="glass-card p-8 rounded-lg">
+<span class="font-label-caps text-label-caps text-primary mb-2 block">OUTREACH</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-4">Rural Wellness</h3>
+<p class="font-body-md text-on-surface-variant mb-6">Bringing essential wellness resources and holistic health education to remote communities.</p>
+<a class="inline-flex items-center gap-2 font-label-caps text-label-caps text-primary hover:gap-4 transition-all" href="#">EXPLORE IMPACT <span class="material-symbols-outlined">trending_flat</span></a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Gallery of Transformation -->
+<section class="bg-primary py-section-gap overflow-hidden">
+<div class="px-6 md:px-margin-desktop max-w-container-max mx-auto mb-20 text-center">
+<span class="font-label-caps text-label-caps text-primary-fixed mb-4 block tracking-[0.4em]">VISUAL CHRONICLES</span>
+<h2 class="font-headline-lg text-headline-lg text-surface">Gallery of Transformation</h2>
+</div>
+<div class="flex gap-8 overflow-x-auto pb-10 px-6 md:px-margin-desktop no-scrollbar snap-x">
+<div class="min-w-[300px] md:min-w-[450px] aspect-[4/5] relative snap-center">
+<img class="w-full h-full object-cover" data-alt="A close-up shot of two pairs of hands—one young, one old—holding a small seedling over rich, dark soil. The focus is sharp on the texture of the skin and the delicate green leaves. The lighting is dramatic but soft, highlighting the themes of growth and intergenerational connection. The color palette features deep forest greens and organic earth tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwFMZB4YZcoXv4AFzFFJvjwIYrhZPO56UZ0YZ8m_tmlO9a5k7WNbRVB-0F0murrfG1dmkA-Zzt0WqTxc2Z8f1Ho_DPh7bZ8UuLtJWhkBf5HuaGEWrXY9DZxPWBM3O_OaQRvD1ti5sOMmzsCgF7nmmxBL3VLjIGv6_sXJRuA0GxxzRmU5eNApB5VfivO7GO-2-3Bbeu7yG8NpTa6XMXRWX1kSSltYvr2VoubaHw70EvtbK7hTp819b3"/>
+</div>
+<div class="min-w-[300px] md:min-w-[600px] aspect-video relative snap-center">
+<img class="w-full h-full object-cover" data-alt="A wide, cinematic shot of a communal meal being shared outdoors at a long wooden table. The scene is set in a sun-drenched courtyard with ivory walls and trailing green vines. The lighting is warm and celebratory, reflecting a mood of joy and collective belonging. The aesthetic is high-end editorial, emphasizing elegance and community." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1Dci8m8-U7_E84fBP8HW7hfOXLLWjyc9Lunuf12zXa0mphA3K6TA71EkdXgNntbucJfgl11qe-XsnL8fi5oJX-1D-wApfOQ98CAtNKrOI2KlXqCO5v-U55cXLiNvsYjd8O8LhNaJ_NE5sOP5G-5Mg8jMRnu9ZOTQ6P4_I7ak9sDkRy-_ctFXvagDXA2PgWEfOiWzg_77Ng9ma7Lg7B67IrFAfFPp63vTSCmVFpfPHMl13wyyUUkuM"/>
+</div>
+<div class="min-w-[300px] md:min-w-[450px] aspect-[4/5] relative snap-center">
+<img class="w-full h-full object-cover" data-alt="A serene, soft-focus image of a woman meditating in a minimal, bright room. She is surrounded by books and botanical elements. High-key lighting creates a sense of clarity and peacefulness. The palette is dominated by off-whites, ivory, and soft green accents, capturing the essence of mental wellness and study." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhWsEWW1dSBhnotatGZWF_abR4TCurDe794j2LMWVN7OEptx4grtsMvYk7zY0WuqsYYiA9LPSnct_iX5xZTu-PoyeE6tCrLnvDa1mtzlkQT6MJUWQ0iJmh2mrKc1TnqxwxpGZvpP6DWibtnhuvcruF1bz8UnPNIS-U9b_JMSc8Vt_W1XzxeIQlZbhPRXiTpPAnfZle6BZkVJY_QbtWRSyc0GcQLhUguTv9FONFS7zn7p0d6qe8f4bW"/>
+</div>
+<div class="min-w-[300px] md:min-w-[450px] aspect-[4/5] relative snap-center">
+<img class="w-full h-full object-cover" data-alt="A detailed shot of handcrafted wellness kits being prepared—wooden bowls, dried herbs, and small glass vials on an ivory linen cloth. The composition is artistic and intentional, with soft directional light casting delicate shadows. The style is luxury apothecary, focusing on tactile beauty and the artistry of care." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsb6_jOaNijBgvuH36fTkOym7uWHsWc09c9QGlZL7oIQYoLlxY6G7dfxx5wq8dOw9rlb_tVixaAEQqjEnaIS-k9V61EyLu5a1F0geDS3g1ayJPXa99W0SMe_9FeOsg2EkIvwGf-pPdhkmFGrxediLJFvf_9K9Kip8RRYEVSn72-a8N2Z2tZKZ-bhWsMNvpZ6vypUpZSJqlrMJ2kKMb-msNGhqi7ZlODQSqsjjw8NtgilkdXlFpuhBc"/>
+</div>
+</div>
+</section>
+<!-- Partner CTA Section -->
+<section class="py-section-gap px-6 md:px-margin-desktop max-w-container-max mx-auto reveal-on-scroll">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div class="relative">
+<div class="absolute -top-10 -left-10 w-40 h-40 bg-secondary-fixed/20 rounded-full blur-3xl"></div>
+<img class="relative z-10 w-full h-[600px] object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-700" data-alt="A sophisticated, minimalist studio portrait of a woman leader dressed in high-performance, elegant athletic wear in forest green. Her expression is calm, commanding, and visionary. The background is a clean, textured ivory wall. The lighting is high-contrast but flattering, evoking a sense of prestige and modern leadership within the wellness space." src="https://lh3.googleusercontent.com/aida-public/AB6AXuByg3AOOHQNw9O4A6FDsMEwtaJ1mrw5cb4a0g5rzxl8RYNQMYxhwQjnUa5jBiCksLl8-ASI8NUm7Nfi3WCos0oI9O65Zq1q02dmqOnMZIUnunLHnl98Tcr7bGX7bzmMKb0L2oB__kZichZ1D4vxTV24jFHPDhZJv21eeCZh3Gg22tzCmtiJBeCU4mFChDmpdCaku1kuryclhrtRJiCfwSJJdHM1_Fm5e2E5JvSQLLn5OU3Tjh_EfQ9Z"/>
+</div>
+<div>
+<span class="font-label-caps text-label-caps text-primary mb-6 block tracking-[0.2em]">BECOME AN ALLY</span>
+<h2 class="font-display-lg text-headline-lg md:text-headline-lg lg:text-headline-lg text-on-surface mb-8 leading-tight">Your Contribution<br/><span class="italic text-primary">Changes Everything</span></h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-12">We believe that wellness is a birthright, not a luxury. Join us in our mission to dismantle barriers and build a world where healing is accessible to all.</p>
+<form class="space-y-6">
+<div class="relative">
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-4 px-0 focus:ring-0 focus:border-primary transition-colors font-body-md placeholder:text-on-surface-variant/40" placeholder="Your Name" type="text"/>
+</div>
+<div class="relative">
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-4 px-0 focus:ring-0 focus:border-primary transition-colors font-body-md placeholder:text-on-surface-variant/40" placeholder="Email Address" type="email"/>
+</div>
+<div class="pt-8">
+<button class="w-full md:w-auto px-12 py-5 bg-primary text-surface font-label-caps text-label-caps tracking-widest hover:bg-secondary transition-all flex items-center justify-center gap-4" type="submit">
+                                PARTNER WITH US
+                                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-section-gap bg-surface-container-low text-on-surface transition-colors">
+<div class="flex flex-col md:flex-row justify-between items-start px-4 md:px-margin-desktop py-20 max-w-container-max mx-auto">
+<div class="mb-12 md:mb-0">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-6 tracking-tighter">SOULSYSTA</h2>
+<p class="max-w-xs font-body-md text-on-surface-variant">A collective space dedicated to the radical act of stillness and community-led restoration.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-24">
+<div class="flex flex-col gap-4">
+<span class="font-label-caps text-label-caps text-primary">EXPLORE</span>
+<a class="font-body-md text-on-surface-variant hover:text-secondary underline underline-offset-8 transition-all" href="#">The Ethos</a>
+<a class="font-body-md text-on-surface-variant hover:text-secondary underline underline-offset-8 transition-all" href="#">Private Suites</a>
+<a class="font-body-md text-on-surface-variant hover:text-secondary underline underline-offset-8 transition-all" href="#">Journal</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-label-caps text-label-caps text-primary">CONNECT</span>
+<a class="font-body-md text-on-surface-variant hover:text-secondary underline underline-offset-8 transition-all" href="#">Contact</a>
+<a class="font-body-md text-on-surface-variant hover:text-secondary underline underline-offset-8 transition-all" href="#">Instagram</a>
+<a class="font-body-md text-on-surface-variant hover:text-secondary underline underline-offset-8 transition-all" href="#">Membership</a>
+</div>
+</div>
+</div>
+<div class="px-4 md:px-margin-desktop py-10 border-t border-outline-variant/20 flex flex-col md:flex-row justify-between items-center gap-6">
+<span class="font-label-caps text-[10px] text-outline tracking-widest uppercase">© 2024 SOULSYSTA COLLECTIVE. ALL RIGHTS RESERVED.</span>
+<div class="flex gap-8">
+<a class="font-label-caps text-[10px] text-outline hover:text-primary" href="#">PRIVACY POLICY</a>
+<a class="font-label-caps text-[10px] text-outline hover:text-primary" href="#">TERMS OF SERVICE</a>
+</div>
+</div>
+</footer>
+<!-- Mobile Bottom Nav Shell (Filtered Visibility: Top Level Destination) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-margin-mobile py-3 bg-surface/70 backdrop-blur-xl border-t border-white/10 shadow-[0px_-10px_30px_rgba(18,53,36,0.03)] z-50 rounded-t-full">
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-label-caps text-[10px] hover:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined mb-1">self_care</span>
+            Breathe
+        </a>
+<a class="flex flex-col items-center justify-center text-primary font-bold font-label-caps text-[10px] scale-110 duration-200" href="#">
+<span class="material-symbols-outlined mb-1">spa</span>
+            Discover
+        </a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-label-caps text-[10px] hover:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined mb-1">calendar_month</span>
+            Book
+        </a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-label-caps text-[10px] hover:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined mb-1">auto_stories</span>
+            Journal
+        </a>
+</nav>
+<script>
+        // Simple Scroll Reveal Interaction
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+
+        // Header scroll behavior
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            const nav = document.querySelector('nav');
+            
+            if (currentScroll <= 0) {
+                nav.classList.remove('-translate-y-full');
+                return;
+            }
+            
+            if (currentScroll > lastScroll && !nav.classList.contains('-translate-y-full')) {
+                // Scroll Down
+                nav.classList.add('-translate-y-full');
+            } else if (currentScroll < lastScroll && nav.classList.contains('-translate-y-full')) {
+                // Scroll Up
+                nav.classList.remove('-translate-y-full');
+            }
+            lastScroll = currentScroll;
+        });
+    </script>
+</body></html>

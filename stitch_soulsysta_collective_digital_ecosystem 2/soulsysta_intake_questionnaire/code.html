@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Wellness Intake | SOULSYSTA</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@500;600&amp;family=Hanken+Grotesk:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Config Verbatim -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#f0dfd5",
+                    "background": "#faf9f6",
+                    "tertiary": "#211913",
+                    "primary-container": "#123524",
+                    "surface-container-lowest": "#ffffff",
+                    "on-background": "#1a1c1a",
+                    "on-secondary-fixed": "#241a00",
+                    "primary-fixed-dim": "#a9cfb7",
+                    "on-primary-fixed": "#002112",
+                    "secondary": "#735c00",
+                    "on-tertiary-container": "#a2948b",
+                    "inverse-surface": "#2f312f",
+                    "surface-container-high": "#e9e8e5",
+                    "secondary-container": "#fed65b",
+                    "tertiary-container": "#372d26",
+                    "surface-container-low": "#f4f3f1",
+                    "on-surface": "#1a1c1a",
+                    "on-primary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed": "#221a14",
+                    "secondary-fixed": "#ffe088",
+                    "secondary-fixed-dim": "#e9c349",
+                    "surface-container-highest": "#e3e2e0",
+                    "surface-bright": "#faf9f6",
+                    "on-surface-variant": "#414843",
+                    "surface-tint": "#436652",
+                    "inverse-primary": "#a9cfb7",
+                    "outline": "#727973",
+                    "on-error-container": "#93000a",
+                    "inverse-on-surface": "#f2f1ee",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#2b4e3b",
+                    "on-primary-container": "#7a9f88",
+                    "primary": "#001f11",
+                    "primary-fixed": "#c5ecd2",
+                    "on-tertiary-fixed-variant": "#50453d",
+                    "surface-variant": "#e3e2e0",
+                    "on-secondary-fixed-variant": "#574500",
+                    "on-secondary-container": "#745c00",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#d4c3ba",
+                    "outline-variant": "#c1c8c1",
+                    "surface": "#faf9f6",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#efeeeb",
+                    "surface-dim": "#dbdad7",
+                    "on-secondary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "section-gap": "160px",
+                    "unit": "8px",
+                    "margin-mobile": "24px",
+                    "margin-desktop": "80px",
+                    "container-max": "1440px",
+                    "gutter": "32px"
+            },
+            "fontFamily": {
+                    "stats-number": ["Hanken Grotesk"],
+                    "headline-md": ["Playfair Display"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "display-lg-mobile": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "headline-lg": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "stats-number": ["24px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "32px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "display-lg-mobile": ["48px", {"lineHeight": "54px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["80px", {"lineHeight": "90px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "headline-lg": ["48px", {"lineHeight": "56px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        input[type="range"]::-webkit-slider-runnable-track {
+            background: #e3e2e0;
+            height: 4px;
+            border-radius: 2px;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 20px;
+            width: 20px;
+            background: #001f11;
+            border-radius: 50%;
+            cursor: pointer;
+            margin-top: -8px;
+        }
+
+        .floating-label-group {
+            position: relative;
+        }
+
+        .floating-label-group input:focus ~ label,
+        .floating-label-group input:not(:placeholder-shown) ~ label {
+            transform: translateY(-24px) scale(0.85);
+            color: #436652;
+        }
+
+        .floating-label-group label {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            pointer-events: none;
+            transition: all 0.2s ease;
+            transform-origin: left top;
+        }
+        
+        body {
+            background-color: #faf9f6;
+            color: #1a1c1a;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="antialiased overflow-x-hidden">
+<!-- TopAppBar (Suppressed Shell Rule: Using minimal task-focused header) -->
+<header class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-white/20 px-margin-mobile md:px-margin-desktop py-6">
+<div class="max-w-container-max mx-auto flex justify-between items-center">
+<button class="flex items-center text-on-surface-variant hover:text-primary transition-colors duration-300">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+<h1 class="font-label-caps text-label-caps tracking-widest text-primary uppercase">Wellness Intake</h1>
+<div class="w-6"></div> <!-- Spacer for symmetry -->
+</div>
+</header>
+<main class="pt-32 pb-40 px-margin-mobile">
+<div class="max-w-3xl mx-auto">
+<!-- Progress Bar -->
+<div class="flex items-center justify-between mb-16 px-4">
+<div class="flex flex-col items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary-container"></div>
+<span class="font-label-caps text-[10px] text-primary">01 Intent</span>
+</div>
+<div class="flex-1 h-[1px] bg-outline-variant mx-4 mb-5"></div>
+<div class="flex flex-col items-center gap-2 opacity-30">
+<div class="w-2 h-2 rounded-full bg-outline"></div>
+<span class="font-label-caps text-[10px] text-outline">02 Guide</span>
+</div>
+<div class="flex-1 h-[1px] bg-outline-variant mx-4 mb-5"></div>
+<div class="flex flex-col items-center gap-2 opacity-30">
+<div class="w-2 h-2 rounded-full bg-outline"></div>
+<span class="font-label-caps text-[10px] text-outline">03 Schedule</span>
+</div>
+<div class="flex-1 h-[1px] bg-outline-variant mx-4 mb-5"></div>
+<div class="flex flex-col items-center gap-2 opacity-30">
+<div class="w-2 h-2 rounded-full bg-outline"></div>
+<span class="font-label-caps text-[10px] text-outline">04 Confirm</span>
+</div>
+</div>
+<!-- Intro Header -->
+<div class="mb-12 text-center">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-4">Finding Your Stillness</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mx-auto">Take a breath. This intake helps us curate a practice uniquely tailored to your current energy and needs.</p>
+</div>
+<!-- Intake Form Section -->
+<div class="glass-card rounded-full p-8 md:p-12 shadow-[0px_20px_40px_rgba(18,53,36,0.05)]">
+<form class="space-y-12">
+<!-- Question 1: Text Area with Floating Label -->
+<div class="floating-label-group">
+<textarea class="w-full bg-surface-container-low border-none rounded-xl p-4 pt-8 h-32 focus:ring-1 focus:ring-primary-fixed-dim text-on-surface font-body-md text-body-md resize-none transition-all" id="intent" placeholder=" "></textarea>
+<label class="font-label-caps text-label-caps text-on-surface-variant" for="intent">What brings you to Soulsysta today?</label>
+</div>
+<!-- Question 2: Slider for Emotional State -->
+<div class="space-y-6">
+<div class="flex justify-between items-end">
+<label class="font-label-caps text-label-caps text-primary uppercase">Current Emotional State</label>
+<span class="font-body-md text-body-md text-on-surface-variant italic" id="emotion-label">Centered</span>
+</div>
+<input class="w-full appearance-none bg-transparent" id="emotion-slider" max="10" min="1" type="range" value="5"/>
+<div class="flex justify-between font-label-caps text-[10px] text-outline tracking-wider">
+<span>OVERWHELMED</span>
+<span>TRANQUIL</span>
+</div>
+</div>
+<!-- Question 3: Session Type Selection -->
+<div class="space-y-6">
+<label class="font-label-caps text-label-caps text-primary uppercase block">Preferred Session Type</label>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<label class="relative cursor-pointer group">
+<input checked="" class="peer sr-only" name="session_type" type="radio" value="online"/>
+<div class="p-6 rounded-xl border border-outline-variant bg-white peer-checked:border-primary-container peer-checked:bg-primary-fixed/10 transition-all duration-300 flex items-center gap-4">
+<span class="material-symbols-outlined text-outline-variant peer-checked:text-primary-container group-hover:scale-110 transition-transform" data-icon="laptop_mac">laptop_mac</span>
+<div>
+<span class="block font-body-md text-body-md font-semibold text-primary">Online Sanctuary</span>
+<span class="block font-label-caps text-[10px] text-on-surface-variant">VIRTUAL GUIDANCE</span>
+</div>
+</div>
+<div class="absolute top-4 right-4 opacity-0 peer-checked:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary-container text-sm" data-icon="check_circle">check_circle</span>
+</div>
+</label>
+<label class="relative cursor-pointer group">
+<input class="peer sr-only" name="session_type" type="radio" value="in-person"/>
+<div class="p-6 rounded-xl border border-outline-variant bg-white peer-checked:border-primary-container peer-checked:bg-primary-fixed/10 transition-all duration-300 flex items-center gap-4">
+<span class="material-symbols-outlined text-outline-variant peer-checked:text-primary-container group-hover:scale-110 transition-transform" data-icon="location_on">location_on</span>
+<div>
+<span class="block font-body-md text-body-md font-semibold text-primary">In-Person Suite</span>
+<span class="block font-label-caps text-[10px] text-on-surface-variant">PRIVATE STUDIO</span>
+</div>
+</div>
+<div class="absolute top-4 right-4 opacity-0 peer-checked:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary-container text-sm" data-icon="check_circle">check_circle</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Decorative Divider -->
+<div class="flex items-center gap-4 py-4">
+<div class="h-[1px] bg-outline-variant flex-1 opacity-30"></div>
+<span class="material-symbols-outlined text-outline-variant" data-icon="eco">eco</span>
+<div class="h-[1px] bg-outline-variant flex-1 opacity-30"></div>
+</div>
+<!-- Final CTA -->
+<button class="w-full bg-primary-container text-on-primary py-6 rounded-full font-label-caps text-label-caps tracking-[0.2em] uppercase hover:bg-secondary transition-all duration-500 shadow-xl active:scale-[0.98] flex justify-center items-center gap-3" type="submit">
+                        Continue to Practitioner Selection
+                        <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</form>
+</div>
+<!-- Contextual Note -->
+<p class="mt-12 text-center font-label-caps text-[10px] text-outline tracking-widest">
+                YOUR RESPONSES ARE SECURE AND SHARED ONLY WITH YOUR SELECTED PRACTITIONER.
+            </p>
+</div>
+</main>
+<!-- Side Decoration (Asymmetric Editorial Element) -->
+<div class="hidden lg:block fixed -right-20 top-1/2 -translate-y-1/2 w-64 h-96 opacity-10 pointer-events-none transform rotate-12">
+<div class="w-full h-full bg-cover rounded-full" data-alt="A macro photograph of smooth, rounded river stones arranged in a zen-like stack. The lighting is soft and ethereal, capturing the fine texture of the grey stone against a soft beige background. The overall aesthetic is calming, minimal, and premium, representing the Soulsysta brand identity." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuACrMpIAhrWrpArlQ0dL6bmi81s69v0EmtdGIQyJk2X0S9Dt_-vXzWu4H0uTBrriZuDLJXGieHCPloSf6y905CqSlA_BFqljegkykyrLTIPRfxyTXQCSsLhxkr96GoPFNLN6sd45gqtjvDj4REdhKWfiAnRYYOW4PihGijjzN2uiRnvMUG-slRguhuj6Zk1i9O38rfiktPFLTyTAMbgROeOd0k2VyOv5nww-yWtltnuKGcoRItU8nSH')"></div>
+</div>
+<!-- Scripts for interaction -->
+<script>
+        const slider = document.getElementById('emotion-slider');
+        const label = document.getElementById('emotion-label');
+        
+        const emotionalStates = [
+            "Overwhelmed", "Restless", "Unsettled", "Searching", "Neutral", 
+            "Aware", "Centered", "Tranquil", "Peaceful", "Transcendent"
+        ];
+
+        slider.addEventListener('input', (e) => {
+            const value = e.target.value;
+            label.textContent = emotionalStates[value - 1];
+            
+            // Micro-interaction: scale effect on label
+            label.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                label.style.transform = 'scale(1)';
+            }, 100);
+        });
+
+        // Form Submission Prevention for demo
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            // In a real app, logic to navigate to next step would go here
+            console.log("Navigating to step 2...");
+        });
+    </script>
+</body></html>

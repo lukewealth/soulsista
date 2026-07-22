@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Merit Nene Chuks | Soulsysta Collective</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500&family=Hanken+Grotesk:wght@300;400;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&family=Inter:wght@100..900&family=Playfair+Display:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#436652",
+                        "surface-bright": "#fbf9f5",
+                        "secondary-container": "#ffd576",
+                        "on-tertiary-container": "#e47099",
+                        "outline": "#727973",
+                        "primary-fixed-dim": "#a9cfb7",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#ffd9e2",
+                        "primary-container": "#123524",
+                        "tertiary-container": "#600331",
+                        "background": "#fbf9f5",
+                        "primary": "#001f11",
+                        "outline-variant": "#c1c8c1",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#c5ecd2",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#795a00",
+                        "on-primary-fixed-variant": "#2b4e3b",
+                        "surface-container": "#efeeea",
+                        "inverse-primary": "#a9cfb7",
+                        "on-secondary-fixed-variant": "#5b4300",
+                        "on-primary-fixed": "#002112",
+                        "surface": "#fbf9f5",
+                        "on-surface-variant": "#414843",
+                        "surface-variant": "#e4e2de",
+                        "on-secondary-fixed": "#251a00",
+                        "tertiary": "#3b001b",
+                        "on-tertiary-fixed-variant": "#812149",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#f5f3ef",
+                        "on-surface": "#1b1c1a",
+                        "on-tertiary-fixed": "#3e001d",
+                        "secondary-fixed-dim": "#eac165",
+                        "on-primary-container": "#7a9f88",
+                        "inverse-on-surface": "#f2f0ed",
+                        "surface-container-highest": "#e4e2de",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#eae8e4",
+                        "inverse-surface": "#30312e",
+                        "tertiary-fixed-dim": "#ffb1c8",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "secondary": "#785a00",
+                        "on-background": "#1b1c1a",
+                        "secondary-fixed": "#ffdf9c",
+                        "surface-dim": "#dbdad6",
+                        "surface-container-lowest": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-desktop": "80px",
+                        "unit": "8px",
+                        "section-gap": "160px",
+                        "margin-mobile": "20px",
+                        "gutter": "24px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-caps": ["Hanken Grotesk"],
+                        "display-lg": ["Playfair Display"],
+                        "headline-sm": ["Playfair Display"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "button-text": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "32px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                        "display-lg": ["72px", {"lineHeight": "84px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-sm": ["28px", {"lineHeight": "36px", "fontWeight": "500"}],
+                        "display-lg-mobile": ["44px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "headline-md": ["40px", {"lineHeight": "48px", "fontWeight": "600"}],
+                        "button-text": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .editorial-mask-arch {
+            clip-path: ellipse(50% 100% at 50% 100%);
+        }
+        .glass-panel {
+            background: rgba(251, 249, 245, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(201, 163, 74, 0.1);
+        }
+        .btn-primary-editorial {
+            @apply bg-primary text-on-primary font-button-text text-button-text px-8 py-4 transition-all duration-300 hover:bg-secondary hover:scale-105 active:scale-95;
+            letter-spacing: 0.1em;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- Top Navigation Shell -->
+<header class="fixed top-0 w-full z-50 bg-surface/40 dark:bg-inverse-surface/40 backdrop-blur-xl border-b border-outline-variant/10">
+<nav class="flex justify-between items-center px-margin-desktop py-unit max-w-container-max mx-auto h-20">
+<span class="material-symbols-outlined text-primary">menu</span>
+<div class="font-headline-sm text-headline-sm tracking-widest uppercase text-primary">Soulsysta Collective</div>
+<div class="flex items-center gap-6">
+<span class="hidden md:block font-label-caps text-label-caps text-primary font-semibold">The Book</span>
+<span class="hidden md:block font-label-caps text-label-caps text-on-surface-variant hover:text-secondary transition-colors">Chapters</span>
+<span class="material-symbols-outlined text-primary">shopping_bag</span>
+</div>
+</nav>
+</header>
+<!-- Hero Section -->
+<section class="relative min-h-screen flex flex-col items-center justify-center pt-24 pb-margin-desktop overflow-hidden">
+<div class="container max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<div class="md:col-span-6 z-10 space-y-unit" data-aos="fade-up">
+<p class="font-label-caps text-label-caps text-secondary uppercase tracking-[0.2em] mb-4">Founder & Visionary</p>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary leading-tight">
+                    The Visionary <br/><span class="italic font-light">Behind the Stillness.</span>
+</h1>
+<div class="h-1 w-24 bg-secondary mt-8 mb-12"></div>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
+                    Merit Nene Chuks is the heart of Soulsysta Collective—a sanctuary for the discerning soul seeking transformational growth through quiet confidence and grounded wisdom.
+                </p>
+</div>
+<div class="md:col-span-6 relative mt-12 md:mt-0 flex justify-center">
+<div class="relative w-full max-w-[500px] aspect-[4/5] z-0">
+<!-- High production portrait placeholder -->
+<img alt="A sophisticated, high-fashion editorial portrait of Merit Nene Chuks. She is wearing a deep forest green silk ensemble, standing in a minimalist, sun-drenched room with warm ivory walls. The lighting is soft morning glow, creating a serene and grounded atmosphere. Her expression is one of quiet confidence and welcoming warmth, embodying the 'Editorial Zen' aesthetic of her brand." class="w-full h-full object-cover rounded-lg shadow-2xl" src="https://lh3.googleusercontent.com/aida/AP1WRLtY37jRkwEUVAiift9zkW8Lc7PbB1ChtHOeQWMN_jSI8d5OsvL8BOh-t5xEfNR5vd1Ns-QwA-k6B3F13apWMgRIDaObZsqYXdQtdU4ywmXbUAWIBnv7Ft__geTB4cSIu6EWVBCeJxbWbh44s745i-09s4wonBsQcFPVevCqe4cTPNttVQ336wLJn1-eDREyFdneDo_Vg4FdX_NZRoDSaNFgRSIUIXG8N6gle6D_RXM1daU8fvuHO85Xwqs"/>
+<div class="absolute -bottom-10 -left-10 glass-panel p-8 hidden md:block max-w-[280px]">
+<p class="font-display-md italic text-primary text-xl">"Healing is not a destination, but a return to your original rhythm."</p>
+<div class="mt-4 flex gap-1">
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Narrative Section: The Calling -->
+<section class="bg-surface-container-low py-section-gap overflow-hidden">
+<div class="container max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div class="order-2 lg:order-1">
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-4">
+<div class="h-80 bg-surface-variant rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover grayscale opacity-80 hover:opacity-100 transition-opacity duration-500" data-alt="A minimalist architectural shot of a serene meditation space with clean lines, soft shadows, and warm wooden accents. The atmosphere is peaceful and modern, reflecting an editorial wellness aesthetic. High-key lighting highlights the texture of natural materials like linen and stone." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgx1lQbeJ2ZP9iHOKf8c-C0uHjJpwZ2eF1Mj8K7aYxThFNmhj9dd1-SJTgeDCmEA9v1eTt213OH9fPByqfKqu7NW-PhjoYmOEfjIqpkX0ogeGi8YMDABwBRsUYO9w6OSIkoNw1z7b6L4S1dnpQ7rpeRlmGzFBvTZlWlKXfhNFtt0ciiAxMcvxcKzizoNpH2uy4vY9ohbbaXTQgkwAgztzUVdOACZV3eO2wmpIe2T3KS_GzSkrS6qX8"/>
+</div>
+<div class="h-64 bg-surface-variant rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A close-up shot of hands gently holding a ceramic tea bowl, steam rising softly in a minimalist setting. The lighting is low-key and intimate, focusing on the texture of the pottery and the serene moment. Deep forest green and ivory tones dominate the palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8qsexiUn-_JYNYRRaqSMuhF2u26QJGN-tuxTQSm4heBFtLelCpWdBqF1S4Ak81vmt8WLDn8NCkjnHjkC48lsjWLwvD0ZWiRBbZjC2eb7HyrtnzbaD2ANIJgL8oXgbyT37zb_Vex3oJVuRXaSXUtJ8n5Dt4Rt6oajP28ugZvruNbx6qg_aCFaBNt0uMK1xoOVcCg9udHmCQWj6Qab4zzVDZzExhgKyo-ZZQnlPqXokzMdinI5xEugc"/>
+</div>
+</div>
+<div class="pt-12">
+<div class="h-96 bg-surface-variant rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A wide, cinematic landscape of a misty forest at dawn, with tall, slender trees disappearing into the soft grey light. The mood is atmospheric and contemplative, echoing the themes of soul-searching and internal peace. Muted greens and earthy browns create a grounded visual foundation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDogtupZYyt8N1xq065-rVVguMou0_PqfbAxnmW-7io8g-XLzRxMLwIHmE_H3OiZk8djkJ3zECpSbWZefDFoGFrHxoTtVmXfWb0oUpsxiDg0VcQRhX1MGO4i76DY3ztCsdEZ8MpVgj4ze2mUTMUc2S-YBew9ArcaRxL1K-UPhWntizdZRee3br6HVTCNM0Mwbu1R0fIXK8M-cQ_iLz68BqD6uhu-_7PE71r2mVd-l-yMi6PHUqc4B1I"/>
+</div>
+</div>
+</div>
+</div>
+<div class="order-1 lg:order-2 space-y-8">
+<span class="font-label-caps text-label-caps text-secondary">SECTION 01 / THE CALLING</span>
+<h2 class="font-headline-md text-headline-md text-primary">A Decade of Transformational Guidance</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                        With over ten years of experience at the intersection of psychotherapy and holistic wellness, Merit has pioneered a methodology that honors the complexities of the modern woman. Her work is not about fixing what is broken, but about uncovering the latent strength within.
+                    </p>
+<p class="font-body-md text-body-md text-on-surface-variant/80">
+                        From high-stakes boardrooms to intimate healing retreats, she has guided hundreds of individuals toward a life of alignment, where professional success and personal peace are no longer at odds.
+                    </p>
+<div class="pt-8">
+<a class="btn-primary-editorial uppercase tracking-widest" href="#sessions">Discover Her Method</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- The Philosophy: Bento Grid -->
+<section class="py-section-gap bg-surface">
+<div class="container max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-center mb-24">
+<h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-4">The Philosophy</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">Three pillars of alignment to guide the soul toward wholeness.</p>
+</div>
+<div class="container max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Pillar 1: Spirit -->
+<div class="glass-panel p-12 space-y-6 hover:-translate-y-2 transition-transform duration-500">
+<span class="material-symbols-outlined text-secondary text-5xl">auto_awesome</span>
+<h3 class="font-headline-sm text-headline-sm text-primary">The Spirit</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">The core essence that transcends the physical, providing the 'why' behind every breath and action.</p>
+</div>
+<!-- Pillar 2: Soul (Featured) -->
+<div class="bg-primary-container p-12 space-y-6 md:scale-105 rounded-xl shadow-xl">
+<span class="material-symbols-outlined text-secondary-container text-5xl">psychology</span>
+<h3 class="font-headline-sm text-headline-sm text-on-primary">The Soul</h3>
+<p class="font-body-md text-body-md text-on-primary-fixed-variant">The seat of your emotions and intellect, requiring gentle tending and radical honesty to flourish.</p>
+</div>
+<!-- Pillar 3: Body -->
+<div class="glass-panel p-12 space-y-6 hover:-translate-y-2 transition-transform duration-500">
+<span class="material-symbols-outlined text-secondary text-5xl">spa</span>
+<h3 class="font-headline-sm text-headline-sm text-primary">The Body</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">The vessel through which we experience the world, requiring somatic care and respectful listening.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- The Journey: Narrative Arc -->
+<section class="py-section-gap bg-surface-container-highest/30">
+<div class="container max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="max-w-4xl mx-auto space-y-24 relative">
+<!-- Vertical Timeline Line -->
+<div class="absolute left-1/2 top-0 bottom-0 w-[1px] bg-outline-variant/30 hidden md:block"></div>
+<div class="flex flex-col md:flex-row items-center gap-12 group">
+<div class="w-full md:w-1/2 text-right md:pr-12">
+<span class="font-label-caps text-label-caps text-secondary mb-2 block">2014 — THE AWAKENING</span>
+<h4 class="font-headline-sm text-headline-sm text-primary">Roots in Psychology</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mt-4">Founded on the principles of clinical psychotherapy, Merit began her journey understanding the intricate maps of the human mind.</p>
+</div>
+<div class="w-4 h-4 rounded-full bg-secondary z-10 hidden md:block"></div>
+<div class="w-full md:w-1/2 md:pl-12">
+<div class="h-48 rounded-lg overflow-hidden shadow-lg transform group-hover:rotate-1 transition-transform">
+<img class="w-full h-full object-cover" data-alt="A vintage-inspired study with leather-bound books, an inkwell, and soft window light hitting an open journal. The aesthetic is academic yet warm, focusing on the origins of wisdom and study. The color palette features deep ambers and ivory." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8v-MZ4Y7xL0zDqUuWyfxEpoQdZ0QF8v--4bgHF_voCN8h0SdNSeZLDa0UdDj6BME_mOHB3jgiEfCqC0ZtUPAq6JoBmnnbtnmsZnpafpgaBcy2uRSDKmIKA5gn1b0NixcePN2C7q64X1EGw1NMH7514FNDA2kyJH-D556ef94byWmhp_roxfIkBrj6vagFwkCO3q9KBVpi2oVB9tfP0qqBwubFUAHFfMYTEctQbhUYTn06Hr_ojSRJ"/>
+</div>
+</div>
+</div>
+<div class="flex flex-col md:flex-row items-center gap-12 group">
+<div class="w-full md:w-1/2 md:pr-12 order-2 md:order-1">
+<div class="h-48 rounded-lg overflow-hidden shadow-lg transform group-hover:-rotate-1 transition-transform">
+<img class="w-full h-full object-cover" data-alt="A top-down view of a minimalist workspace with a single orchid, a ceramic cup of green tea, and a stack of artisan paper. The style is contemporary editorial minimalism, emphasizing focus and intentionality. Colors are primarily ivory and forest green." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtA_8tu4wERsCSDdGHgpYcfre_mz8Geywg7s8CZqlOUwgIUJdaJXQubD3s6yD1v8T2xKSO3rOyEV_RYGQ5YB7qCz2H0cdMqKdmWuFdEX2IgYcUDkv1lpIDYBmEogzNyjiHjsTlUHvYKJ8HqIMUyitVcBu_CxdlxHioeKqg20EydFyUPkIuK5bdW5EWu0B5v3Z4L2rwAoc-gQK2vwUnXUouX8UhuiFISzPAani-Qb63l3X1rlAtlKCr"/>
+</div>
+</div>
+<div class="w-4 h-4 rounded-full bg-secondary z-10 hidden md:block"></div>
+<div class="w-full md:w-1/2 md:pl-12 order-1 md:order-2">
+<span class="font-label-caps text-label-caps text-secondary mb-2 block">2018 — THE EXPANSION</span>
+<h4 class="font-headline-sm text-headline-sm text-primary">Soulsysta Collective</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mt-4">Transitioning from clinical practice to holistic mentorship, the Collective was born as a global hub for soul-aligned growth.</p>
+</div>
+</div>
+<div class="flex flex-col md:flex-row items-center gap-12 group">
+<div class="w-full md:w-1/2 text-right md:pr-12">
+<span class="font-label-caps text-label-caps text-secondary mb-2 block">2023 — THE LEGACY</span>
+<h4 class="font-headline-sm text-headline-sm text-primary">A Published Voice</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mt-4">With the launch of 'She Too Can', Merit cemented her role as a thought leader in the space of female empowerment and healing.</p>
+</div>
+<div class="w-4 h-4 rounded-full bg-secondary z-10 hidden md:block"></div>
+<div class="w-full md:w-1/2 md:pl-12">
+<div class="relative h-64 bg-surface rounded-lg border border-outline-variant/20 flex items-center justify-center p-8 overflow-hidden group">
+<div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/linen.png')]"></div>
+<div class="text-center z-10">
+<h5 class="font-display-lg text-2xl text-primary italic mb-2">'She Too Can'</h5>
+<p class="font-label-caps text-[10px] tracking-widest text-on-surface-variant">BY MERIT NENE CHUKS</p>
+<button class="mt-4 text-secondary font-label-caps text-[12px] border-b border-secondary pb-1">Order the Book</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials -->
+<section class="py-section-gap bg-background">
+<div class="container max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="flex flex-col md:flex-row items-center gap-12">
+<div class="md:w-1/3">
+<h2 class="font-headline-md text-headline-md text-primary">Voices of Transition</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-4">Notes from those who have walked the path of stillness with Merit.</p>
+</div>
+<div class="md:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-8">
+<blockquote class="p-8 border-l-2 border-secondary italic font-body-lg text-primary bg-surface-container-low/50">
+                        "Merit has a way of seeing through the noise. Her sessions are a masterclass in returning to oneself."
+                        <cite class="block not-italic font-label-caps text-label-caps text-on-surface-variant mt-6 uppercase tracking-widest">— Julianne R., Creative Director</cite>
+</blockquote>
+<blockquote class="p-8 border-l-2 border-secondary italic font-body-lg text-primary bg-surface-container-low/50">
+                        "The most profound shift I've experienced in a decade of self-work happened in just one weekend with her."
+                        <cite class="block not-italic font-label-caps text-label-caps text-on-surface-variant mt-6 uppercase tracking-widest">— Sarah L., Executive Lead</cite>
+</blockquote>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="relative py-section-gap overflow-hidden" id="sessions">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover brightness-50" data-alt="A peaceful panoramic view of a coastal retreat at dusk, with soft lavender skies and the gentle rhythm of waves against the shore. The lighting is ethereal and calming, perfectly capturing the essence of a serene escape. High-end lifestyle photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4lc8V4Y2mVdrXCy8PNcdMF1A5pDgznJo2OJX6WqqFkyi-I6saagO721bg2spG6boGeYYdoznSzmRuf1Po___x2nMuNHLmeF6HKWNCKwdC8ClRYO8zqLtVLGYuVjMT-wFlxOiCXBvsMsZKrMmj6vgkk7fNem80ZI4i1yuSvm_Q2lDQj0Pt7R7RXut0NPx_G730j0jlOF5Wjl9NzUE6GCyHkDM75mjb2QmGCtZpewQPsZnLPn0xKTTi"/>
+</div>
+<div class="container max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10 text-center">
+<div class="max-w-2xl mx-auto glass-panel p-16 rounded-xl border border-white/20">
+<h2 class="font-display-lg-mobile md:font-display-lg text-white mb-8">Begin Your Journey</h2>
+<p class="font-body-lg text-surface-variant mb-12">Whether you seek a private intensive or a keynote for your next gathering, allow Merit to guide the conversation toward alignment.</p>
+<div class="flex flex-col sm:flex-row gap-6 justify-center">
+<button class="btn-primary-editorial">BOOK A PRIVATE SESSION</button>
+<button class="bg-transparent border border-white text-white font-button-text text-button-text px-8 py-4 hover:bg-white/10 transition-all uppercase tracking-widest">INVITE TO SPEAK</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer Shell -->
+<footer class="w-full py-section-gap bg-surface-container-lowest dark:bg-inverse-surface">
+<div class="flex flex-col items-center gap-unit px-margin-desktop text-center max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md text-primary dark:text-primary-fixed mb-8">Soulsysta Collective</div>
+<div class="flex flex-wrap justify-center gap-8 mb-12">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors border-b border-primary text-primary" href="#">Biography</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors" href="#">Wholesale Inquiry</a>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant opacity-80">
+                © 2024 Soulsysta Collective. Editorial Zen for the Discerning Soul.
+            </p>
+</div>
+</footer>
+<!-- Bottom Nav (Mobile Only) -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface/60 backdrop-blur-2xl border-t border-outline-variant/20 flex justify-around items-center h-20 px-margin-mobile md:hidden">
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-label-caps text-[10px]">The Book</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary font-bold">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">import_contacts</span>
+<span class="font-label-caps text-[10px]">Chapters</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">star</span>
+<span class="font-label-caps text-[10px]">Reviews</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-caps text-[10px]">Purchase</span>
+</div>
+</nav>
+<script>
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Simple fade-in observer
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('[data-aos="fade-up"]').forEach(el => {
+            el.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+            observer.observe(el);
+        });
+    </script>
+</body></html>

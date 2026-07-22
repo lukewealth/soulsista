@@ -1,0 +1,6 @@
+{
+  "name": "Soulsysta Collective",
+  "description": "A luxury wellness, therapy, publishing, and transformational lifestyle platform for women and youth.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
