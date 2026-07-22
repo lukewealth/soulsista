@@ -79,7 +79,6 @@ export const BookingWizard: React.FC<BookingWizardProps> = ({
     <Modal
       isOpen={isOpen}
       onClose={handleClose}
-      title={step === 5 ? 'Reservation Confirmed' : 'Reserve Your Ritual of Care'}
       size="lg"
     >
       {/* Header */}

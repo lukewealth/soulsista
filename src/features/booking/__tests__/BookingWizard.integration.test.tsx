@@ -21,7 +21,8 @@ describe('BookingWizard Integration', () => {
       />
     );
 
-    expect(screen.getByText(/reserve your ritual/i)).toBeInTheDocument();
+    // Check for the modal title specifically
+    expect(screen.getByRole('heading', { name: /reserve your ritual/i })).toBeInTheDocument();
   });
 
   it('should not render when closed', () => {
@@ -179,13 +180,14 @@ describe('BookingWizard Integration', () => {
     // Navigate and complete booking
     await user.click(screen.getByRole('button', { name: /select practitioner/i }));
     await user.click(screen.getByRole('button', { name: /select date & time/i }));
+    await user.click(screen.getByRole('button', { name: /guest details/i }));
     await user.type(screen.getByLabelText(/full name/i), 'John Doe');
     await user.type(screen.getByLabelText(/email address/i), 'john@example.com');
     await user.click(screen.getByRole('button', { name: /confirm reservation/i }));
 
     // Check for confirmation screen
     await waitFor(() => {
-      expect(screen.getByText(/reservation confirmed/i)).toBeInTheDocument();
+      expect(screen.getByRole('heading', { name: /reservation confirmed/i })).toBeInTheDocument();
       expect(screen.getByText(/your journey begins/i)).toBeInTheDocument();
     });
   });
