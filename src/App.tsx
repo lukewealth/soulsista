@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { LandingPage } from './components/LandingPage';
 import { SpeakingPage } from './components/SpeakingPage';
+import { FounderPage } from './components/FounderPage';
+import { ServicesPage } from './components/ServicesPage';
+import { InitiativePage } from './components/InitiativePage';
+import { BookStorePage } from './components/BookStorePage';
+import { MobileNav } from './components/MobileNav';
 import { BookingWizard } from './features/booking/components/BookingWizard';
 import { ContactModal } from './components/ContactModal';
 import { AdminDashboard } from './components/AdminDashboard';
@@ -12,9 +17,11 @@ import { LanguageProvider } from './shared/i18n/LanguageContext';
 
 import { BookingRecord, ContactEnquiry, ToastMessage } from './types';
 
+type PageType = 'home' | 'speaking' | 'founder' | 'services' | 'initiative' | 'book' | 'booking';
+
 export function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState<'home' | 'speaking'>('home');
+  const [currentPage, setCurrentPage] = useState<PageType>('home');
   
   // Modals
   const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -47,7 +54,7 @@ export function App() {
     addToast('success', 'Message Received', 'Our team will contact you shortly.');
   };
 
-  const handleNavigate = (page: 'home' | 'speaking') => {
+  const handleNavigate = (page: PageType) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -69,12 +76,24 @@ export function App() {
           />
 
           {/* Main Content */}
-          <main>
+          <main className="pb-20 md:pb-0">
             {currentPage === 'home' && (
               <LandingPage onOpenBooking={handleOpenBooking} />
             )}
             {currentPage === 'speaking' && (
               <SpeakingPage onOpenBooking={handleOpenBooking} />
+            )}
+            {currentPage === 'founder' && (
+              <FounderPage onOpenBooking={handleOpenBooking} />
+            )}
+            {currentPage === 'services' && (
+              <ServicesPage onOpenBooking={handleOpenBooking} />
+            )}
+            {currentPage === 'initiative' && (
+              <InitiativePage onOpenBooking={handleOpenBooking} />
+            )}
+            {currentPage === 'book' && (
+              <BookStorePage onOpenBooking={handleOpenBooking} />
             )}
           </main>
 
@@ -84,8 +103,11 @@ export function App() {
             onOpenContact={() => setIsContactOpen(true)}
           />
 
+          {/* Mobile Bottom Navigation */}
+          <MobileNav currentPage={currentPage} onNavigate={handleNavigate} />
+
           {/* Floating WhatsApp Button */}
-          <div className="fixed bottom-6 right-6 z-40">
+          <div className="fixed bottom-24 md:bottom-6 right-6 z-40">
             <a
               href={`https://wa.me/${'+2348068679674'.replace(/\D/g, '')}?text=${encodeURIComponent('Hello Soulsysta! I would like to learn more.')}`}
               target="_blank"

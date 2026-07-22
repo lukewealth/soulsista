@@ -28,9 +28,18 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking, onOpenContact }) 
           
           {/* Brand Bio */}
           <div className="lg:col-span-2 space-y-4">
-            <div>
-              <span className="font-serif text-2xl font-bold tracking-tight text-white block">SOULSYSTA</span>
-              <span className="text-[9px] tracking-[0.25em] text-gold uppercase block font-semibold">COLLECTIVE</span>
+            <div className="flex items-center gap-4">
+              <div className="logo-container w-14 h-14">
+                <img
+                  src="/images/soulsysta-logo.jpg"
+                  alt="Soulsysta Collective Logo"
+                  className="w-full h-full"
+                />
+              </div>
+              <div>
+                <span className="font-serif text-2xl font-bold tracking-tight text-white block">SOULSYSTA</span>
+                <span className="text-[9px] tracking-[0.25em] text-gold uppercase block font-semibold">COLLECTIVE</span>
+              </div>
             </div>
             <p className="text-sm text-ivory/70 leading-relaxed max-w-sm">
               A luxury sanctuary for psychotherapy, wellness, and transformational guidance. 

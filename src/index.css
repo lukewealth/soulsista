@@ -362,3 +362,68 @@
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Logo Styles - Circular with Faded Edge and 2X Zoom on Hover */
+.logo-container {
+  position: relative;
+  display: inline-block;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  padding: 2px;
+  background: linear-gradient(135deg, #735C00, #001F11, #735C00);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.logo-container::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: radial-gradient(circle, transparent 60%, rgba(0, 31, 17, 0.3) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.logo-container:hover {
+  transform: scale(2);
+}
+
+.logo-container img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo-container:hover img {
+  transform: scale(1.05);
+}
+
+/* Logo wrapper to prevent layout shift on zoom */
+.logo-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.logo-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  pointer-events: none;
+}

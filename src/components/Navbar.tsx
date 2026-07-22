@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { Menu, X, Calendar, Mic, Heart, BookOpen, Shield } from 'lucide-react';
+import { Menu, X, Calendar, Mic, Heart, BookOpen, Shield, Users, Home } from 'lucide-react';
 import { LanguageSwitcher } from './LanguageSwitcher';
+
+type PageType = 'home' | 'speaking' | 'founder' | 'services' | 'initiative' | 'book' | 'booking';
 
 interface NavbarProps {
   onOpenBooking: () => void;
   onOpenContact: () => void;
   onOpenAdmin: () => void;
-  currentPage: 'home' | 'speaking';
-  onNavigate: (page: 'home' | 'speaking') => void;
+  currentPage: PageType;
+  onNavigate: (page: PageType) => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ 
@@ -33,23 +35,48 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Logo */}
           <button
             onClick={() => onNavigate('home')}
-            className="text-left group cursor-pointer"
+            className="logo-wrapper group cursor-pointer"
+            aria-label="Soulsysta Collective Home"
           >
-            <span className="font-serif text-2xl md:text-3xl tracking-tight text-forest font-bold block group-hover:text-gold transition-colors">
-              SOULSYSTA
-            </span>
-            <span className="text-[9px] tracking-[0.25em] text-forest/60 uppercase block -mt-1">
-              COLLECTIVE
-            </span>
+            <div className="logo-container w-12 h-12">
+              <img
+                src="/images/soulsysta-logo.jpg"
+                alt="Soulsysta Collective Logo"
+                className="w-full h-full"
+              />
+            </div>
+            <div className="ml-3 text-left hidden sm:block">
+              <span className="font-serif text-xl md:text-2xl tracking-tight text-forest font-bold block group-hover:text-gold transition-colors">
+                SOULSYSTA
+              </span>
+              <span className="text-[9px] tracking-[0.25em] text-forest/60 uppercase block -mt-1">
+                COLLECTIVE
+              </span>
+            </div>
           </button>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-6 text-xs font-semibold uppercase tracking-widest text-forest/70">
             <button
               onClick={() => onNavigate('home')}
-              className={`hover:text-gold transition-colors ${currentPage === 'home' ? 'text-gold' : ''}`}
+              className={`hover:text-gold transition-colors flex items-center gap-1 ${currentPage === 'home' ? 'text-gold' : ''}`}
             >
+              <Home className="w-3 h-3" />
               Home
+            </button>
+            <button
+              onClick={() => onNavigate('founder')}
+              className={`hover:text-gold transition-colors flex items-center gap-1 ${currentPage === 'founder' ? 'text-gold' : ''}`}
+            >
+              <Users className="w-3 h-3" />
+              About
+            </button>
+            <button
+              onClick={() => onNavigate('services')}
+              className={`hover:text-gold transition-colors flex items-center gap-1 ${currentPage === 'services' ? 'text-gold' : ''}`}
+            >
+              <Heart className="w-3 h-3" />
+              Services
             </button>
             <button
               onClick={() => onNavigate('speaking')}
@@ -59,10 +86,18 @@ export const Navbar: React.FC<NavbarProps> = ({
               Speaking
             </button>
             <button
-              onClick={onOpenContact}
-              className="hover:text-gold transition-colors"
+              onClick={() => onNavigate('initiative')}
+              className={`hover:text-gold transition-colors flex items-center gap-1 ${currentPage === 'initiative' ? 'text-gold' : ''}`}
             >
-              Contact
+              <Heart className="w-3 h-3" />
+              Donate
+            </button>
+            <button
+              onClick={() => onNavigate('book')}
+              className={`hover:text-gold transition-colors flex items-center gap-1 ${currentPage === 'book' ? 'text-gold' : ''}`}
+            >
+              <BookOpen className="w-3 h-3" />
+              Books
             </button>
             <LanguageSwitcher />
           </nav>
@@ -102,9 +137,18 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="w-4/5 max-w-sm bg-ivory h-full shadow-2xl p-6 flex flex-col justify-between overflow-y-auto ml-auto">
             <div>
               <div className="flex items-center justify-between pb-6 border-b border-forest/10">
-                <div>
-                  <span className="font-serif text-xl font-bold text-forest">SOULSYSTA</span>
-                  <span className="block text-[9px] tracking-widest text-forest/60">COLLECTIVE</span>
+                <div className="flex items-center gap-3">
+                  <div className="logo-container w-10 h-10">
+                    <img
+                      src="/images/soulsysta-logo.jpg"
+                      alt="Soulsysta Collective Logo"
+                      className="w-full h-full"
+                    />
+                  </div>
+                  <div>
+                    <span className="font-serif text-xl font-bold text-forest">SOULSYSTA</span>
+                    <span className="block text-[9px] tracking-widest text-forest/60">COLLECTIVE</span>
+                  </div>
                 </div>
                 <button
                   onClick={() => setMobileMenuOpen(false)}
@@ -120,11 +164,36 @@ export const Navbar: React.FC<NavbarProps> = ({
                     onNavigate('home');
                     setMobileMenuOpen(false);
                   }}
-                  className={`block w-full text-left py-3 text-sm font-semibold uppercase tracking-widest transition-colors ${
+                  className={`block w-full text-left py-3 text-sm font-semibold uppercase tracking-widest transition-colors flex items-center gap-2 ${
                     currentPage === 'home' ? 'text-gold' : 'text-forest hover:text-gold'
                   }`}
                 >
+                  <Home className="w-4 h-4" />
                   Home
+                </button>
+                <button
+                  onClick={() => {
+                    onNavigate('founder');
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`block w-full text-left py-3 text-sm font-semibold uppercase tracking-widest transition-colors flex items-center gap-2 ${
+                    currentPage === 'founder' ? 'text-gold' : 'text-forest hover:text-gold'
+                  }`}
+                >
+                  <Users className="w-4 h-4" />
+                  About Founder
+                </button>
+                <button
+                  onClick={() => {
+                    onNavigate('services');
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`block w-full text-left py-3 text-sm font-semibold uppercase tracking-widest transition-colors flex items-center gap-2 ${
+                    currentPage === 'services' ? 'text-gold' : 'text-forest hover:text-gold'
+                  }`}
+                >
+                  <Heart className="w-4 h-4" />
+                  Services
                 </button>
                 <button
                   onClick={() => {
@@ -140,12 +209,27 @@ export const Navbar: React.FC<NavbarProps> = ({
                 </button>
                 <button
                   onClick={() => {
-                    onOpenContact();
+                    onNavigate('initiative');
                     setMobileMenuOpen(false);
                   }}
-                  className="block w-full text-left py-3 text-sm font-semibold uppercase tracking-widest text-forest hover:text-gold transition-colors"
+                  className={`block w-full text-left py-3 text-sm font-semibold uppercase tracking-widest transition-colors flex items-center gap-2 ${
+                    currentPage === 'initiative' ? 'text-gold' : 'text-forest hover:text-gold'
+                  }`}
                 >
-                  Contact
+                  <Heart className="w-4 h-4" />
+                  Donate & Initiative
+                </button>
+                <button
+                  onClick={() => {
+                    onNavigate('book');
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`block w-full text-left py-3 text-sm font-semibold uppercase tracking-widest transition-colors flex items-center gap-2 ${
+                    currentPage === 'book' ? 'text-gold' : 'text-forest hover:text-gold'
+                  }`}
+                >
+                  <BookOpen className="w-4 h-4" />
+                  Books & Library
                 </button>
 
                 <div className="pt-4 border-t border-forest/10">
