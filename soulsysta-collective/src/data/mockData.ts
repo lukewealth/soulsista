@@ -52,7 +52,7 @@ export const SERVICES: Service[] = [
     title: 'Somatic Psychotherapy & Wholeness',
     subtitle: 'Deep psychological healing & spiritual redirection',
     shortDescription: 'A private 1-on-1 sanctuary session integrating somatic inquiry, cognitive processing, and emotional release for high-impact women.',
-    fullDescription: 'Designed for women carrying heavy executive or personal responsibility, this signature session moves beyond traditional talk therapy. By addressing how emotional trauma lives in the body's fascia and nervous system, we systematically untangle internalized pressure, perfectionism, and grief.',
+    fullDescription: 'Designed for women carrying heavy executive or personal responsibility, this signature session moves beyond traditional talk therapy. By addressing how emotional trauma lives in the body\'s fascia and nervous system, we systematically untangle internalized pressure, perfectionism, and grief.',
     durationMinutes: 75,
     priceUSD: 240,
     imageUrl: '/images/services/therapy-session.png',
