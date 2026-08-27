@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { Calendar, MessageCircle, ArrowRight, Sparkles, Heart, BookOpen, Users } from 'lucide-react';
+import { Calendar, MessageCircle, ArrowRight, Sparkles, Heart, BookOpen, Users, Image, Video, Palette } from 'lucide-react';
 import { FEATURED_BOOK } from '../data/mockData';
 import { services, serviceCategories } from '../data/services';
 import { CONTACT } from '../shared/constants';
@@ -8,6 +8,7 @@ import { DonationSection } from './DonationSection';
 import { TestimonialsCarousel } from './TestimonialsCarousel';
 import { BlogSection } from './BlogSection';
 import { ServiceCard } from './ServiceCard';
+import { BookStoresGrid } from './BookStoresGrid';
 
 interface LandingPageProps {
   onOpenBooking: (serviceId?: string) => void;
@@ -28,7 +29,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onOpenBooking }) => {
       image: '/images/brand/brand-02.jpg',
     },
     {
-      title: 'She Too Can.',
+      title: 'SHE TOO CAN.',
       subtitle: 'Break limits. Reclaim your authentic power.',
       image: '/images/brand/brand-05.jpg',
     },
@@ -41,7 +42,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onOpenBooking }) => {
     window.open(`https://wa.me/${CONTACT.WHATSAPP.replace(/\D/g, '')}?text=${encodeURIComponent(message)}`, '_blank');
   };
 
-  return (
+return (
     <div className="min-h-screen bg-ivory">
       {/* Hero Section */}
       <section className="relative h-screen overflow-hidden">
@@ -286,6 +287,57 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onOpenBooking }) => {
         </div>
       </section>
 
+      {/* Book Sales Stores Grid */}
+      <BookStoresGrid 
+        books={[
+          {
+            id: '1',
+            title: 'SHE TOO CAN.',
+            subtitle: 'Break Limits. Reclaim Your Authentic Power. Become Whole.',
+            category: 'Empowerment',
+            author: 'Merit Nene Chuks',
+            price: 29.99,
+            coverImage: '/images/services/she-too-can-book.jpg',
+            badge: 'Best Seller',
+          },
+          {
+            id: '2',
+            title: 'The Art of Stillness',
+            subtitle: 'Finding Peace in a Chaotic World',
+            category: 'Mindfulness',
+            author: 'Merit Nene Chuks',
+            price: 24.99,
+            coverImage: '/images/brand/brand-03.jpg',
+          },
+          {
+            id: '3',
+            title: 'Understanding Burnout',
+            subtitle: 'Recognition, Prevention, and Recovery',
+            category: 'Psychology',
+            author: 'Dr. Julian Vance',
+            price: 35.99,
+            coverImage: '/images/brand/brand-02.jpg',
+          },
+          {
+            id: '4',
+            title: 'Youth Circle Stories',
+            subtitle: 'Empowering the Next Generation',
+            category: 'Youth',
+            author: 'Elena Rodriguez',
+            price: 19.99,
+            coverImage: '/images/brand/brand-04.jpg',
+          },
+        ]}
+        onBookSelect={(bookId) => {
+          // Handle book selection - open WhatsApp order
+          handleWhatsApp(`purchasing ${bookId}`);
+        }}
+        onViewAll={() => {
+          // Navigate to book store page
+          console.log('View all books');
+        }}
+      />
+
       {/* Initiative Section */}
       <section className="py-20 px-6 bg-ivory">
         <div className="max-w-7xl mx-auto">
@@ -313,7 +365,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onOpenBooking }) => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.6 }}
               viewport={{ once: true }}
-              className="text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl hover:bg-forest hover:text-white transition-all duration-300 group"
+              className="text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl hover:bg-forest:hover:text-white transition-all duration-300 group"
             >
               <Users className="w-12 h-12 text-gold mx-auto mb-4 group-hover:text-white transition-colors" />
               <h3 className="font-serif text-2xl font-bold text-forest mb-2 group-hover:text-white transition-colors">Youth Circle</h3>
@@ -370,7 +422,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onOpenBooking }) => {
       <TestimonialsCarousel />
 
       {/* Blog Section */}
-      <BlogSection />
+      <BlogSection initialCategory="all" />
 
       {/* Final CTA */}
       <section className="py-20 px-6 bg-forest text-white">
