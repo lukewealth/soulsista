@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, Heart, BookOpen, Mic, Calendar } from 'lucide-react';
+import { Home, Heart, BookOpen, Mic, Calendar, Newspaper } from 'lucide-react';
 
 interface MobileNavProps {
   currentPage: string;
@@ -9,14 +9,17 @@ interface MobileNavProps {
 export const MobileNav: React.FC<MobileNavProps> = ({ currentPage, onNavigate }) => {
   const navItems = [
     { id: 'home', label: 'Home', icon: Home },
-    { id: 'initiative', label: 'Donate', icon: Heart },
+    { id: 'blog', label: 'Journal', icon: Newspaper },
     { id: 'book', label: 'Books', icon: BookOpen },
-    { id: 'speaking', label: 'Speaking', icon: Mic },
-    { id: 'booking', label: 'Book', icon: Calendar },
+    { id: 'speaking', label: 'Speak', icon: Mic },
+    { id: 'initiative', label: 'Donate', icon: Heart },
   ];
 
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-ivory/90 backdrop-blur-xl border-t border-forest/10 shadow-[0_-10px_30px_rgba(18,53,36,0.03)] rounded-t-3xl">
+    <nav
+      className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-ivory/90 backdrop-blur-xl border-t border-forest/10 shadow-[0_-10px_30px_rgba(18,53,36,0.03)] rounded-t-3xl"
+      style={{ backgroundColor: 'color-mix(in srgb, var(--color-ivory) 90%, transparent)' }}
+    >
       <div className="flex justify-around items-center px-4 py-3">
         {navItems.map((item) => {
           const Icon = item.icon;

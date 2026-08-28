@@ -73,7 +73,10 @@ export const LoadingOverlay: React.FC<LoadingOverlayProps> = ({
   size = 'lg',
 }) => {
   return (
-    <div className="fixed inset-0 bg-ivory/90 backdrop-blur-sm flex items-center justify-center z-50">
+    <div
+      className="fixed inset-0 bg-ivory/90 backdrop-blur-sm flex items-center justify-center z-50"
+      style={{ backgroundColor: 'color-mix(in srgb, var(--color-ivory) 90%, transparent)' }}
+    >
       <div className="flex flex-col items-center gap-4">
         <Spinner size={size} />
         <p className="text-sm font-label uppercase tracking-widest text-forest/70">

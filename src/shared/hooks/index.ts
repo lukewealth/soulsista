@@ -6,6 +6,7 @@
 
 export { useToast } from './useToast';
 export { useLocalStorage } from './useLocalStorage';
+export { useSEO, SITE } from './useSEO';
 export { 
   useMediaQuery, 
   useIsMobile, 

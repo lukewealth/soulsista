@@ -39,6 +39,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.6 }}
         className="fixed inset-0 z-[100] bg-ivory flex flex-col items-center justify-center"
+        style={{ backgroundColor: 'var(--color-ivory)' }}
       >
         {/* Animated Background Pattern */}
         <div className="absolute inset-0 overflow-hidden">

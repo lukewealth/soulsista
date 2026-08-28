@@ -6,7 +6,6 @@ import { services, serviceCategories } from '../data/services';
 import { CONTACT } from '../shared/constants';
 import { DonationSection } from './DonationSection';
 import { TestimonialsCarousel } from './TestimonialsCarousel';
-import { BlogSection } from './BlogSection';
 import { ServiceCard } from './ServiceCard';
 import { BookStoresGrid } from './BookStoresGrid';
 
@@ -420,9 +419,6 @@ return (
 
       {/* Testimonials Section */}
       <TestimonialsCarousel />
-
-      {/* Blog Section */}
-      <BlogSection initialCategory="all" />
 
       {/* Final CTA */}
       <section className="py-20 px-6 bg-forest text-white">

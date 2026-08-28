@@ -1,26 +1,77 @@
 @import "tailwindcss";
 
+/* Smooth theme transition across all elements */
+*,
+*::before,
+*::after {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 @layer base {
   :root {
     --font-serif: 'Playfair Display', Georgia, serif;
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-label: 'Hanken Grotesk', sans-serif;
-    
-    /* PRD Design System Tokens */
+
+    /* ============================================================
+       Day Theme (Light) — PRD Brand Palette
+       Contrast targets: body 4.5:1+, headings 7:1+
+       ============================================================ */
     --color-ivory: #FAF9F6;
+    --color-ivory-soft: #F4F2EC;
+    --color-ivory-elevated: #FFFFFF;
     --color-forest: #001F11;
+    --color-forest-soft: #123524;
     --color-gold: #735C00;
+    --color-gold-soft: #B89200;
     --color-sage: #D4C3BA;
     --color-primary-container: #123524;
     --color-surface-container: #EFEEEB;
+    --color-on-surface: #1A1A1A;
+    --color-on-surface-muted: #4A4A4A;
+    --color-border: rgba(0, 31, 17, 0.10);
+    --color-border-strong: rgba(0, 31, 17, 0.18);
+    --color-overlay: rgba(0, 31, 17, 0.55);
+    --color-gold-glow: rgba(115, 92, 0, 0.18);
+    --shadow-color: rgba(0, 31, 17, 0.12);
+    --gradient-hero: linear-gradient(135deg, #001F11 0%, #123524 100%);
+  }
+
+  /* ============================================================
+     Night Theme (Dark) — Desaturated, high contrast (WCAG AA+)
+     Forest stays as accent; surfaces shift to near-black with a
+     warm undertone for eye comfort.
+     ============================================================ */
+  :root[data-theme="dark"] {
+    --color-ivory: #0E1612;
+    --color-ivory-soft: #14201B;
+    --color-ivory-elevated: #1B2A23;
+    --color-forest: #5FE3A8;
+    --color-forest-soft: #3FB585;
+    --color-gold: #F2C347;
+    --color-gold-soft: #FFDA75;
+    --color-sage: #6B5E58;
+    --color-primary-container: #0A1410;
+    --color-surface-container: #16221D;
+    --color-on-surface: #F2F0E6;
+    --color-on-surface-muted: #B6B2A6;
+    --color-border: rgba(255, 255, 255, 0.10);
+    --color-border-strong: rgba(255, 255, 255, 0.18);
+    --color-overlay: rgba(0, 0, 0, 0.70);
+    --color-gold-glow: rgba(242, 195, 71, 0.22);
+    --shadow-color: rgba(0, 0, 0, 0.55);
+    --gradient-hero: linear-gradient(135deg, #0A1410 0%, #14201B 100%);
   }
 
   body {
     font-family: var(--font-sans);
     background-color: var(--color-ivory);
-    color: #1A1A1A;
+    color: var(--color-on-surface);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 300ms ease, color 300ms ease;
   }
 
   h1, h2, h3, h4, .font-serif {
@@ -32,19 +83,25 @@
   }
 }
 
-/* PRD Design System Utilities */
+/* ============================================================
+   PRD Design System Utilities (theme-aware via CSS variables)
+   ============================================================ */
 .bg-ivory {
   background-color: var(--color-ivory);
+}
+.bg-ivory-soft {
+  background-color: var(--color-ivory-soft);
+}
+.bg-ivory-elevated {
+  background-color: var(--color-ivory-elevated);
 }
 
 .bg-forest {
   background-color: var(--color-forest);
 }
-
 .text-forest {
   color: var(--color-forest);
 }
-
 .border-forest {
   border-color: var(--color-forest);
 }
@@ -52,7 +109,6 @@
 .bg-gold {
   background-color: var(--color-gold);
 }
-
 .text-gold {
   color: var(--color-gold);
 }
@@ -60,32 +116,93 @@
 .bg-sage {
   background-color: var(--color-sage);
 }
-
 .text-sage {
   color: var(--color-sage);
+}
+
+/* Theme-aware surface — replaces hardcoded bg-white on cards/panels.
+   Higher specificity than Tailwind's single-class rule so it wins.
+   Translucent variants (bg-white/10, bg-white/20) still work because
+   Tailwind generates those separately with their own color-mix. */
+html body .bg-white,
+html[data-theme] .bg-white {
+  background-color: var(--color-ivory-elevated);
 }
 
 .bg-primary-container {
   background-color: var(--color-primary-container);
 }
-
 .bg-surface-container {
   background-color: var(--color-surface-container);
 }
 
-/* Glass & Blur FX - Enhanced */
+/* ============================================================
+   Theme-aware text contrast utilities
+   Use these for plain text on neutral backgrounds.
+   ============================================================ */
+.text-ivory {
+  color: var(--color-ivory);
+}
+.text-surface {
+  color: var(--color-on-surface);
+}
+.text-surface-muted {
+  color: var(--color-on-surface-muted);
+}
+.text-on-dark {
+  color: #FFFFFF;
+}
+
+/* Muted text that adapts to theme — used for body copy on cards */
+.text-body {
+  color: var(--color-on-surface-muted);
+}
+.bg-surface {
+  background-color: var(--color-ivory-elevated);
+}
+.border-theme {
+  border-color: var(--color-border);
+}
+.border-theme-strong {
+  border-color: var(--color-border-strong);
+}
+
+/* Forest with opacity — uses theme variable as base */
+.text-forest-soft {
+  color: var(--color-on-surface-muted);
+}
+
+/* Theme-aware text on forest surfaces (high contrast) */
+.text-on-forest {
+  color: #FFFFFF;
+}
+.text-on-forest-muted {
+  color: rgba(255, 255, 255, 0.78);
+}
+.text-on-forest-subtle {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* When a dark-themed surface is used in light mode, we want gold-on-ivory;
+   when in dark mode, we keep the inverse. */
+.text-gold-strong {
+  color: var(--color-gold);
+}
+
+/* Glass & Blur FX — adaptive */
 .glass-panel {
-  background: rgba(250, 249, 246, 0.7);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: color-mix(in srgb, var(--color-ivory) 70%, transparent);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid var(--color-border);
 }
 
 .glass-panel-dark {
-  background: rgba(0, 31, 17, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: color-mix(in srgb, var(--color-primary-container) 85%, transparent);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  color: #FFFFFF;
 }
 
 /* Custom Scrollbar */

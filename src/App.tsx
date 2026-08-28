@@ -6,6 +6,7 @@ import { FounderPage } from './components/FounderPage';
 import { ServicesPage } from './components/ServicesPage';
 import { InitiativePage } from './components/InitiativePage';
 import { BookStorePage } from './components/BookStorePage';
+import { BlogPage } from './components/BlogPage';
 import { MobileNav } from './components/MobileNav';
 import { BookingWizard } from './features/booking/components/BookingWizard';
 import { ContactModal } from './components/ContactModal';
@@ -17,7 +18,7 @@ import { LanguageProvider } from './shared/i18n/LanguageContext';
 
 import { BookingRecord, ContactEnquiry, ToastMessage } from './types';
 
-type PageType = 'home' | 'speaking' | 'founder' | 'services' | 'initiative' | 'book' | 'booking';
+type PageType = 'home' | 'speaking' | 'founder' | 'services' | 'initiative' | 'book' | 'blog' | 'booking';
 
 export function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -94,6 +95,9 @@ export function App() {
             )}
             {currentPage === 'book' && (
               <BookStorePage onOpenBooking={handleOpenBooking} />
+            )}
+            {currentPage === 'blog' && (
+              <BlogPage onOpenBooking={handleOpenBooking} />
             )}
           </main>
 

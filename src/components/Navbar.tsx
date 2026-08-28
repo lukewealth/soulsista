@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Menu, X, Calendar, Mic, Heart, BookOpen, Shield, Users, Home } from 'lucide-react';
+import { Menu, X, Calendar, Mic, Heart, BookOpen, Shield, Users, Home, Newspaper } from 'lucide-react';
 import { LanguageSwitcher } from './LanguageSwitcher';
+import { ThemeToggle } from '../shared/theme';
 
-type PageType = 'home' | 'speaking' | 'founder' | 'services' | 'initiative' | 'book' | 'booking';
+type PageType = 'home' | 'speaking' | 'founder' | 'services' | 'initiative' | 'book' | 'blog' | 'booking';
 
 interface NavbarProps {
   onOpenBooking: () => void;
@@ -29,7 +30,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       </div>
 
       {/* Main Navigation */}
-      <header className="sticky top-0 z-40 bg-ivory/90 backdrop-blur-md border-b border-forest/10 py-4">
+      <header className="sticky top-0 z-40 bg-ivory/90 backdrop-blur-md border-b border-forest/10 py-4" style={{ backgroundColor: 'color-mix(in srgb, var(--color-ivory) 90%, transparent)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           
           {/* Logo */}
@@ -99,7 +100,15 @@ export const Navbar: React.FC<NavbarProps> = ({
               <BookOpen className="w-3 h-3" />
               Books
             </button>
+            <button
+              onClick={() => onNavigate('blog')}
+              className={`hover:text-gold transition-colors flex items-center gap-1 ${currentPage === 'blog' ? 'text-gold' : ''}`}
+            >
+              <Newspaper className="w-3 h-3" />
+              Journal
+            </button>
             <LanguageSwitcher />
+            <ThemeToggle variant="icon" />
           </nav>
 
           {/* Desktop CTA */}
@@ -231,9 +240,22 @@ export const Navbar: React.FC<NavbarProps> = ({
                   <BookOpen className="w-4 h-4" />
                   Books & Library
                 </button>
+                <button
+                  onClick={() => {
+                    onNavigate('blog');
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`block w-full text-left py-3 text-sm font-semibold uppercase tracking-widest transition-colors flex items-center gap-2 ${
+                    currentPage === 'blog' ? 'text-gold' : 'text-forest hover:text-gold'
+                  }`}
+                >
+                  <Newspaper className="w-4 h-4" />
+                  Journal
+                </button>
 
-                <div className="pt-4 border-t border-forest/10">
+                <div className="pt-4 border-t border-forest/10 flex items-center justify-between">
                   <LanguageSwitcher />
+                  <ThemeToggle variant="icon" />
                 </div>
               </div>
             </div>

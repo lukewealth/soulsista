@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>Soulsysta Collective Journal</title>
+    <link>https://soulsysta.com/blog</link>
+    <description>Daily articles on therapy, somatic healing, trauma recovery, burnout, women's wellness, and the work of Soulsysta Collective. Written for high-performing women by Merit Nene Chuks and our practitioner team.</description>
+    <language>en-gb</language>
+    <copyright>© Soulsysta Collective</copyright>
+    <managingEditor>hello@soulsysta.com (Soulsysta Collective)</managingEditor>
+    <webMaster>hello@soulsysta.com (Soulsysta Collective)</webMaster>
+    <lastBuildDate>__BUILD_DATE__</lastBuildDate>
+    <ttl>60</ttl>
+    <image>
+      <url>https://soulsysta.com/images/soulsysta-logo.jpg</url>
+      <title>Soulsysta Collective</title>
+      <link>https://soulsysta.com</link>
+    </image>
+    <atom:link href="https://soulsysta.com/rss.xml" rel="self" type="application/rss+xml" />
+
+    <!-- Posts are injected at runtime by the public/rss-generator.ts script.
+         This is a baseline channel so crawlers can discover the feed even
+         before the first client-side hydration. -->
+  </channel>
+</rss>
