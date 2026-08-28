@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { BookOpen, CreditCard, Search, Loader2, X } from 'lucide-react';
+import { BookOpen, CreditCard, Search, Loader2, X, ArrowRight } from 'lucide-react';
 
 interface BookStoreCardProps {
   id: string;
