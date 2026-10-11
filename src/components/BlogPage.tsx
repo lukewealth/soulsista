@@ -26,6 +26,7 @@ import {
   buildMetaTitle,
   sanitizeContentForHtml,
   buildArticleUrl,
+  buildArticleSlug,
 } from '../shared/services/blogSeo';
 
 const CATEGORIES: ('all' | 'Therapy' | 'Wellness' | 'Youth' | 'Books')[] = [
@@ -117,6 +118,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onOpenBooking }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
   const [shareCopied, setShareCopied] = useState(false);
+  const [fromUrl, setFromUrl] = useState(false);
 
   useEffect(() => {
     const unsubscribe = blogStore.subscribe((next) => {
@@ -134,6 +136,34 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onOpenBooking }) => {
       unsubscribe();
     };
   }, []);
+
+  useEffect(() => {
+    const handleUrlChange = () => {
+      const pathname = window.location.pathname;
+      if (!pathname.startsWith('/blog/')) {
+        setSelectedPost(null);
+        setFromUrl(false);
+        return;
+      }
+      const slug = pathname.substring('/blog/'.length);
+      const matchingPost = posts.find((p) => buildArticleSlug(p) === slug);
+      if (matchingPost) {
+        setSelectedPost(matchingPost);
+        setFromUrl(true);
+      } else {
+        setSelectedPost(null);
+        setFromUrl(false);
+      }
+    };
+    handleUrlChange();
+    const listener = () => {
+      handleUrlChange();
+    };
+    window.addEventListener('popstate', listener);
+    return () => {
+      window.removeEventListener('popstate', listener);
+    };
+  }, [posts]);
 
   const filteredPosts = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();
@@ -159,10 +189,11 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onOpenBooking }) => {
   // When a post is open, push history state so the URL is indexable / shareable
   useEffect(() => {
     if (selectedPost) {
-      const url = buildArticleUrl(selectedPost);
+      const slug = buildArticleSlug(selectedPost);
+      const url = `${window.location.origin}/blog/${slug}`;
       window.history.pushState({ postId: selectedPost.id }, '', url);
     } else if (window.location.pathname.startsWith('/blog/')) {
-      window.history.pushState({}, '', `${SITE.url}/blog`);
+      window.history.pushState({}, '', `${window.location.origin}/blog`);
     }
   }, [selectedPost]);
 
