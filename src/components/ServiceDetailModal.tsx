@@ -1,6 +1,7 @@
 import React from 'react';
 import { Service, Practitioner } from '../types';
 import { X, Clock, DollarSign, Sparkles, CheckCircle2, ChevronRight, Calendar, UserCheck } from 'lucide-react';
+import { useCurrency } from '../shared/currency';
 
 interface ServiceDetailModalProps {
   service: Service | null;
@@ -15,6 +16,7 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
   onClose,
   onBookService,
 }) => {
+  const { format, currency } = useCurrency();
   if (!service) return null;
 
   const assignedPractitioners = practitioners.filter((p) =>
@@ -77,7 +79,7 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
               </div>
               <div>
                 <span className="block text-[10px] font-label uppercase tracking-widest text-[#888888]">Investment</span>
-                <span className="font-semibold text-sm text-[#2D3A2F]">${service.priceUSD} USD</span>
+                <span className="font-semibold text-sm text-[#2D3A2F]">{format(service.priceUSD)} {currency === 'USD' ? 'USD' : 'NGN'}</span>
               </div>
             </div>
 
@@ -170,7 +172,7 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
           <div className="pt-4 border-t border-[#EAE2D8] flex items-center justify-between">
             <div>
               <span className="block text-[10px] font-label uppercase text-[#888888]">Total Session Investment</span>
-              <span className="text-xl font-bold text-[#2D3A2F]">${service.priceUSD} USD</span>
+              <span className="text-xl font-bold text-[#2D3A2F]">{format(service.priceUSD)} {currency === 'USD' ? 'USD' : 'NGN'}</span>
             </div>
 
             <button

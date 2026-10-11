@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { SERVICES, PRACTITIONERS, FEATURED_BOOK, ARTICLES } from '../data/mockData';
 import { Service, Article } from '../types';
 import { Search, X, BookOpen, Calendar, ArrowRight, User } from 'lucide-react';
+import { useCurrency } from '../shared/currency';
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -31,6 +32,8 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;
+
+  const { format } = useCurrency();
 
   const filteredServices = query.trim()
     ? SERVICES.filter(
@@ -101,7 +104,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                     <img src={s.imageUrl} alt={s.title} className="w-10 h-10 rounded-xl object-cover" />
                     <div>
                       <span className="font-bold text-xs text-[#2D3A2F] group-hover:text-[#B88A85] block">{s.title}</span>
-                      <span className="text-[10px] text-[#888888] uppercase font-label">{s.category} • ${s.priceUSD}</span>
+                      <span className="text-[10px] text-[#888888] uppercase font-label">{s.category} • {format(s.priceUSD)}</span>
                     </div>
                   </div>
                   <ArrowRight className="w-4 h-4 text-[#B88A85]" />

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { Calendar, MessageCircle, ArrowRight, Sparkles, Heart, BookOpen, Users, Image, Video, Palette } from 'lucide-react';
-import { FEATURED_BOOK } from '../data/mockData';
+import { Calendar, MessageCircle, Sparkles, Heart, BookOpen, Users, Image, Video, Palette } from 'lucide-react';
+import { FEATURED_BOOK, BOOKS } from '../data/mockData';
 import { services, serviceCategories } from '../data/services';
 import { CONTACT } from '../shared/constants';
 import { DonationSection } from './DonationSection';
@@ -287,53 +287,24 @@ return (
       </section>
 
       {/* Book Sales Stores Grid */}
-      <BookStoresGrid 
-        books={[
-          {
-            id: '1',
-            title: 'SHE TOO CAN.',
-            subtitle: 'Break Limits. Reclaim Your Authentic Power. Become Whole.',
-            category: 'Empowerment',
-            author: 'Merit Nene Chuks',
-            price: 29.99,
-            coverImage: '/images/services/she-too-can-book.jpg',
-            badge: 'Best Seller',
-          },
-          {
-            id: '2',
-            title: 'The Art of Stillness',
-            subtitle: 'Finding Peace in a Chaotic World',
-            category: 'Mindfulness',
-            author: 'Merit Nene Chuks',
-            price: 24.99,
-            coverImage: '/images/brand/brand-03.jpg',
-          },
-          {
-            id: '3',
-            title: 'Understanding Burnout',
-            subtitle: 'Recognition, Prevention, and Recovery',
-            category: 'Psychology',
-            author: 'Dr. Julian Vance',
-            price: 35.99,
-            coverImage: '/images/brand/brand-02.jpg',
-          },
-          {
-            id: '4',
-            title: 'Youth Circle Stories',
-            subtitle: 'Empowering the Next Generation',
-            category: 'Youth',
-            author: 'Elena Rodriguez',
-            price: 19.99,
-            coverImage: '/images/brand/brand-04.jpg',
-          },
-        ]}
+      <BookStoresGrid
+        books={BOOKS.map((book) => ({
+          id: book.id,
+          title: book.title,
+          subtitle: book.subtitle,
+          category: book.category ?? 'Empowerment',
+          author: book.author,
+          price: book.priceHardcover,
+          priceNGN: book.priceHardcoverNGN,
+          coverImage: book.coverImage,
+          badge: book.badge,
+        }))}
         onBookSelect={(bookId) => {
-          // Handle book selection - open WhatsApp order
-          handleWhatsApp(`purchasing ${bookId}`);
+          const book = BOOKS.find((b) => b.id === bookId);
+          handleWhatsApp(book ? `purchasing ${book.title}` : `purchasing ${bookId}`);
         }}
         onViewAll={() => {
-          // Navigate to book store page
-          console.log('View all books');
+          window.location.hash = '#books';
         }}
       />
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { SERVICES, PRACTITIONERS } from '../data/mockData';
 import { Service } from '../types';
 import { Sparkles, ArrowRight, Check, RefreshCw, Calendar, Heart } from 'lucide-react';
+import { useCurrency } from '../shared/currency';
 
 interface ResonanceQuizProps {
   onOpenBooking: (serviceId: string) => void;
@@ -12,6 +13,7 @@ export const ResonanceQuiz: React.FC<ResonanceQuizProps> = ({
   onOpenBooking,
   onOpenDetailModal,
 }) => {
+  const { format, currency } = useCurrency();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<{ intention?: string; stressType?: string; mode?: string }>({});
   const [recommendedService, setRecommendedService] = useState<Service | null>(null);
@@ -145,7 +147,7 @@ export const ResonanceQuiz: React.FC<ResonanceQuizProps> = ({
 
                 <div className="p-4 bg-[#2D3A2F] rounded-2xl border border-[#3A4A3E] max-w-md mx-auto text-left text-xs text-[#D8E0DA] space-y-1">
                   <div>✦ <strong className="text-white">Duration:</strong> {recommendedService.durationMinutes} Minutes</div>
-                  <div>✦ <strong className="text-white">Investment:</strong> ${recommendedService.priceUSD} USD</div>
+                  <div>✦ <strong className="text-white">Investment:</strong> {format(recommendedService.priceUSD)} {currency === 'USD' ? 'USD' : 'NGN'}</div>
                   <div>✦ <strong className="text-white">Includes:</strong> Personalized nervous system integration protocol</div>
                 </div>
 

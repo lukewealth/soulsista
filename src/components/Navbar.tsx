@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Menu, X, Calendar, Mic, Heart, BookOpen, Shield, Users, Home, Newspaper } from 'lucide-react';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { ThemeToggle } from '../shared/theme';
+import { CurrencyToggle } from '../shared/currency';
 
 type PageType = 'home' | 'speaking' | 'founder' | 'services' | 'initiative' | 'book' | 'blog' | 'booking';
 
@@ -108,6 +109,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               Journal
             </button>
             <LanguageSwitcher />
+            <CurrencyToggle variant="icon" />
             <ThemeToggle variant="icon" />
           </nav>
 
@@ -253,9 +255,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                   Journal
                 </button>
 
-                <div className="pt-4 border-t border-forest/10 flex items-center justify-between">
+                <div className="pt-4 border-t border-forest/10 flex items-center justify-between gap-2 flex-wrap">
                   <LanguageSwitcher />
-                  <ThemeToggle variant="icon" />
+                  <div className="flex items-center gap-2">
+                    <CurrencyToggle variant="icon" />
+                    <ThemeToggle variant="icon" />
+                  </div>
                 </div>
               </div>
             </div>

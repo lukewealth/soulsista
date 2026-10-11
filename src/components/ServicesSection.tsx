@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { SERVICES, PRACTITIONERS } from '../data/mockData';
 import { Service, ServiceCategory } from '../types';
 import { Clock, ArrowRight, Eye, Calendar, Sparkles } from 'lucide-react';
+import { useCurrency } from '../shared/currency';
 
 interface ServicesSectionProps {
   onOpenDetailModal: (service: Service) => void;
@@ -14,6 +15,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
   onOpenBooking,
   selectedCategoryFilter = 'all',
 }) => {
+  const { format } = useCurrency();
   const [activeCategory, setActiveCategory] = useState<string>(selectedCategoryFilter);
 
   const categories: { id: string; label: string }[] = [
@@ -130,7 +132,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                 <div className="p-6 pt-0 border-t border-surface-container mt-4 flex items-center justify-between gap-2">
                   <div>
                     <span className="block text-[10px] font-label uppercase text-forest/50">Investment</span>
-                    <span className="text-base font-extrabold text-forest">${service.priceUSD}</span>
+                    <span className="text-base font-extrabold text-forest">{format(service.priceUSD)}</span>
                   </div>
 
                   <div className="flex items-center gap-2">

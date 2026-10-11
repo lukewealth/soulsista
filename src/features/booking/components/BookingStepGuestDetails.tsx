@@ -7,7 +7,8 @@
 import React from 'react';
 import { Service, Practitioner } from '../../../shared/types';
 import { Button, Input, Card } from '../../../shared/components/ui';
-import { ArrowRight, ArrowLeft, HeartHandshake } from 'lucide-react';
+import { ArrowLeft, HeartHandshake } from 'lucide-react';
+import { useCurrency } from '../../../shared/currency';
 
 interface BookingStepGuestDetailsProps {
   service: Service;
@@ -42,6 +43,7 @@ export const BookingStepGuestDetails: React.FC<BookingStepGuestDetailsProps> = (
   onPrev,
   isFormValid,
 }) => {
+  const { format, currency } = useCurrency();
   return (
     <div className="space-y-6">
       <div>
@@ -101,7 +103,7 @@ export const BookingStepGuestDetails: React.FC<BookingStepGuestDetailsProps> = (
           </div>
           <div className="flex justify-between text-sm font-bold text-forest pt-2 border-t border-forest/10">
             <span>Total Investment:</span>
-            <span>${service.priceUSD} USD</span>
+            <span>{format(service.priceUSD)} {currency === 'USD' ? 'USD' : 'NGN'}</span>
           </div>
         </div>
       </Card>
@@ -120,7 +122,7 @@ export const BookingStepGuestDetails: React.FC<BookingStepGuestDetailsProps> = (
           disabled={!isFormValid}
           leftIcon={<HeartHandshake className="w-4 h-4 text-gold" />}
         >
-          Confirm Reservation (${service.priceUSD})
+          Confirm Reservation ({format(service.priceUSD)})
         </Button>
       </div>
     </div>

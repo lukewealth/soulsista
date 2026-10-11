@@ -210,8 +210,15 @@ export const FEATURED_BOOK: BookItem = {
   priceHardcover: 29.99,
   priceDigital: 14.99,
   priceBundle: 45.00,
-  coverImage: '/images/services/she-too-can-book.jpg',
+  priceHardcoverNGN: 20000,
+  priceDigitalNGN: 10000,
+  priceBundleNGN: 30000,
+  coverImage: '/images/books/she-can-too.jpeg',
   synopsis: 'A groundbreaking literary masterwork and guided manifesto for women navigating the invisible constraints of modern life. Merit Nene Chuks draws from clinical psychology, ancestral wisdom, and personal triumph to offer a roadmap from survival mode into unshakeable wholeness.',
+  shortDescription: 'A groundbreaking literary masterwork and guided manifesto for women navigating the invisible constraints of modern life.',
+  fullDescription: 'A groundbreaking literary masterwork and guided manifesto for women navigating the invisible constraints of modern life. Merit Nene Chuks draws from clinical psychology, ancestral wisdom, and personal triumph to offer a roadmap from survival mode into unshakeable wholeness. A foundational text for women ready to lead without sacrificing their souls.',
+  category: 'Empowerment',
+  badge: 'Best Seller',
   specifications: {
     pages: 342,
     language: 'English',
@@ -277,6 +284,245 @@ In Western culture, fear is treated as an enemy to be suppressed or eliminated. 
     }
   ]
 };
+
+export const BOOKS: BookItem[] = [
+  FEATURED_BOOK,
+  {
+    id: 'moral-decadence-among-the-youth',
+    title: 'Moral Decadence Among the Youth',
+    subtitle: 'A wake-up call for parents, educators, and a generation in search of its soul',
+    author: 'Merit Nene Chuks',
+    priceHardcover: 13.99,
+    priceDigital: 6.99,
+    priceBundle: 19.99,
+    priceHardcoverNGN: 10000,
+    priceDigitalNGN: 5000,
+    priceBundleNGN: 14000,
+    coverImage: '/images/books/moral-decadence-among-the-youth.jpeg',
+    category: 'Youth',
+    shortDescription:
+      'A frank, compassionate examination of the moral currents pulling at today\'s young people — and the practical scaffolding parents and educators can offer.',
+    fullDescription:
+      'Moral Decadence Among the Youth is a frank, compassionate examination of the moral currents pulling at today\'s young people. Drawing on clinical insight, cultural observation, and lived experience, Merit Nene Chuks offers parents, educators, and mentors a clear-eyed framework for guiding the next generation back to character, discernment, and inner authority — without shaming the very youth we are trying to reach.',
+    synopsis:
+      'Moral Decadence Among the Youth is a frank, compassionate examination of the moral currents pulling at today\'s young people.',
+    specifications: {
+      pages: 218,
+      language: 'English',
+      publisher: 'Soulsysta Press',
+      isbn: '978-1-954321-01-5',
+    },
+    testimonials: [
+      {
+        author: 'Pastor Tunde Bakare',
+        role: 'Youth Mentor, Lagos',
+        quote:
+          'A clear-eyed, unsentimental book. Merit writes with the authority of a clinician and the tenderness of an aunt who refuses to give up on a generation.',
+      },
+      {
+        author: 'Mrs. Adaeze Okafor',
+        role: 'Secondary School Principal',
+        quote:
+          'I have placed this book in our library. Every form teacher should read it. It has changed how I speak to my students.',
+      },
+    ],
+    previewChapters: [
+      {
+        number: 1,
+        title: 'The Crisis No One Will Name',
+        excerpt:
+          'Every generation accuses the next of moral decline. This time, the accusation is correct — and the reasons are not what most adults assume.',
+        fullContent: `CHAPTER ONE: THE CRISIS NO ONE WILL NAME
+
+Every generation accuses the next of moral decline. This time, the accusation is correct — and the reasons are not what most adults assume.
+
+The youth are not broken. They are responding rationally to a system that has stopped offering them a coherent story about who they are and what they are for. When a society cannot transmit meaning, it transmits despair. The visible moral collapse is downstream of the invisible collapse of meaning.`
+      },
+    ],
+  },
+  {
+    id: 'delilahs-traits',
+    title: "Delilah's Traits",
+    subtitle: 'Recognizing the patterns that disarm, distort, and derail a woman\'s purpose',
+    author: 'Merit Nene Chuks',
+    priceHardcover: 29.99,
+    priceDigital: 14.99,
+    priceBundle: 45.00,
+    priceHardcoverNGN: 20000,
+    priceDigitalNGN: 10000,
+    priceBundleNGN: 30000,
+    coverImage: '/images/books/delilahs-traits.jpeg',
+    category: 'Empowerment',
+    shortDescription:
+      'A clinical, biblical, and deeply personal exploration of the seven subtle patterns that quietly dismantle a woman\'s authority.',
+    fullDescription:
+      'Delilah\'s Traits is a clinical, biblical, and deeply personal exploration of the seven subtle patterns that quietly dismantle a woman\'s authority. From seduction disguised as softness to approval as a substitute for self, Merit names what most books tiptoe around — and offers the reader a step-by-step path back to their own center.',
+    synopsis:
+      'A clinical, biblical, and deeply personal exploration of the seven subtle patterns that quietly dismantle a woman\'s authority.',
+    specifications: {
+      pages: 286,
+      language: 'English',
+      publisher: 'Soulsysta Press',
+      isbn: '978-1-954321-02-2',
+    },
+    testimonials: [
+      {
+        author: 'Bishop Nkechi Obi',
+        role: 'Author & Conference Speaker',
+        quote:
+          'I have been waiting for a book that names the patterns without condemning the women caught in them. This is that book.',
+      },
+    ],
+    previewChapters: [
+      {
+        number: 1,
+        title: 'The Woman Behind the Story',
+        excerpt:
+          'Delilah is not a character study. She is a mirror. Every woman who reads this book will recognize at least three of her own traits in these pages.',
+        fullContent: `CHAPTER ONE: THE WOMAN BEHIND THE STORY
+
+Delilah is not a character study. She is a mirror. Every woman who reads this book will recognize at least three of her own traits in these pages.
+
+The danger is not in seeing her. The danger is in calling her wisdom strength.`
+      },
+    ],
+  },
+  {
+    id: 'the-breadwinners-shoes',
+    title: "The Breadwinner's Shoes",
+    subtitle: 'A woman\'s field guide to carrying provision without losing herself',
+    author: 'Merit Nene Chuks',
+    priceHardcover: 29.99,
+    priceDigital: 14.99,
+    priceBundle: 45.00,
+    priceHardcoverNGN: 20000,
+    priceDigitalNGN: 10000,
+    priceBundleNGN: 30000,
+    coverImage: '/images/books/the-breadwinners-shoes.jpeg',
+    category: 'Empowerment',
+    badge: 'New',
+    shortDescription:
+      'A field guide for the woman who carries provision — for her family, her team, her community — without losing her own soul in the process.',
+    fullDescription:
+      'The Breadwinner\'s Shoes is a field guide for the woman who carries provision — for her family, her team, her community — without losing her own soul in the process. With clinical precision and pastoral warmth, Merit offers the financial, emotional, and relational architecture required to lead provision without collapsing under its weight.',
+    synopsis:
+      'A field guide for the woman who carries provision — for her family, her team, her community — without losing her own soul.',
+    specifications: {
+      pages: 312,
+      language: 'English',
+      publisher: 'Soulsysta Press',
+      isbn: '978-1-954321-03-9',
+    },
+    testimonials: [
+      {
+        author: 'Tara Fela-Durotoye',
+        role: 'Founder, House of Tara',
+        quote:
+          'Every woman who carries a household, a payroll, or a vision should read this. It is a masterclass in sustainable provision.',
+      },
+    ],
+    previewChapters: [
+      {
+        number: 1,
+        title: 'The Shoes Are Not The Woman',
+        excerpt:
+          'Provision is a calling. It is also a weight. The mistake is not in carrying it; the mistake is in believing the shoes are you.',
+        fullContent: `CHAPTER ONE: THE SHOES ARE NOT THE WOMAN
+
+Provision is a calling. It is also a weight. The mistake is not in carrying it; the mistake is in believing the shoes are you.`
+      },
+    ],
+  },
+  {
+    id: 'parting-gifts',
+    title: 'Parting Gifts',
+    subtitle: 'What the women who raised us never got to say',
+    author: 'Merit Nene Chuks',
+    priceHardcover: 24.99,
+    priceDigital: 12.99,
+    priceBundle: 36.99,
+    priceHardcoverNGN: 17000,
+    priceDigitalNGN: 8500,
+    priceBundleNGN: 25000,
+    coverImage: '/images/books/parting-gifts.jpeg',
+    category: 'Memoir',
+    shortDescription:
+      'A tender, lyrical collection of letters to the women whose love shaped us — and whose unfinished words we still carry.',
+    fullDescription:
+      'Parting Gifts is a tender, lyrical collection of letters to the women whose love shaped us — mothers, grandmothers, aunties, mentors — and whose unfinished words we still carry. A book to be read in one sitting and revisited for a lifetime.',
+    synopsis:
+      'A tender, lyrical collection of letters to the women whose love shaped us — and whose unfinished words we still carry.',
+    specifications: {
+      pages: 184,
+      language: 'English',
+      publisher: 'Soulsysta Press',
+      isbn: '978-1-954321-04-6',
+    },
+    testimonials: [
+      {
+        author: 'Lola Shoneyin',
+        role: 'Author & Literary Curator',
+        quote: 'A small, devastating book. I cried on the train. Then I read it again.',
+      },
+    ],
+    previewChapters: [
+      {
+        number: 1,
+        title: 'For the Mother Who Stayed',
+        excerpt:
+          'I understand now. The silence was not absence. It was a different language of presence I was too young to translate.',
+        fullContent: `FOR THE MOTHER WHO STAYED
+
+I understand now. The silence was not absence. It was a different language of presence I was too young to translate.`
+      },
+    ],
+  },
+  {
+    id: 'above-30-and-broke',
+    title: 'Above 30 and Broke',
+    subtitle: 'A financial and emotional reclamation manual for women who started late',
+    author: 'Merit Nene Chuks',
+    priceHardcover: 22.99,
+    priceDigital: 11.99,
+    priceBundle: 33.99,
+    priceHardcoverNGN: 15000,
+    priceDigitalNGN: 7500,
+    priceBundleNGN: 22000,
+    coverImage: '/images/books/above-30-and-broke.jpeg',
+    category: 'Finance',
+    shortDescription:
+      'A financial and emotional reclamation manual for women who started late — without shame, hustle-culture, or the word "broke" as an identity.',
+    fullDescription:
+      'Above 30 and Broke is a financial and emotional reclamation manual for women who started late. With zero shame and a healthy disdain for hustle-culture, Merit walks the reader through a 12-month path from scarcity consciousness to sustainable wealth — beginning with the inner architecture of money before the outer mechanics.',
+    synopsis:
+      'A financial and emotional reclamation manual for women who started late — without shame or hustle-culture.',
+    specifications: {
+      pages: 256,
+      language: 'English',
+      publisher: 'Soulsysta Press',
+      isbn: '978-1-954321-05-3',
+    },
+    testimonials: [
+      {
+        author: 'Nimi Akinkugbe',
+        role: 'Personal Finance Expert',
+        quote:
+          'The first money book I have recommended to my daughters. It does the inner work first, which is where every lasting change begins.',
+      },
+    ],
+    previewChapters: [
+      {
+        number: 1,
+        title: 'Broke Is a Story, Not a Salary',
+        excerpt:
+          'You do not have a money problem. You have a story about money that was written by people who never intended for you to read it.',
+        fullContent: `CHAPTER ONE: BROKE IS A STORY, NOT A SALARY
+
+You do not have a money problem. You have a story about money that was written by people who never intended for you to read it.`
+      },
+    ],
+  },
+];
 
 export const ARTICLES: Article[] = [
   {

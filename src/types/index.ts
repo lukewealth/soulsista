@@ -37,24 +37,37 @@ export interface BookItem {
   title: string;
   subtitle: string;
   author: string;
+  /** Price in USD for the hardcover / default format. */
   priceHardcover: number;
+  /** Price in USD for the digital format. */
   priceDigital: number;
+  /** Price in USD for the hardcover + digital bundle. */
   priceBundle: number;
+  /** Optional NGN override for the hardcover / default format. */
+  priceHardcoverNGN?: number;
+  /** Optional NGN override for the digital format. */
+  priceDigitalNGN?: number;
+  /** Optional NGN override for the bundle. */
+  priceBundleNGN?: number;
   coverImage: string;
-  previewChapters: {
+  shortDescription?: string;
+  fullDescription?: string;
+  previewChapters?: {
     number: number;
     title: string;
     excerpt: string;
     fullContent: string;
   }[];
-  synopsis: string;
-  testimonials: { author: string; role: string; quote: string }[];
-  specifications: {
+  synopsis?: string;
+  testimonials?: { author: string; role: string; quote: string }[];
+  specifications?: {
     pages: number;
     language: string;
     publisher: string;
     isbn: string;
   };
+  badge?: string;
+  category?: string;
 }
 
 export interface Article {

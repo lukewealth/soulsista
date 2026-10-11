@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, Clock, DollarSign, CheckCircle2, Heart } from 'lucide-react';
 import { Service } from '../data/services';
+import { useCurrency } from '../shared/currency';
 
 interface ServiceCardProps {
   service: Service;
@@ -10,6 +11,7 @@ interface ServiceCardProps {
 
 export const ServiceCard: React.FC<ServiceCardProps> = ({ service, onBook }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const { format } = useCurrency();
 
   const handleWhatsApp = () => {
     const message = `Hello Soulsysta! I'm interested in booking the ${service.title} service.`;
@@ -61,7 +63,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, onBook }) => 
           </div>
           <div className="flex items-center gap-2">
             <DollarSign className="w-4 h-4" />
-            <span>${service.price}</span>
+            <span>{format(service.price)}</span>
           </div>
         </div>
 

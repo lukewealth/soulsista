@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FEATURED_BOOK } from '../data/mockData';
-import { BookOpen, Star, ShoppingBag, Check, ArrowRight, X, Download, ShieldCheck } from 'lucide-react';
+import { BookOpen, Star, ShoppingBag, Check, X, Download, ShieldCheck } from 'lucide-react';
+import { useCurrency } from '../shared/currency';
 
 interface BookStoreSectionProps {
   onAddToCart: (item: { id: string; format: 'hardcover' | 'digital' | 'bundle'; price: number; title: string }) => void;
@@ -11,28 +12,38 @@ export const BookStoreSection: React.FC<BookStoreSectionProps> = ({
   onAddToCart,
   onInstantBuy,
 }) => {
+  const { format, currency } = useCurrency();
   const [selectedFormat, setSelectedFormat] = useState<'hardcover' | 'digital' | 'bundle'>('hardcover');
   const [previewChapterIndex, setPreviewChapterIndex] = useState<number | null>(null);
   const [addedSuccess, setAddedSuccess] = useState(false);
 
-  const getFormatPrice = () => {
+  const getFormatPriceUSD = () => {
     if (selectedFormat === 'hardcover') return FEATURED_BOOK.priceHardcover;
     if (selectedFormat === 'digital') return FEATURED_BOOK.priceDigital;
     return FEATURED_BOOK.priceBundle;
   };
 
+  const getFormatPriceNGN = () => {
+    if (selectedFormat === 'hardcover') return FEATURED_BOOK.priceHardcoverNGN;
+    if (selectedFormat === 'digital') return FEATURED_BOOK.priceDigitalNGN;
+    return FEATURED_BOOK.priceBundleNGN;
+  };
+
+  const formatLabel = (usd: number, ngn?: number) => format(usd, ngn);
+
   const handleAddToCart = () => {
     onAddToCart({
       id: FEATURED_BOOK.id,
       format: selectedFormat,
-      price: getFormatPrice(),
+      price: currency === 'NGN' ? (getFormatPriceNGN() ?? 0) : getFormatPriceUSD(),
       title: `${FEATURED_BOOK.title} (${selectedFormat.toUpperCase()})`,
     });
     setAddedSuccess(true);
     setTimeout(() => setAddedSuccess(false), 2500);
   };
 
-  const currentPreviewChapter = previewChapterIndex !== null ? FEATURED_BOOK.previewChapters[previewChapterIndex] : null;
+  const currentPreviewChapter = previewChapterIndex !== null ? FEATURED_BOOK.previewChapters?.[previewChapterIndex] : null;
+  const previewChapters = FEATURED_BOOK.previewChapters ?? [];
 
   return (
     <section id="book-section" className="py-20 lg:py-28 bg-surface-container relative">
@@ -151,7 +162,7 @@ export const BookStoreSection: React.FC<BookStoreSectionProps> = ({
                 >
                   <span className="text-xs font-bold text-forest block">Hardcover Edition</span>
                   <span className="text-[10px] text-forest/50 block mt-0.5">Embossed Gold Foil</span>
-                  <span className="text-base font-extrabold text-forest block mt-2">${FEATURED_BOOK.priceHardcover}</span>
+                  <span className="text-base font-extrabold text-forest block mt-2">{formatLabel(FEATURED_BOOK.priceHardcover, FEATURED_BOOK.priceHardcoverNGN)}</span>
                   {selectedFormat === 'hardcover' && (
                     <span className="absolute top-3 right-3 text-forest"><Check className="w-4 h-4" /></span>
                   )}
@@ -169,7 +180,7 @@ export const BookStoreSection: React.FC<BookStoreSectionProps> = ({
                 >
                   <span className="text-xs font-bold text-forest block">Digital eBook</span>
                   <span className="text-[10px] text-forest/50 block mt-0.5">Instant PDF / ePub</span>
-                  <span className="text-base font-extrabold text-forest block mt-2">${FEATURED_BOOK.priceDigital}</span>
+                  <span className="text-base font-extrabold text-forest block mt-2">{formatLabel(FEATURED_BOOK.priceDigital, FEATURED_BOOK.priceDigitalNGN)}</span>
                   {selectedFormat === 'digital' && (
                     <span className="absolute top-3 right-3 text-forest"><Check className="w-4 h-4" /></span>
                   )}
@@ -187,7 +198,7 @@ export const BookStoreSection: React.FC<BookStoreSectionProps> = ({
                 >
                   <span className="text-xs font-bold text-gold block">Deluxe Bundle</span>
                   <span className="text-[10px] text-forest/50 block mt-0.5">Hardcover + Journal</span>
-                  <span className="text-base font-extrabold text-forest block mt-2">${FEATURED_BOOK.priceBundle}</span>
+                  <span className="text-base font-extrabold text-forest block mt-2">{formatLabel(FEATURED_BOOK.priceBundle, FEATURED_BOOK.priceBundleNGN)}</span>
                   {selectedFormat === 'bundle' && (
                     <span className="absolute top-3 right-3 text-gold"><Check className="w-4 h-4" /></span>
                   )}
@@ -210,7 +221,7 @@ export const BookStoreSection: React.FC<BookStoreSectionProps> = ({
                 ) : (
                   <>
                     <ShoppingBag className="w-4 h-4 text-gold" />
-                    <span>Add to Bag (${getFormatPrice()})</span>
+                    <span>Add to Bag ({formatLabel(getFormatPriceUSD(), getFormatPriceNGN())})</span>
                   </>
                 )}
               </button>
@@ -220,7 +231,7 @@ export const BookStoreSection: React.FC<BookStoreSectionProps> = ({
                   onInstantBuy({
                     id: FEATURED_BOOK.id,
                     format: selectedFormat,
-                    price: getFormatPrice(),
+                    price: currency === 'NGN' ? (getFormatPriceNGN() ?? 0) : getFormatPriceUSD(),
                     title: `${FEATURED_BOOK.title} (${selectedFormat.toUpperCase()})`,
                   })
                 }
@@ -250,7 +261,7 @@ export const BookStoreSection: React.FC<BookStoreSectionProps> = ({
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            {FEATURED_BOOK.testimonials.map((t, idx) => (
+            {FEATURED_BOOK.testimonials?.map((t, idx) => (
               <div key={idx} className="p-6 bg-white rounded-2xl border border-forest/10 space-y-3">
                 <div className="flex text-gold">
                   {[...Array(5)].map((_, i) => (
@@ -305,12 +316,12 @@ export const BookStoreSection: React.FC<BookStoreSectionProps> = ({
                 </button>
 
                 <span className="text-xs text-forest/50">
-                  {previewChapterIndex! + 1} of {FEATURED_BOOK.previewChapters.length}
+                  {previewChapterIndex! + 1} of {previewChapters.length}
                 </span>
 
                 <button
-                  disabled={previewChapterIndex === FEATURED_BOOK.previewChapters.length - 1}
-                  onClick={() => setPreviewChapterIndex((prev) => (prev !== null && prev < FEATURED_BOOK.previewChapters.length - 1 ? prev + 1 : prev))}
+                  disabled={previewChapterIndex === previewChapters.length - 1}
+                  onClick={() => setPreviewChapterIndex((prev) => (prev !== null && prev < previewChapters.length - 1 ? prev + 1 : prev))}
                   className="px-4 py-2 bg-forest text-white rounded-full text-xs font-label uppercase disabled:opacity-40 cursor-pointer"
                 >
                   Next Chapter

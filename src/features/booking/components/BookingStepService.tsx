@@ -6,9 +6,10 @@
 
 import React from 'react';
 import { SERVICES } from '../../../data/mockData';
-import { Button, Input, Textarea, Select, Card } from '../../../shared/components/ui';
+import { Button, Textarea, Select } from '../../../shared/components/ui';
 import { ArrowRight, Sparkles, Video, MapPin } from 'lucide-react';
 import { cn } from '../../../shared/utils';
+import { useCurrency } from '../../../shared/currency';
 
 interface BookingStepServiceProps {
   selectedServiceId: string;
@@ -34,6 +35,7 @@ export const BookingStepService: React.FC<BookingStepServiceProps> = ({
   onNext,
   availableGoals,
 }) => {
+  const { format } = useCurrency();
   const getEmotionalStateLabel = (score: number): string => {
     if (score <= 3) return 'Overwhelmed / Depleted';
     if (score <= 7) return 'Seeking Direction';
@@ -52,7 +54,7 @@ export const BookingStepService: React.FC<BookingStepServiceProps> = ({
           onChange={(e) => onServiceChange(e.target.value)}
           options={SERVICES.map((s) => ({
             value: s.id,
-            label: `${s.title} — $${s.priceUSD} (${s.durationMinutes} mins)`,
+            label: `${s.title} — ${format(s.priceUSD)} (${s.durationMinutes} mins)`,
           }))}
         />
       </div>
