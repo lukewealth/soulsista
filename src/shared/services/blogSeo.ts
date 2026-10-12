@@ -215,13 +215,28 @@ export const sanitizeContentForHtml = (content: string): string => {
   if (!content) return '';
   // Allow only basic markdown-ish structures; escape everything else.
   return escapeHtml(content)
-    .replace(/^##\s+(.+)$/gm, '<h2>$1</h2>')
-    .replace(/^###\s+(.+)$/gm, '<h3>$1</h3>')
-    .replace(/^#\s+(.+)$/gm, '<h1>$1</h1>')
+    .replace(/^##\s+(.+)$/gm, '<h2 id="$1">$1</h2>')
+    .replace(/^###\s+(.+)$/gm, '<h3 id="$1">$1</h3>')
+    .replace(/^#\s+(.+)$/gm, '<h1 id="$1">$1</h1>')
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
     .replace(/\*(.+?)\*/g, '<em>$1</em>')
     .replace(/`([^`]+)`/g, '<code>$1</code>')
     .replace(/\n\n/g, '</p><p>')
     .replace(/^/, '<p>')
     .replace(/$/, '</p>');
+};
+
+export const sanitizeAndEnhanceContentForHtml = (content: string): string => {
+  if (!content) return '';
+  const html = sanitizeContentForHtml(content);
+  
+  // Add theme-aware hover effects
+  return html
+    .replace(/<p>(.*?)<\/p>/g, '<p class="mb-4 text-forest/80 leading-relaxed hover:text-gold transition-colors duration-300">$1</p>')
+    .replace(/<h1[^>]*>(.*?)<\/h1>/g, '<h1 class="font-serif text-4xl font-bold text-forest mb-6 hover:text-gold transition-colors duration-300" id="$1">$1</h1>')
+    .replace(/<h2[^>]*>(.*?)<\/h2>/g, '<h2 class="font-serif text-3xl font-bold text-forest mb-4 mt-8 hover:text-gold transition-colors duration-300" id="$1">$1</h2>')
+    .replace(/<h3[^>]*>(.*?)<\/h3>/g, '<h3 class="font-serif text-2xl font-semibold text-forest mb-3 mt-6 hover:text-gold transition-colors duration-300" id="$1">$1</h3>')
+    .replace(/<li>(.*?)<\/li>/g, '<li class="mb-2 text-forest/80 hover:text-gold transition-colors duration-300">$1</li>')
+    .replace(/<strong>(.*?)<\/strong>/g, '<strong class="text-gold font-semibold">$1</strong>')
+    .replace(/<em>(.*?)<\/em>/g, '<em class="italic text-forest/70 hover:text-gold transition-colors duration-300">$1</em>');
 };

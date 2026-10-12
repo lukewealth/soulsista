@@ -15,17 +15,17 @@
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-label: 'Hanken Grotesk', sans-serif;
 
-    /* ============================================================
-       Day Theme (Light) — PRD Brand Palette
-       Contrast targets: body 4.5:1+, headings 7:1+
-       ============================================================ */
+/* ============================================================
+      Day Theme (Light) — PRD Brand Palette
+      Contrast targets: body 4.5:1+, headings 7:1+
+      ============================================================ */
     --color-ivory: #FAF9F6;
     --color-ivory-soft: #F4F2EC;
     --color-ivory-elevated: #FFFFFF;
     --color-forest: #001F11;
     --color-forest-soft: #123524;
-    --color-gold: #735C00;
-    --color-gold-soft: #B89200;
+    --color-gold: #F2C347;
+    --color-gold-soft: #FFDA75;
     --color-sage: #D4C3BA;
     --color-primary-container: #123524;
     --color-surface-container: #EFEEEB;
@@ -34,23 +34,23 @@
     --color-border: rgba(0, 31, 17, 0.10);
     --color-border-strong: rgba(0, 31, 17, 0.18);
     --color-overlay: rgba(0, 31, 17, 0.55);
-    --color-gold-glow: rgba(115, 92, 0, 0.18);
+    --color-gold-glow: rgba(242, 195, 71, 0.22);
     --shadow-color: rgba(0, 31, 17, 0.12);
     --gradient-hero: linear-gradient(135deg, #001F11 0%, #123524 100%);
   }
 
   /* ============================================================
-     Night Theme (Dark) — Desaturated, high contrast (WCAG AA+)
-     Forest stays as accent; surfaces shift to near-black with a
-     warm undertone for eye comfort.
-     ============================================================ */
+      Night Theme (Dark) — Desaturated, high contrast (WCAG AA+)
+      Forest stays as accent; surfaces shift to near-black with a
+      warm undertone for eye comfort. Enhanced gold for better visibility.
+      ============================================================ */
   :root[data-theme="dark"] {
     --color-ivory: #0E1612;
     --color-ivory-soft: #14201B;
     --color-ivory-elevated: #1B2A23;
     --color-forest: #5FE3A8;
     --color-forest-soft: #3FB585;
-    --color-gold: #F2C347;
+    --color-gold: #FFD700;
     --color-gold-soft: #FFDA75;
     --color-sage: #6B5E58;
     --color-primary-container: #0A1410;
@@ -60,7 +60,7 @@
     --color-border: rgba(255, 255, 255, 0.10);
     --color-border-strong: rgba(255, 255, 255, 0.18);
     --color-overlay: rgba(0, 0, 0, 0.70);
-    --color-gold-glow: rgba(242, 195, 71, 0.22);
+    --color-gold-glow: rgba(255, 215, 0, 0.35);
     --shadow-color: rgba(0, 0, 0, 0.55);
     --gradient-hero: linear-gradient(135deg, #0A1410 0%, #14201B 100%);
   }
@@ -375,14 +375,53 @@ html[data-theme] .bg-white {
   animation: glow 2s ease-in-out infinite;
 }
 
-/* Hover lift effect */
-.hover-lift {
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+/* Enhanced theme-aware hover effects for text */
+.hover-text-gold {
+  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.hover-lift:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(0, 31, 17, 0.15);
+.hover-text-gold:hover {
+  color: var(--color-gold) !important;
+}
+
+/* Enhanced interactive element hover states */
+.hover-lift-enhanced {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift-enhanced:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px var(--shadow-color);
+  color: var(--color-gold);
+}
+
+/* Theme-aware card hover for blog posts */
+.hover-card-gold {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-card-gold:hover {
+  background-color: var(--color-gold-glow);
+  border-color: var(--color-gold);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px var(--shadow-color);
+}
+
+.hover-card-gold:hover .text-forest {
+  color: var(--color-gold) !important;
+}
+
+/* Gold text with theme support */
+.text-gold-theme {
+  color: var(--color-gold);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.text-gold-theme:hover {
+  color: var(--color-gold-soft);
+  text-shadow: 0 0 10px var(--color-gold-glow);
 }
 
 /* Smooth expand/collapse */

@@ -476,7 +476,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onOpenBooking }) => {
                             {post.readTimeMinutes} min
                           </span>
                         </div>
-                        <h3 className="font-serif text-xl font-bold text-forest mb-3 line-clamp-2 group-hover:text-gold transition-colors">
+                        <h3 className="font-serif text-xl font-bold text-forest mb-3 line-clamp-2 hover-text-gold transition-all">
                           {post.title}
                         </h3>
                         <p className="text-forest/75 text-sm mb-4 line-clamp-3 flex-1">
@@ -487,7 +487,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onOpenBooking }) => {
                             {post.tags.slice(0, 3).map((tag) => (
                               <span
                                 key={tag}
-                                className="text-xs text-forest/70 bg-forest/5 px-2 py-1 rounded"
+                                className="text-xs text-forest/70 bg-forest/5 px-2 py-1 rounded hover-lift-enhanced hover:text-gold transition-all"
                               >
                                 #{tag}
                               </span>
@@ -501,7 +501,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onOpenBooking }) => {
                               {post.authorName}
                             </span>
                           </div>
-                          <span className="text-gold text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all flex-shrink-0">
+                          <span className="text-gold text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all flex-shrink-0 hover:text-gold-strong">
                             Read
                             <ArrowRight className="w-4 h-4" />
                           </span>
@@ -525,13 +525,13 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onOpenBooking }) => {
                   Book a session and put these insights into practice with our
                   team of practitioners.
                 </p>
-                <button
-                  onClick={onOpenBooking}
-                  className="px-8 py-4 bg-gold text-forest font-semibold rounded-full hover:bg-gold/90 transition-all shadow-xl inline-flex items-center gap-2"
-                >
-                  Book a Session
-                  <ArrowRight className="w-4 h-4" />
-                </button>
+                 <button
+                   onClick={onOpenBooking}
+                   className="px-8 py-4 bg-gold text-forest font-semibold rounded-full hover:bg-gold/90 transition-all shadow-xl inline-flex items-center gap-2 hover:scale-105 hover-lift-enhanced"
+                 >
+                   Book a Session
+                   <ArrowRight className="w-4 h-4" />
+                 </button>
               </div>
             </div>
           )}
