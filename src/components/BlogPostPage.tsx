@@ -2,9 +2,9 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Volume2, VolumeX, Play, Pause, SkipBack, SkipForward, Heart, Share2, Clock, Calendar, User, BookOpen, ChevronDown, ChevronUp } from 'lucide-react';
-import { blogStore, BlogPost } from '../../../shared/services/blogStore';
-import { useLanguage } from '../../../shared/i18n/LanguageContext';
-import { useTheme } from '../../../shared/theme';
+import { blogStore, BlogPost } from '@/shared/services/blogStore';
+import { useLanguage } from '@/shared/i18n/LanguageContext';
+import { useTheme } from '@/shared/theme';
 
 const formatDate = (dateString: string): string => {
   if (!dateString) return '';
