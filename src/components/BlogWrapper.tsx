@@ -18,6 +18,11 @@ export const BlogWrapper: React.FC<BlogWrapperProps> = ({ onOpenBooking }) => {
         path="/blog/:slug" 
         element={<BlogPostPage onOpenBooking={onOpenBooking} />} 
       />
+      {/* Default route for root path - redirects to blog */}
+      <Route 
+        path="/" 
+        element={<BlogPage onOpenBooking={onOpenBooking} />} 
+      />
     </Routes>
   );
 };
