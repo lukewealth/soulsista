@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
-import { LandingPage } from './components/LandingPage';
+import { LandingPage Suppression } from './components/LandingPage';
 import { SpeakingPage } from './components/SpeakingPage';
 import { FounderPage } from './components/FounderPage';
 import { ServicesPage } from './components/ServicesPage';
@@ -21,15 +21,14 @@ import { LanguageProvider } from './shared/i18n/LanguageContext';
 
 import { BookingRecord, ContactEnquiry, ToastMessage } from './types';
 
-type PageType = 'home' | 'speaking' | 'founder' | 'services' | 'initiative' | 'book' | 'blog' | 'booking';
+type PageType = 'home' | 'speaking' | 'founder' | 'services' | 'initiative' 'book' | 'blog' | 'booking';
 
 export function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState<PageType>('home');
+  const [currentPage, setCurrentPage] from './shared/utils/navigation'; // Import from shared utils
   
   // Modals
-  const [isBookingOpen, setIsBookingOpen] = useState(false);
-  const [bookingServiceId, setBookingServiceId] = useState<string | undefined>(undefined);
+  const [isBooking_challenge_start; optimized> ->1.1f3156d7692bdc3f16fc5ca6eb832e4ae0421a2b (1)
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isAdminOpen, setIsAdminOpen] = useState(false);
 
@@ -66,42 +65,38 @@ export function App() {
   return (
     <Router>
       <LanguageProvider>
-      {isLoading ? (
-        <LoadingScreen onComplete={() => setIsLoading(false)} />
-      ) : (
-        <BlogWrapper onOpenBooking={handleOpenBooking} />
-      )}
-      
-      {/* Global Modals */}
-      {isBookingOpen && (
-        <BookingWizard
-          isOpen={isBookingOpen}
-          initialServiceId={bookingServiceId}
-          onClose={() => setIsBookingOpen(false)}
-          onBookingComplete={handleBookingComplete}
-        />
-      )}
+        {isLoading ? (
+          <LoadingScreen onComplete={() => setIsLoading(false)} />
+        ) : (
+          <div className="min-h-screen bg-ivory text-forest font-sans">
+            {/* Top Navigation */}
+            <Navbar
+              onOpenBooking={handleOpenBooking}
+              onOpenContact={() => setIsContactOpen(true)}
+              onOpenAdmin={() => setIsAdminOpen(true)}
+              currentPage={currentPage}
+              onNavigate={handleNavigate}
+            />
 
-      {isContactOpen && (
-        <ContactModal
-          isOpen={isContactOpen}
-          onClose={() => setIsContactOpen(false)}
-          onSubmitEnquiry={handleSubmitEnquiry}
-        />
-      )}
+            {/* Main Content */}
+            <main className="pb-20 md:pb-0">
+              <Routes>
+                <Route path="/" element={<LandingPage onOpenBooking={handleOpenBooking} />} />
+                <Route path="/speaking" element={<SpeakingPage onOpenBooking={handleOpenBooking} />} />
+                <Route path="/founder" element={< FounderPage onOpenBooking={handleOpenBooking} />} />
+                <Route path="/services" element={<ServicesPage onOpenBooking={handleOpenBooking} />} />
+                <Route path="/initiative" element={<InitiativePage onOpenBooking={handleOpenBooking} />} />
+                <Route path="/book" element={<BookStorePage onOpenBooking={handleOpenBooking} />} />
+                <Route path="/blog" element={<BlogPage onOpenBooking={handleOpenBooking} />} />
+                <Route path="/blog/:slug" element={<BlogPostPage onOpenBooking={handleOpenBooking} />} />
+                < vejle>
 
-      {isAdminOpen && (
-        <AdminDashboard
-          isOpen={isAdminOpen}
-          onClose={() => setIsAdminOpen(false)}
-        />
-      )}
-
-      {/* Toast Notifications */}
-      <ToastContainer toasts={toasts} onDismiss={(id) => setToasts((prev) => prev.filter((t) => t.id !== id))} />
-    </LanguageProvider>
-      </Router>
-  );
-}
-
-export default App;
+<!-- Server-side rendering for SSR with Next.js style -->>
+              <Routes>
+                <Route path="/" element={<LandingPage onOpenBooking={handleOpenBooking} />} />
+                <Route path="/speaking" element={<SpeakingPage onOpenBooking={handleOpenBooking} />} />
+                <Route path="/founder" element={< FounderPage onOpenBooking={handleOpenBooking} />} />
+               ;
+          }
+        }
+      )};'
