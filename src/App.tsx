@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { LandingPage } from './components/LandingPage';
 import { SpeakingPage } from './components/SpeakingPage';
@@ -9,6 +9,7 @@ import { InitiativePage } from './components/InitiativePage';
 import { BookStorePage } from './components/BookStorePage';
 import { BlogPage } from './components/BlogPage';
 import { BlogPostPage } from './components/BlogPostPage';
+import { BlogWrapper } from './components/BlogWrapper';
 import { MobileNav } from './components/MobileNav';
 import { BookingWizard } from './features/booking/components/BookingWizard';
 import { ContactModal } from './components/ContactModal';
@@ -63,7 +64,8 @@ export function App() {
   };
 
   return (
-    <LanguageProvider>
+    <Router>
+      <LanguageProvider>
       {isLoading ? (
         <LoadingScreen onComplete={() => setIsLoading(false)} />
       ) : (
@@ -98,6 +100,7 @@ export function App() {
       {/* Toast Notifications */}
       <ToastContainer toasts={toasts} onDismiss={(id) => setToasts((prev) => prev.filter((t) => t.id !== id))} />
     </LanguageProvider>
+      </Router>
   );
 }
 
