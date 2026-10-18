@@ -4,7 +4,7 @@
  * Centralized API client with base configuration, error handling, and request/response interceptors.
  */
 
-import { API_ENDPOINTS, ERROR_MESSAGES } from '../../constants';
+import { ERROR_MESSAGES } from '../../constants';
 
 // ============================================================================
 // Types
@@ -38,6 +38,15 @@ export interface ApiRequestConfig {
 // ============================================================================
 // Configuration
 // ============================================================================
+
+declare global {
+  interface ImportMetaEnv {
+    readonly VITE_API_URL: string;
+  }
+  interface ImportMeta {
+    readonly env: ImportMetaEnv;
+  }
+}
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
 

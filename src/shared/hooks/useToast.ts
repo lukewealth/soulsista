@@ -6,8 +6,9 @@
  */
 
 import { useState, useCallback } from 'react';
-import { ToastMessage, ToastType } from '../../types';
-import { generateToastId, TOAST_DURATION } from '../../utils';
+import { ToastMessage, ToastType } from '../types';
+import { generateToastId } from '../utils';
+import { TOAST_DURATION } from '../constants';
 
 interface UseToastReturn {
   toasts: ToastMessage[];

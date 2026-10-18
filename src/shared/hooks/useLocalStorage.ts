@@ -5,19 +5,13 @@
  * Provides a useState-like API with automatic persistence.
  */
 
-import { useState, useEffect, useCallback } from 'react';
-import { getFromStorage, setToStorage, removeFromStorage } from '../utils';
-
-interface UseLocalStorageReturn<T> {
-  value: T;
-  setValue: (value: T | ((prev: T) => T)) => void;
-  removeValue: () => void;
-}
+import { useState, useEffect } from 'react';
+import { getFromStorage, setToStorage } from '../utils';
 
 export const useLocalStorage = <T>(
   key: string,
   initialValue: T
-): UseLocalStorageReturn<T> => {
+): [T, (value: T | ((prev: T) => T)) => void] => {
   // Initialize state with value from localStorage or initial value
   const [value, setValue] = useState<T>(() => {
     return getFromStorage(key, initialValue);
@@ -28,15 +22,5 @@ export const useLocalStorage = <T>(
     setToStorage(key, value);
   }, [key, value]);
 
-  // Remove value from localStorage
-  const removeValue = useCallback(() => {
-    removeFromStorage(key);
-    setValue(initialValue);
-  }, [key, initialValue]);
-
-  return {
-    value,
-    setValue,
-    removeValue,
-  };
+  return [value, setValue];
 };

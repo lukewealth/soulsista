@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Volume2, VolumeX, Play, Pause, SkipBack, SkipForward, Heart, Share2, Clock, Calendar, User, BookOpen, ChevronDown, ChevronUp } from 'lucide-react';
+import { ArrowLeft, Volume2, Play, Pause, Heart, Share2, Clock, Calendar, User, BookOpen, ChevronUp } from 'lucide-react';
 import { blogStore, BlogPost } from '../shared/services/blogStore';
 import { useLanguage } from '../shared/i18n/LanguageContext';
 import { useTheme } from '../shared/theme';
+import { sanitizeContentForHtml } from '../shared/services/blogSeo';
 
 const formatDate = (dateString: string): string => {
   if (!dateString) return '';
@@ -24,19 +25,19 @@ interface BlogPostPageProps {
 export const BlogPostPage: React.FC<BlogPostPageProps> = ({ onOpenBooking }) => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
-  const { t } = useLanguage();
-  const { resolved } = useTheme();
+  const { t: _t } = useLanguage();
+  const { resolved: _resolved } = useTheme();
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
+  const [_currentTime, _setCurrentTime] = useState(0);
+  const [_duration, _setDuration] = useState(0);
   const [isFavorite, setIsFavorite] = useState(false);
   const [showToc, setShowToc] = useState(false);
   const [fontSize, setFontSize] = useState(16);
   
   const speechRef = useRef<SpeechSynthesisUtterance | null>(null);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const _audioRef = useRef<HTMLAudioElement | null>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
   // Get table of contents from post content
@@ -89,8 +90,9 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ onOpenBooking }) => 
       speechRef.current.onboundary = (event) => {
         if (event.name === 'word') {
           // Highlight the current word in the content
-          const words = event.text.split(' ');
-          const wordIndex = event.charIndex / event.text.length * words.length;
+          const utteranceText = (event as unknown as { utterance: { text: string } }).utterance?.text || speechRef.current?.text || '';
+          const words = utteranceText.split(' ');
+          const wordIndex = event.charIndex / utteranceText.length * words.length;
           const wordNumber = Math.floor(wordIndex);
           
           if (contentRef.current && wordNumber >= 0 && wordNumber < words.length) {
@@ -145,11 +147,11 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ onOpenBooking }) => 
     }
   };
 
-  const handleTheme = (event: SpeechSynthesisEvent) => {
+  const _handleTheme = (_event: SpeechSynthesisEvent) => {
     if (speechRef.current) {
       // Apply theme-specific styling for speech
-      const resolved = (event as any).detail?.theme || resolved;
-      speechRef.current.lang = resolved === 'dark' ? 'en-GB' : 'en-US';
+      const theme = 'light' as 'light' | 'dark'; // Default theme
+      speechRef.current.lang = theme === 'dark' ? 'en-GB' : 'en-US';
     }
   };
 

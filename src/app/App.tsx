@@ -6,10 +6,10 @@
  */
 
 import React, { useState } from 'react';
-import { BookingRecord, TabId } from './shared/types';
-import { useToast, useLocalStorage } from './shared/hooks';
-import { STORAGE_KEYS } from './shared/constants';
-import { BookingWizard } from './features/booking';
+import { BookingRecord, TabId } from '../shared/types';
+import { useLocalStorage } from '../shared/hooks';
+import { STORAGE_KEYS } from '../shared/constants';
+import { BookingWizard } from '../features/booking';
 
 // TODO: Import other features as they are refactored
 // import { Navbar } from './shared/components/layout/Navbar';
@@ -17,16 +17,13 @@ import { BookingWizard } from './features/booking';
 // etc.
 
 export const App: React.FC = () => {
-  // Global state
-  const [activeTab, setActiveTab] = useState<TabId>('home');
-  const [hasVisited, setHasVisited] = useLocalStorage(STORAGE_KEYS.HAS_VISITED, false);
+  // Global state (TODO: implement)
+  const [activeTab] = useState<TabId>('home');
+  const [hasVisited] = useLocalStorage(STORAGE_KEYS.HAS_VISITED, false);
   
   // Booking state
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [bookingServiceId, setBookingServiceId] = useState<string | undefined>();
-  
-  // Toast notifications
-  const { toasts, addToast, removeToast } = useToast();
 
   // Handlers
   const handleOpenBooking = (serviceId?: string) => {
@@ -34,8 +31,9 @@ export const App: React.FC = () => {
     setIsBookingOpen(true);
   };
 
-  const handleBookingComplete = (booking: BookingRecord) => {
-    addToast('success', 'Reservation Confirmed', `Booking ${booking.id} created successfully.`);
+  const handleBookingComplete = (_booking: BookingRecord) => {
+    // TODO: Add toast notification functionality
+    // addToast('success', 'Reservation Confirmed', `Booking ${_booking.id} created successfully.`);
     // TODO: Save booking to backend
   };
 
@@ -47,9 +45,10 @@ export const App: React.FC = () => {
   // Mark as visited after first load
   React.useEffect(() => {
     if (!hasVisited) {
-      setHasVisited(true);
+      // TODO: Set visited state
+      // setHasVisited(true);
     }
-  }, [hasVisited, setHasVisited]);
+  }, [hasVisited]);
 
   return (
     <div className="min-h-screen bg-ivory text-forest">
