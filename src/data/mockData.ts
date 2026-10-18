@@ -213,7 +213,7 @@ export const FEATURED_BOOK: BookItem = {
   priceHardcoverNGN: 20000,
   priceDigitalNGN: 10000,
   priceBundleNGN: 30000,
-  coverImage: '/images/books/she-can-too.jpeg',
+  coverImage: '/images/services/she-too-can-book.jpg',
   synopsis: 'A groundbreaking literary masterwork and guided manifesto for women navigating the invisible constraints of modern life. Merit Nene Chuks draws from clinical psychology, ancestral wisdom, and personal triumph to offer a roadmap from survival mode into unshakeable wholeness.',
   shortDescription: 'A groundbreaking literary masterwork and guided manifesto for women navigating the invisible constraints of modern life.',
   fullDescription: 'A groundbreaking literary masterwork and guided manifesto for women navigating the invisible constraints of modern life. Merit Nene Chuks draws from clinical psychology, ancestral wisdom, and personal triumph to offer a roadmap from survival mode into unshakeable wholeness. A foundational text for women ready to lead without sacrificing their souls.',
